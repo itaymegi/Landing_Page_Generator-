@@ -24,7 +24,10 @@ export function Section({
         : 'bg-page'
 
   return (
-    <section id={id} className={`scroll-mt-24 py-16 sm:py-20 lg:py-24 ${bg}`}>
+    <section
+      id={id}
+      className={`scroll-mt-24 py-[var(--spacing-section-y)] ${bg}`}
+    >
       <Container>
         {(eyebrow ?? title ?? subtitle) && (
           <header className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
@@ -34,7 +37,7 @@ export function Section({
               </p>
             )}
             {title && (
-              <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-text sm:text-4xl lg:text-[2.75rem]">
+              <h2 className="font-display text-[length:var(--text-section-title)] font-bold leading-tight tracking-tight text-text">
                 {title}
               </h2>
             )}

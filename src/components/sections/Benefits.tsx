@@ -10,7 +10,7 @@ export function Benefits({ benefits }: Pick<SiteConfig, 'benefits'>) {
       title={benefits.title}
       subtitle={benefits.subtitle}
     >
-      <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <ul className="grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
         {benefits.items.map((item) => (
           <li key={item.title}>
             <Card className="h-full">

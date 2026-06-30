@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #f7f1e6;
+  --beige: #ebe0cd;
+  --gold: #b8965a;
+  --gold-deep: #a07e3f;
+  --charcoal: #2b2421;
+  --white: #ffffff;
+  --background: var(--cream);
+  --foreground: var(--charcoal);
+  --header-height: 4rem;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-beige: var(--beige);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-charcoal: var(--charcoal);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-heebo);
+  --font-serif: var(--font-frank);
+  --font-display: var(--font-display);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0.35rem);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-heebo), system-ui, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.65;
+  -webkit-tap-highlight-color: transparent;
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--gold) 40%, transparent);
+  color: var(--charcoal);
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-frank), serif;
+}
+
+.font-serif {
+  letter-spacing: 0.02em;
+}
+
+.container-rubina {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 90rem;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-rubina {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-rubina {
+    padding-inline: 3rem;
+  }
+}
+
+.rule-gold {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.rule-gold-center {
+  margin-inline: auto;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 639px) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .scroll-cue-animate {
+    animation: none;
+  }
+}
+
+.scroll-cue-animate {
+  animation: scroll-cue 2s ease-in-out infinite;
+}

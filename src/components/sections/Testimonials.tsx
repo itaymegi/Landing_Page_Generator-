@@ -1,22 +1,25 @@
 import type { SiteConfig } from '../../content/site'
 import { Section } from '../layout/Section'
 
-export function Testimonials({ testimonials }: Pick<SiteConfig, 'testimonials'>) {
+export function Testimonials({
+  testimonials,
+  eyebrow,
+}: Pick<SiteConfig, 'testimonials'> & { eyebrow: string }) {
   return (
     <Section
       id="testimonials"
-      eyebrow="Social proof"
+      eyebrow={eyebrow}
       title={testimonials.title}
       subtitle={testimonials.subtitle}
     >
-      <ul className="grid gap-5 lg:grid-cols-3 lg:gap-6">
+      <ul className="grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
         {testimonials.items.map((item) => (
           <li
             key={item.name}
             className="flex flex-col rounded-2xl border border-border bg-surface-muted/70 p-6 sm:p-8"
           >
             <blockquote className="flex-1">
-              <p className="text-[0.95rem] leading-relaxed text-text sm:text-base">
+              <p className="text-sm leading-relaxed text-text sm:text-base">
                 “{item.quote}”
               </p>
             </blockquote>

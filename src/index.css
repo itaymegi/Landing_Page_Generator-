@@ -13,6 +13,20 @@
   --color-accent: #c9a93e;
   --color-accent-hover: #ddb94a;
   --color-accent-subtle: color-mix(in oklab, #c9a93e 18%, transparent);
+  /** Text/icons on solid accent (buttons, badges on accent band) — override per client theme */
+  --color-accent-foreground: #080a0d;
+  /** Contact strip; default follows accent until a client sets `contactBand` in theme */
+  --color-contact-band: var(--color-accent);
+  --color-contact-band-foreground: var(--color-accent-foreground);
+
+  --spacing-section-y: clamp(3.5rem, 6vw, 6.5rem);
+  --text-hero: clamp(1.75rem, 0.5rem + 4.2vw, 3.15rem);
+  --text-section-title: clamp(1.65rem, 0.4rem + 3.5vw, 2.75rem);
+}
+
+html[lang='he'] {
+  --font-display: "Heebo", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Heebo", ui-sans-serif, system-ui, sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -24,6 +38,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--font-body);
   background-color: var(--color-page);
   color: var(--color-text);

@@ -1,11 +1,13 @@
-import type { SiteConfig } from '../types'
+import type { LocalizedClientConfig, SiteConfig } from '../types'
+import { uiEn, uiHe } from '../uiStrings'
 
 /**
  * Second example client — shows `clientId`, custom `theme`, and local hero path.
  * Put `hero.jpg` in `public/clients/example-cafe/` or switch `imageSrc` to any URL.
  */
-export const exampleCafe: SiteConfig = {
+const exampleCafeEn: SiteConfig = {
   clientId: 'example-cafe',
+  ui: uiEn,
   meta: {
     title: 'Riverstone Café — Artisan coffee & brunch',
     description:
@@ -21,6 +23,7 @@ export const exampleCafe: SiteConfig = {
     accent: '#c9835c',
     accentHover: '#e09972',
     accentSubtle: 'color-mix(in oklab, #c9835c 22%, transparent)',
+    accentForeground: '#1a120f',
   },
   brand: {
     name: 'Riverstone Café',
@@ -221,3 +224,16 @@ export const exampleCafe: SiteConfig = {
     ],
   },
 }
+
+const exampleCafeHe: SiteConfig = {
+  ...exampleCafeEn,
+  ui: uiHe,
+}
+
+export const exampleCafeLocales: LocalizedClientConfig = {
+  en: exampleCafeEn,
+  he: exampleCafeHe,
+}
+
+/** @deprecated Prefer `exampleCafeLocales.en`. */
+export const exampleCafe = exampleCafeEn

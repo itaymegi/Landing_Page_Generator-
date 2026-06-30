@@ -1,12 +1,15 @@
 import type { SiteConfig } from '../../content/site'
 import { Section } from '../layout/Section'
 
-export function WhyUs({ whyUs }: Pick<SiteConfig, 'whyUs'>) {
+export function WhyUs({
+  whyUs,
+  eyebrow,
+}: Pick<SiteConfig, 'whyUs'> & { eyebrow: string }) {
   return (
     <Section
       id="process"
       variant="muted"
-      eyebrow="Process"
+      eyebrow={eyebrow}
       title={whyUs.title}
       subtitle={whyUs.subtitle}
     >

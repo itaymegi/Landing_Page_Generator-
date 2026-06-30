@@ -1,19 +1,35 @@
-import type { SiteConfig } from '../types'
-import { exampleCafe } from './example-cafe'
-import { godelivery } from './godelivery'
-import { northline } from './northline'
+import type { Locale, LocalizedClientConfig, SiteConfig } from '../types'
+import { exampleCafeLocales } from './example-cafe'
+import { godeliveryLocales } from './godelivery'
+import { northlineLocales } from './northline'
 
 const registry = {
-  northline,
-  'example-cafe': exampleCafe,
-  godelivery,
-} as const satisfies Record<string, SiteConfig>
+  northline: northlineLocales,
+  'example-cafe': exampleCafeLocales,
+  godelivery: godeliveryLocales,
+} as const satisfies Record<string, LocalizedClientConfig>
 
 export type ClientId = keyof typeof registry
 
 export const CLIENT_IDS = Object.keys(registry) as ClientId[]
 
-export function getSiteConfig(clientId?: string): SiteConfig {
+function parseLocale(raw: string | undefined): Locale {
+  if (raw === undefined || raw === '' || raw === 'en') return 'en'
+  if (raw === 'he') return 'he'
+  throw new Error(
+    `Unknown locale "${raw}". Set VITE_LOCALE to en or he (e.g. in .env).`,
+  )
+}
+
+/** Active locale from `VITE_LOCALE` (default `en`). */
+export function getLocaleFromEnv(): Locale {
+  return parseLocale(import.meta.env.VITE_LOCALE as string | undefined)
+}
+
+export function getSiteConfig(
+  clientId?: string,
+  locale?: Locale,
+): SiteConfig {
   const envId = import.meta.env.VITE_CLIENT_ID as string | undefined
   const raw = clientId ?? envId ?? 'northline'
   if (!(raw in registry)) {
@@ -22,5 +38,8 @@ export function getSiteConfig(clientId?: string): SiteConfig {
       `Unknown client "${raw}". Set VITE_CLIENT_ID to one of: ${allowed}`,
     )
   }
-  return registry[raw as ClientId]
+  const loc = locale ?? getLocaleFromEnv()
+  const bundle = registry[raw as ClientId]
+  const config = bundle[loc] ?? bundle.en
+  return { ...config, locale: loc }
 }

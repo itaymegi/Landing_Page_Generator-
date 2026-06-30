@@ -1,15 +1,18 @@
 import type { SiteConfig } from '../../content/site'
 import { Section } from '../layout/Section'
 
-export function Services({ services }: Pick<SiteConfig, 'services'>) {
+export function Services({
+  services,
+  eyebrow,
+}: Pick<SiteConfig, 'services'> & { eyebrow: string }) {
   return (
     <Section
       id="services"
-      eyebrow="Deliverables"
+      eyebrow={eyebrow}
       title={services.title}
       subtitle={services.subtitle}
     >
-      <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
+      <div className="grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
         {services.items.map((item, i) => (
           <article
             key={item.title}

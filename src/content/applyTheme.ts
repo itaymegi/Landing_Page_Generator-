@@ -10,6 +10,9 @@ const THEME_KEYS: (keyof SiteTheme)[] = [
   'accent',
   'accentHover',
   'accentSubtle',
+  'accentForeground',
+  'contactBand',
+  'contactBandForeground',
 ]
 
 function cssVarName(key: keyof SiteTheme): string {
@@ -18,6 +21,9 @@ function cssVarName(key: keyof SiteTheme): string {
     textMuted: 'text-muted',
     accentHover: 'accent-hover',
     accentSubtle: 'accent-subtle',
+    accentForeground: 'accent-foreground',
+    contactBand: 'contact-band',
+    contactBandForeground: 'contact-band-foreground',
   }
   return map[key as string] ?? key
 }

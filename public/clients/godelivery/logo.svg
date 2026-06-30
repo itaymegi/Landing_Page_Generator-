@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+  <rect width="96" height="96" rx="22" fill="#0a0a0a"/>
+  <!-- Stylized delivery bike / motion -->
+  <circle cx="30" cy="68" r="10" fill="none" stroke="#d31313" stroke-width="4"/>
+  <circle cx="66" cy="68" r="10" fill="none" stroke="#d31313" stroke-width="4"/>
+  <path
+    fill="#d31313"
+    d="M24 52c0-4 3-7 7-7h8l6 10h14l6-6v14H38l-4-11h-7v0Z"
+  />
+  <path stroke="#d31313" stroke-linecap="round" stroke-width="3" d="M18 40h12M78 36l-10 10" opacity=".9"/>
+</svg>

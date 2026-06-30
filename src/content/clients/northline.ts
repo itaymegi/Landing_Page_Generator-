@@ -1,8 +1,10 @@
-import type { SiteConfig } from '../types'
+import type { LocalizedClientConfig, SiteConfig } from '../types'
+import { uiEn, uiHe } from '../uiStrings'
 
 /** Default demo client — your agency offer (content from original Stage 1). */
-export const northline: SiteConfig = {
+const northlineEn: SiteConfig = {
   clientId: 'northline',
+  ui: uiEn,
   meta: {
     title: 'Northline Studio — Landing pages that convert',
     description:
@@ -223,3 +225,20 @@ export const northline: SiteConfig = {
     ],
   },
 }
+
+/**
+ * Hebrew locale uses the same English marketing copy until translated;
+ * shell labels and section eyebrows are in Hebrew for RTL-ready previews.
+ */
+const northlineHe: SiteConfig = {
+  ...northlineEn,
+  ui: uiHe,
+}
+
+export const northlineLocales: LocalizedClientConfig = {
+  en: northlineEn,
+  he: northlineHe,
+}
+
+/** @deprecated Prefer `northlineLocales.en` — kept for imports expecting a single config. */
+export const northline = northlineEn
