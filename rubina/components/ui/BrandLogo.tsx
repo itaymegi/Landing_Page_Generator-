@@ -29,8 +29,8 @@ export function BrandLogo({
   const mark = markSizes[size];
   const textColor = inverse
     ? "text-white group-hover:text-white/90"
-    : "text-charcoal group-hover:text-gold-deep";
-  const taglineColor = inverse ? "text-white/60" : "text-charcoal/50";
+    : "text-brown group-hover:text-gold-deep";
+  const taglineColor = inverse ? "text-white/60" : "text-brown/50";
 
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>

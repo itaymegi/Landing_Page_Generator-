@@ -32,23 +32,40 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-gold/10 bg-cream/95 shadow-sm shadow-charcoal/5 backdrop-blur-md"
+          ? "border-b border-cream bg-parchment/95 shadow-sm shadow-brown/5 backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="container-rubina flex h-16 items-center justify-between gap-4">
-        <a href="#" className="group" aria-label={`${site.brand.name} — דף הבית`}>
+        <a href="#" className="group shrink-0" aria-label={`${site.brand.name} — דף הבית`}>
           <BrandLogo size="md" showTagline={false} inverse={!scrolled} />
         </a>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        {scrolled ? (
+          <nav
+            className="hidden items-center gap-6 lg:flex"
+            aria-label="ניווט ראשי"
+          >
+            {site.nav.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-brown/65 transition-colors hover:text-gold-deep"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        ) : null}
+
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <a
             href={site.contact.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
               scrolled
-                ? "text-charcoal/70 hover:text-gold-deep"
+                ? "text-brown/70 hover:text-gold-deep"
                 : "text-white/90 hover:text-white"
             }`}
             aria-label="Instagram"

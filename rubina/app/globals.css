@@ -1,20 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #f7f1e6;
-  --beige: #ebe0cd;
-  --gold: #b8965a;
-  --gold-deep: #a07e3f;
-  --charcoal: #2b2421;
+  --parchment: #faf7f2;
+  --cream: #e8dccb;
+  --beige: #e8dccb;
+  --brown: #5a4634;
+  --text: #2b2b2b;
+  --gold: #a67c52;
+  --gold-deep: #8b6340;
+  --charcoal: #5a4634;
   --white: #ffffff;
-  --background: var(--cream);
-  --foreground: var(--charcoal);
+  --background: var(--parchment);
+  --foreground: var(--text);
   --header-height: 4rem;
 }
 
 @theme inline {
+  --color-parchment: var(--parchment);
   --color-cream: var(--cream);
   --color-beige: var(--beige);
+  --color-brown: var(--brown);
+  --color-text: var(--text);
   --color-gold: var(--gold);
   --color-gold-deep: var(--gold-deep);
   --color-charcoal: var(--charcoal);
@@ -48,6 +54,15 @@
   }
 }
 
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -59,7 +74,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-heebo), system-ui, sans-serif;
   overflow-x: hidden;
-  line-height: 1.65;
+  line-height: 1.75;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -69,7 +84,7 @@ section[id] {
 
 ::selection {
   background: color-mix(in oklab, var(--gold) 40%, transparent);
-  color: var(--charcoal);
+  color: var(--text);
 }
 
 .font-display {
@@ -99,6 +114,22 @@ section[id] {
   }
 }
 
+.section-py {
+  padding-block: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-py {
+    padding-block: 6.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-py {
+    padding-block: 8.75rem;
+  }
+}
+
 .rule-gold {
   display: block;
   width: 2.5rem;
@@ -110,12 +141,17 @@ section[id] {
   margin-inline: auto;
 }
 
+.hero-zoom {
+  animation: hero-zoom 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(1.25rem);
   transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
+    opacity 0.75s ease-out,
+    transform 0.75s ease-out;
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -139,11 +175,17 @@ section[id] {
     transition: none;
   }
 
-  .scroll-cue-animate {
+  .scroll-cue-animate,
+  .hero-zoom {
     animation: none;
   }
 }
 
 .scroll-cue-animate {
   animation: scroll-cue 2s ease-in-out infinite;
+}
+
+body[data-modal-open="true"] .mobile-whatsapp-bar {
+  visibility: hidden;
+  pointer-events: none;
 }

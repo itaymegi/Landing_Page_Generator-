@@ -23,7 +23,7 @@ const variantClasses = {
 const sizeClasses = {
   sm: "min-h-11 px-5 py-2 text-sm",
   md: "min-h-12 px-6 py-2.5 text-base",
-  lg: "min-h-14 px-8 py-3 text-base sm:text-lg",
+  lg: "min-h-14 px-10 py-3.5 text-lg sm:min-h-[3.5rem]",
 };
 
 function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
@@ -62,7 +62,7 @@ export function WhatsAppButton({
 
 export function MobileWhatsAppBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-gold/20 bg-cream/98 px-3 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(43,36,33,0.08)] backdrop-blur-lg sm:hidden">
+    <div className="mobile-whatsapp-bar fixed inset-x-0 bottom-0 z-50 border-t border-cream bg-parchment/98 px-3 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(90,70,52,0.08)] backdrop-blur-lg sm:hidden">
       <WhatsAppButton label="הזמנה בוואטסאפ" size="md" fullWidth />
     </div>
   );

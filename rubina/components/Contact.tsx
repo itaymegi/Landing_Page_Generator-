@@ -45,30 +45,26 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-charcoal py-20 text-white sm:py-28"
+      className="section-py relative overflow-hidden bg-brown text-white"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,150,90,0.12)_0%,transparent_55%)]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal to-[#1f1a18]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(166,124,82,0.15)_0%,transparent_55%)]"
         aria-hidden="true"
       />
 
       <div className="container-rubina relative mx-auto max-w-2xl text-center">
         <Reveal>
-          <h2 className="font-serif text-3xl font-light tracking-wide sm:text-4xl">
+          <h2 className="font-serif text-4xl font-light leading-tight tracking-wide sm:text-5xl">
             {contactSection.heading}
           </h2>
-          <span className="rule-gold rule-gold-center mt-5" aria-hidden="true" />
-          <p className="mt-6 text-base leading-relaxed text-white/78 sm:text-lg">
+          <span className="rule-gold rule-gold-center mt-6" aria-hidden="true" />
+          <p className="mt-8 text-base leading-relaxed text-white/80 sm:text-lg">
             {contactSection.subtitle}
           </p>
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-10 flex flex-col gap-3 sm:gap-4">
+          <div className="mt-12 flex flex-col gap-4">
             <WhatsAppButton
               label={contactSection.whatsappLabel}
               variant="primary"
@@ -85,22 +81,10 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={200}>
-          <div className="mt-12 rounded-sm border border-white/10 bg-white/5 px-5 py-6 sm:px-8">
-            <div className="flex flex-col gap-3 text-sm leading-relaxed text-white/65 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-6 sm:gap-y-2 sm:text-base">
-              <p>{contactSection.deliveryAreas}</p>
-              <span className="hidden text-white/25 sm:inline" aria-hidden="true">
-                ·
-              </span>
-              <p>{contactSection.deliveryInfo}</p>
-              <span className="hidden text-white/25 sm:inline" aria-hidden="true">
-                ·
-              </span>
-              <p>{contactSection.pickupInfo}</p>
-            </div>
-            <p className="mt-4 border-t border-white/10 pt-4 text-xs text-white/45 sm:text-sm">
-              {contactSection.accessibilityNote}
-            </p>
-          </div>
+          <p className="mt-10 text-sm leading-relaxed text-white/50">
+            {contactSection.deliveryAreas} · {contactSection.pickupInfo} ·{" "}
+            {contactSection.orderDays}
+          </p>
         </Reveal>
       </div>
     </section>

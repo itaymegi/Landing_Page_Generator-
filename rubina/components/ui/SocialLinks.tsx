@@ -46,7 +46,7 @@ function EmailIcon() {
 
 export function SocialLinks({ size = "md", className = "" }: SocialLinksProps) {
   const { contact } = site;
-  const buttonClass = `inline-flex items-center justify-center rounded-full border border-beige/80 bg-white text-charcoal/70 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/50 hover:bg-cream hover:text-gold-deep hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream ${sizeClasses[size]}`;
+  const buttonClass = `inline-flex items-center justify-center rounded-full border border-cream bg-white text-brown/70 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/50 hover:bg-parchment hover:text-gold-deep hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-parchment ${sizeClasses[size]}`;
 
   return (
     <div

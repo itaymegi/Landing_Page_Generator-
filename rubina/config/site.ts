@@ -4,12 +4,33 @@ export type ProductItem = {
   description: string;
   image: string;
   imageAlt: string;
+  images?: { src: string; alt: string }[];
   price?: string;
 };
 
 export type GalleryImage = {
   src: string;
   alt: string;
+};
+
+const GALLERY_IMAGE_PATTERN = /^\/images\/gallery-\d+\.png$/;
+
+export function isGalleryImage(src: string): boolean {
+  return GALLERY_IMAGE_PATTERN.test(src);
+}
+
+export function filterGalleryImages(images: GalleryImage[]): GalleryImage[] {
+  return images.filter((image) => isGalleryImage(image.src));
+}
+
+export type NavLink = {
+  label: string;
+  href: string;
+};
+
+export type FaqItem = {
+  question: string;
+  answer: string;
 };
 
 export type SiteColors = {
@@ -38,12 +59,20 @@ export type SiteConfig = {
     phones: string[];
   };
   colors: SiteColors;
+  nav: NavLink[];
   hero: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
+    secondaryCta: string;
     image: string;
     imageAlt: string;
+  };
+  trustStrip: {
+    items: { label: string }[];
+  };
+  occasions: {
+    line: string;
   };
   ourStory: {
     title: string;
@@ -55,12 +84,18 @@ export type SiteConfig = {
   };
   products: {
     title: string;
-    ctaLabel: string;
     items: ProductItem[];
   };
   gallery: {
     title: string;
-    images: GalleryImage[];
+    openLabel: string;
+    closeLabel: string;
+    previewImages: GalleryImage[];
+    allImages: GalleryImage[];
+  };
+  faq: {
+    title: string;
+    items: FaqItem[];
   };
   contactSection: {
     heading: string;
@@ -71,6 +106,8 @@ export type SiteConfig = {
     deliveryAreas: string;
     deliveryInfo: string;
     pickupInfo: string;
+    leadTime: string;
+    orderDays: string;
     accessibilityNote: string;
   };
   footer: {
@@ -79,6 +116,8 @@ export type SiteConfig = {
   meta: {
     title: string;
     description: string;
+    siteUrl: string;
+    ogImage: string;
   };
 };
 
@@ -92,6 +131,26 @@ export function whatsappHref(
   if (!message) return base;
   return `${base}?text=${encodeURIComponent(message)}`;
 }
+
+export function getSiteUrl(): string {
+  return (
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+    site.meta.siteUrl.replace(/\/$/, "")
+  );
+}
+
+const galleryImages: GalleryImage[] = [
+  { src: "/images/gallery-1.png", alt: "שלושה מארזי Rubina על מפת פיקניק בשדה חיטה" },
+  { src: "/images/gallery-2.png", alt: "מארזי גבינות ויין על רקע קש כפרי" },
+  { src: "/images/gallery-3.png", alt: "מארז Rubina על ערימת חציר ליד האסם" },
+  { src: "/images/gallery-4.png", alt: "מארז מעוצב על רקע רפת — מהחווה אליכם" },
+  { src: "/images/gallery-5.png", alt: "משלוח מארזי Rubina בדרך אל הלקוח" },
+  { src: "/images/gallery-6.png", alt: "שני מארזים על ערימת חציר בשעת הזהב" },
+  { src: "/images/gallery-7.png", alt: "מארזי פיקניק מעוצבים על מפה לבנה" },
+  { src: "/images/gallery-8.png", alt: "מארז פיקניק מלא — גבינות, יין, לחם ומגש מעוצב בשדה חיטה" },
+  { src: "/images/gallery-9.png", alt: "חוויית פיקניק יוקרתית עם מארז Rubina בשדה" },
+  { src: "/images/gallery-10.png", alt: "מבחר גבינות, יין ותוספות לפני אריזת המארזים" },
+];
 
 export const site: SiteConfig = {
   brand: {
@@ -112,20 +171,37 @@ export const site: SiteConfig = {
     phones: ["052-783-6631"],
   },
   colors: {
-    cream: "#F7F1E6",
-    beige: "#EBE0CD",
-    gold: "#B8965A",
-    goldDeep: "#A07E3F",
-    charcoal: "#2B2421",
+    cream: "#E8DCCB",
+    beige: "#E8DCCB",
+    gold: "#A67C52",
+    goldDeep: "#8B6340",
+    charcoal: "#5A4634",
     white: "#FFFFFF",
   },
+  nav: [
+    { label: "הסיפור", href: "#story" },
+    { label: "המארזים", href: "#products" },
+    { label: "גלריה", href: "#gallery" },
+    { label: "צור קשר", href: "#contact" },
+  ],
   hero: {
-    headline: "המארז המושלם לאירוח, זוגות, חגים ורגעים מיוחדים.",
+    headline: "מארזי גבינות ויין לרגעים ששווה לחגוג",
     subtitle:
-      "מארזי גבינות, יין ופינוקים שנבחרו בקפידה לרגעים ששווה לזכור.",
+      "מארזים בעבודת יד, עם גבינות נבחרות, יין ופינוקים שנארזים בקפידה ומגיעים עד אליכם.",
     ctaLabel: "הזמנה בוואטסאפ",
+    secondaryCta: "צפייה במארזים",
     image: "/images/product-rubina.png",
     imageAlt: "מארז גבינות ויין מעוצב של רובינה",
+  },
+  trustStrip: {
+    items: [
+      { label: "בעבודת יד" },
+      { label: "מרכיבים טריים" },
+      { label: "משלוח ואיסוף" },
+    ],
+  },
+  occasions: {
+    line: "מתאים לאירוח · זוגות · חגים · מתנה לעובדים",
   },
   ourStory: {
     title: "איך Rubina נולדה",
@@ -133,70 +209,105 @@ export const site: SiteConfig = {
     intro:
       "מדובר בשני בני זוג, לוחמי מילואים, שהקימו את Rubina בזמן המלחמה — מתוך רצון ליצור משהו משלנו, מלא אהבה ומשמעות.",
     paragraphs: [
-      "עלינו בקצרה — אנחנו זוג צעיר מלא תשוקה שאוהבים לפנק ולגעת באנשים, ומביאים את אותה מחוייבות ואהבה גם לעסק שלנו.",
-      "כל מארז נבנה בקפידה, עם דגש על איכות וטריות, כדי להבטיח שתהנו מרגעים טובים ומיוחדים.",
+      "כל מארז נבנה בקפידה, בעבודת יד, עם דגש על איכות, טריות ואהבה — כדי שתהנו מרגעים טובים ומיוחדים.",
     ],
     image: "/images/couple.png",
     imageAlt: "הזוג שמאחורי Rubina — מכינים מארזים בעבודת יד",
   },
   products: {
     title: "המארזים שלנו",
-    ctaLabel: "לפרטים בוואטסאפ",
     items: [
+      {
+        id: "gold",
+        title: "מארז Gold",
+        description:
+          "מארז גולד המכיל מעל 10 סוגי גבינה, יין ישראלי וכל התוספות שאי אפשר בלעדיהם 🧀🍷🥂",
+        image: "/images/product-gold.png",
+        imageAlt: "מארז Gold — יין אדום, גבינות ותוספות על רקע קש",
+      },
       {
         id: "rubina",
         title: "מארז רובינה",
         description:
           "המארז החתימה שלנו — גבינות נבחרות, יין, פינוקים ועיצוב שמרגיש מיוחד מהרגע הראשון.",
         image: "/images/product-rubina.png",
-        imageAlt: "מארז רובינה — מארז גבינות ויין מעוצב",
-      },
-      {
-        id: "gold",
-        title: "מארז Gold",
-        description:
-          "חוויה פרימיום עם מבחר עשיר יותר, עיצוב מפואר ותחושת יוקרה שמחגגת כל רגע.",
-        image: "/images/product-classic.png",
-        imageAlt: "מארז Gold — מארז פרימיום",
+        imageAlt: "מארז רובינה — מארז החתימה עם גבינות בוטיק ויין",
       },
       {
         id: "classic",
         title: "מארז קלאסי",
         description:
           "מארז קלאסי ואלגנטי עם גבינות מובחרות, יין וליווי מושלם — מתנה שתמיד עובדת.",
-        image: "/images/product-custom.png",
-        imageAlt: "מארז קלאסי — מארז גבינות ויין",
+        image: "/images/product-classic.png",
+        imageAlt: "מארז קלאסי — גבינות, יין לבן ותוספות על רקע קש",
+      },
+      {
+        id: "ari",
+        title: "מארז ARI",
+        description:
+          "מארז מיוחד עם יין לבן, גבינות נבחרות, זיתים, עוגיות ותוספות משלימות — מושלם לפיקניק או מתנה מפנקת.",
+        image: "/images/product-ari.png",
+        imageAlt: "מארז ARI — יין לבן, גבינות ותוספות על רקע קש",
       },
       {
         id: "custom",
         title: "מארז מותאם אישית",
         description:
           "רוצים משהו שמתאים בדיוק לכם? נבנה יחד מארז לפי טעם, אירוע ותקציב — עם הלב והידיים שלנו.",
-        image: "/images/product-gold.png",
-        imageAlt: "מארז מותאם אישית — מארז בהתאמה אישית",
+        image: "/images/product-custom-made-2.png",
+        imageAlt: "מארז בהרכבה אישית",
+        images: [
+          {
+            src: "/images/product-custom-made-2.png",
+            alt: "מארז בהרכבה אישית — סלסלת חבלים בשדה החיטה",
+          },
+          {
+            src: "/images/product-custom-made.png",
+            alt: "מארז בהרכבה אישית — סלסלת פיקניק עם חמניה",
+          },
+        ],
       },
     ],
   },
   gallery: {
     title: "קצת מהקסם שלנו",
-    images: [
-      { src: "/images/gallery-5.png", alt: "מארזי Rubina מוכנים לשליחה" },
-      { src: "/images/gallery-6.png", alt: "מארזי גבינות ויין בעבודת יד" },
-      { src: "/images/product-rubina.png", alt: "מארז גבינות ויין של רובינה" },
-      { src: "/images/product-classic.png", alt: "מארז פרימיום על רקע טבעי" },
-      { src: "/images/product-gold.png", alt: "מארז מעוצב עם יין וגבינות" },
-      { src: "/images/couple.png", alt: "הזוג שמאחורי Rubina" },
+    openLabel: "לגלריה המלאה",
+    closeLabel: "סגור",
+    previewImages: galleryImages,
+    allImages: galleryImages,
+  },
+  faq: {
+    title: "שאלות נפוצות",
+    items: [
+      {
+        question: "איך מזמינים?",
+        answer:
+          "שלחו לנו הודעה בוואטסאפ עם סוג המארז שמעניין אתכם, תאריך וכמות — ונחזור אליכם עם כל הפרטים.",
+      },
+      {
+        question: "לאיזה אזורים אתם משלחים?",
+        answer:
+          "משלוחים למרכז הארץ. לאזורים נוספים — פנו אלינו בוואטסאפ ונבדוק יחד אפשרות משלוח.",
+      },
+      {
+        question: "אפשר מארז מותאם אישית?",
+        answer:
+          "בהחלט. נבנה יחד מארז לפי טעם, אירוע ותקציב — פשוט כתבו לנו בוואטסאפ מה אתם מחפשים.",
+      },
     ],
   },
   contactSection: {
-    heading: "רוצים להזמין?",
-    subtitle: "שלחו לנו הודעה ונעזור לכם לבחור את המארז שמתאים בדיוק לרגע שלכם.",
-    whatsappLabel: "הזמנה בוואטסאפ",
+    heading: "רוצים להפתיע מישהו ברגע מתוק ומדויק?",
+    subtitle:
+      "שלחו לנו הודעה ונעזור לכם לבחור את המארז שמתאים בדיוק לאירוע, לטעם ולתקציב.",
+    whatsappLabel: "להזמנה בוואטסאפ",
     instagramLabel: "Instagram",
     phoneLabel: "טלפון",
     deliveryAreas: "משלוחים למרכז הארץ",
     deliveryInfo: "משלוח עד הבית — נשמח לתאם בוואטסאפ",
     pickupInfo: "איסוף עצמי ממושב עזריה",
+    leadTime: "הזמנה מראש — נשמח לתאם מועד",
+    orderDays: "משלוחים בימים א׳–ה׳",
     accessibilityNote:
       "האתר מותאם לגלישה נוחה. לכל שאלה או בקשה — פנו אלינו בוואטסאפ.",
   },
@@ -207,6 +318,8 @@ export const site: SiteConfig = {
     title: "Rubina — מארזי גבינות, יין ופינוקים",
     description:
       "מארזי גבינות, יין ופינוקים בעיצוב יוקרתי. מתנה מושקעת לאירוח, זוגות, חגים ורגעים מיוחדים. הזמנה בוואטסאפ.",
+    siteUrl: "https://rubina.example.com",
+    ogImage: "/images/product-rubina.png",
   },
 };
 
