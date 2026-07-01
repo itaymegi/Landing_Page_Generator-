@@ -12,7 +12,7 @@ export function Footer() {
         <BrandLogo size="sm" showTagline={false} />
         <p className="mt-4 text-sm text-brown/50">{brand.tagline}</p>
         <SocialLinks className="mt-8" size="sm" />
-        <div className="mt-8 w-full max-w-sm border-t border-brown/10 pt-6">
+        <div className="mt-8 w-full max-w-sm border-t border-brown/10 pt-6 relative z-10">
           <FooterLegalLinks />
           <p className="mt-3 text-xs text-brown/50">{footer.copyright}</p>
         </div>

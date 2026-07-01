@@ -27,6 +27,11 @@ export type OccasionTag = {
   label: string;
 };
 
+export type BoxTypeOption = {
+  value: string;
+  label: string;
+};
+
 export type NavLink = {
   label: string;
   href: string;
@@ -102,6 +107,19 @@ export type SiteConfig = {
   faq: {
     title: string;
     items: FaqItem[];
+  };
+  planner: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    nameLabel: string;
+    boxTypeLabel: string;
+    boxTypeOptions: BoxTypeOption[];
+    quantityLabel: string;
+    dateLabel: string;
+    notesLabel: string;
+    successMessage: string;
+    submitLabel: string;
   };
   contactSection: {
     heading: string;
@@ -205,6 +223,7 @@ export const site: SiteConfig = {
     { label: "הסיפור", href: "#story" },
     { label: "המארזים", href: "#products" },
     { label: "גלריה", href: "#gallery" },
+    { label: "הזמנה", href: "#planner" },
     { label: "צור קשר", href: "#contact" },
   ],
   hero: {
@@ -333,6 +352,27 @@ export const site: SiteConfig = {
           "בהחלט. נבנה יחד מארז לפי טעם, אירוע ותקציב — פשוט כתבו לנו בוואטסאפ מה אתם מחפשים.",
       },
     ],
+  },
+  planner: {
+    eyebrow: "הזמנה",
+    title: "בואו נרכיב לכם מארז",
+    subtitle: "כמה פרטים קצרים ונחזור אליכם בוואטסאפ עם כל הפרטים.",
+    nameLabel: "שם",
+    boxTypeLabel: "סוג מארז",
+    boxTypeOptions: [
+      { value: "מארז Gold", label: "מארז Gold" },
+      { value: "מארז רובינה", label: "מארז רובינה" },
+      { value: "מארז קלאסי", label: "מארז קלאסי" },
+      { value: "מארז ARI", label: "מארז ARI" },
+      { value: "מארז מותאם אישית", label: "מארז מותאם אישית" },
+      { value: "אחר", label: "אחר / עוד לא בטוח/ה" },
+    ],
+    quantityLabel: "כמות מארזים",
+    dateLabel: "תאריך רצוי",
+    notesLabel: "הערות",
+    successMessage:
+      "מעולה! נפתח עבורכם חלון וואטסאפ עם הפרטים — נשמח לחזור אליכם.",
+    submitLabel: "שליחת פרטים בוואטסאפ",
   },
   contactSection: {
     heading: "רוצים להפתיע מישהו ברגע מתוק ומדויק?",

@@ -43,7 +43,7 @@ export function ProductGrid({ items }: ProductGridProps) {
                 className="relative block w-full aspect-[3/4] overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-inset"
                 aria-label={`פרטים על ${product.title}`}
               >
-                <ProductCardImage product={product} />
+                <ProductCardImage product={product} priority={index < 2} />
               </button>
 
               <div className="px-6 pb-8 pt-8 sm:px-8">

@@ -1,9 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { site } from "@/config/site";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+
+function useScrolled(threshold = 24) {
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      const onScroll = () => onStoreChange();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    },
+    () => window.scrollY > threshold,
+    () => false,
+  );
+}
 
 function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -19,14 +31,7 @@ function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
 }
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const scrolled = useScrolled();
 
   return (
     <header

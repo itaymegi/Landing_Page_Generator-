@@ -70,6 +70,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
+      data-scroll-behavior="smooth"
       className={`${frank.variable} ${heebo.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full overflow-x-hidden bg-parchment text-text">

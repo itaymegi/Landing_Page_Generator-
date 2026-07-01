@@ -1,6 +1,26 @@
+import dynamic from "next/dynamic";
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
-import { GalleryInteractive } from "@/components/GalleryInteractive";
+
+const GalleryInteractive = dynamic(
+  () =>
+    import("@/components/GalleryInteractive").then((mod) => mod.GalleryInteractive),
+  {
+    loading: () => (
+      <div
+        className="mt-12 grid grid-cols-2 gap-2 sm:mt-16 sm:gap-3 lg:grid-cols-4 lg:gap-4"
+        aria-hidden="true"
+      >
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div
+            key={index}
+            className={`animate-pulse bg-cream/60 ${index === 0 || index === 5 ? "col-span-2 aspect-[16/10]" : "col-span-1 aspect-square"}`}
+          />
+        ))}
+      </div>
+    ),
+  },
+);
 
 export function Gallery() {
   const { gallery } = site;

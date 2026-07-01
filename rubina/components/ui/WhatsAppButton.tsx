@@ -26,7 +26,7 @@ const sizeClasses = {
   lg: "min-h-14 px-10 py-3.5 text-lg sm:min-h-[3.5rem]",
 };
 
-function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
+export function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg
       className={className}

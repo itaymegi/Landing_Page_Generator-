@@ -87,7 +87,7 @@ export function GalleryInteractive({
                 src={image.src}
                 alt={image.alt}
                 fill
-                unoptimized
+                loading="lazy"
                 className="pointer-events-none object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />

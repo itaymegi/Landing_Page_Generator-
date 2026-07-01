@@ -6,6 +6,7 @@ import { Occasions } from "@/components/Occasions";
 import { Products } from "@/components/Products";
 import { Gallery } from "@/components/Gallery";
 import { FAQ } from "@/components/FAQ";
+import { OrderPlanner } from "@/components/OrderPlanner";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { MobileWhatsAppBar } from "@/components/ui/WhatsAppButton";
@@ -22,6 +23,7 @@ export default function Home() {
         <Occasions />
         <Gallery />
         <FAQ />
+        <OrderPlanner />
         <Contact />
       </main>
       <Footer />

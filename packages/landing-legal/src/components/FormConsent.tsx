@@ -8,7 +8,9 @@ export function FormConsent() {
   return (
     <p className="lp-form-consent">
       בלחיצה על שליחה אני מאשר/ת יצירת קשר בהתאם ל
-      <Link href="/privacy">מדיניות הפרטיות</Link>.
+      <Link href="/privacy" className="lp-inline-legal-link" prefetch>
+        מדיניות הפרטיות
+      </Link>.
     </p>
   );
 }
