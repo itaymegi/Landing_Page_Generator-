@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
 import { getSiteUrl, site } from "@/config/site";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
@@ -47,6 +47,13 @@ export const metadata: Metadata = {
     description: site.meta.description,
     images: [ogImageUrl],
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
