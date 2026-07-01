@@ -207,7 +207,29 @@ Define each row: **id** (one word), **label**, **type** (`text` | `email` | `tel
 
 ---
 
-## N. Footer
+## N. Legal & Compliance
+
+Needed to populate the legal pages (`/privacy`, `/accessibility`, `/terms`) automatically.
+
+| Field | Your answer |
+| ----- | ----------- |
+| **Legal business name** (as it should appear in legal documents) | |
+| **Business owner / responsible person name** | |
+| **Public contact email** | |
+| **Contact phone number** (for privacy and accessibility inquiries) | |
+| **Physical address** (optional, for Terms page) | |
+| **Accessibility coordinator name** (if different from owner) | |
+| **Accessibility coordinator email** (if different from contact email) | |
+| **Delivery / service areas** (shown in Terms, e.g. "גוש דן, תל אביב") | |
+| **Uses Google Analytics or other tracking?** | yes / no |
+| **Orders via WhatsApp?** | yes / no |
+| **Date for "last updated" field** (ISO format, e.g. `2026-07-01`) | |
+
+> The developer maps these values into the `legal` block in `config/site.ts`. The pages are generated automatically — no manual text editing needed.
+
+---
+
+## O. Footer
 
 | Field | Your answer |
 | ----- | ----------- |

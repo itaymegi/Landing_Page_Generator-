@@ -23,6 +23,10 @@ export function filterGalleryImages(images: GalleryImage[]): GalleryImage[] {
   return images.filter((image) => isGalleryImage(image.src));
 }
 
+export type OccasionTag = {
+  label: string;
+};
+
 export type NavLink = {
   label: string;
   href: string;
@@ -72,7 +76,9 @@ export type SiteConfig = {
     items: { label: string }[];
   };
   occasions: {
-    line: string;
+    title: string;
+    subtitle: string;
+    items: OccasionTag[];
   };
   ourStory: {
     title: string;
@@ -118,6 +124,23 @@ export type SiteConfig = {
     description: string;
     siteUrl: string;
     ogImage: string;
+  };
+  legal: {
+    businessName: string;
+    businessOwner?: string;
+    email?: string;
+    phone?: string;
+    address?: string;
+    websiteUrl: string;
+    lastUpdated: string;
+    privacyContactEmail?: string;
+    accessibilityContactName?: string;
+    accessibilityContactPhone?: string;
+    accessibilityContactEmail?: string;
+    deliveryAreas?: string;
+    usesAnalytics?: boolean;
+    usesWhatsApp?: boolean;
+    usesInstagram?: boolean;
   };
 };
 
@@ -201,7 +224,22 @@ export const site: SiteConfig = {
     ],
   },
   occasions: {
-    line: "מתאים לאירוח · זוגות · חגים · מתנה לעובדים",
+    title: "למי זה מתאים?",
+    subtitle:
+      "מארזים שנועדו להשתלב ברגעים הקטנים והגדולים של החיים.",
+    items: [
+      { label: "מארזי אירוח" },
+      { label: "דייט זוגי" },
+      { label: "ימי הולדת" },
+      { label: "מתנה לאחרי לידה" },
+      { label: "פיקניק בטבע" },
+      { label: "חנוכת בית" },
+      { label: "מתנה לחג" },
+      { label: "מתנות סוף שנה" },
+      { label: "מתנות לעובדים" },
+      { label: "אירוע חברה" },
+      { label: "שי יוקרתי ללקוחות" },
+    ],
   },
   ourStory: {
     title: "איך Rubina נולדה",
@@ -320,6 +358,17 @@ export const site: SiteConfig = {
       "מארזי גבינות, יין ופינוקים בעיצוב יוקרתי. מתנה מושקעת לאירוח, זוגות, חגים ורגעים מיוחדים. הזמנה בוואטסאפ.",
     siteUrl: "https://rubina.example.com",
     ogImage: "/images/product-rubina.png",
+  },
+  legal: {
+    businessName: "Rubina",
+    email: "hello@rubina.example.com",
+    phone: "052-783-6631",
+    websiteUrl: "https://rubina.example.com",
+    lastUpdated: "2026-07-01",
+    deliveryAreas: "גוש דן, תל אביב ומרכז",
+    usesAnalytics: false,
+    usesWhatsApp: true,
+    usesInstagram: true,
   },
 };
 

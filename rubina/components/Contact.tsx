@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { site } from "@/config/site";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Reveal } from "@/components/ui/Reveal";
+import { WhatsAppConsentNote } from "@landing-legal/core";
 
 function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -71,6 +72,7 @@ export function Contact() {
               size="lg"
               fullWidth
             />
+            <WhatsAppConsentNote />
             <ContactLink
               href={contact.instagram}
               label={contactSection.instagramLabel}

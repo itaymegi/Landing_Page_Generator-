@@ -3,7 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ProductGrid } from "@/components/ProductGrid";
 
 export function Products() {
-  const { products, occasions } = site;
+  const { products } = site;
 
   return (
     <section id="products" className="section-py bg-parchment">
@@ -13,9 +13,6 @@ export function Products() {
             {products.title}
           </h2>
           <span className="rule-gold mt-6" aria-hidden="true" />
-          <p className="mt-6 text-base italic tracking-wide text-brown/55 sm:text-lg">
-            {occasions.line}
-          </p>
         </Reveal>
 
         <ProductGrid items={products.items} />

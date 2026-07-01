@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { TrustStrip } from "@/components/TrustStrip";
 import { OurStory } from "@/components/OurStory";
+import { Occasions } from "@/components/Occasions";
 import { Products } from "@/components/Products";
 import { Gallery } from "@/components/Gallery";
 import { FAQ } from "@/components/FAQ";
@@ -18,6 +19,7 @@ export default function Home() {
         <TrustStrip />
         <OurStory />
         <Products />
+        <Occasions />
         <Gallery />
         <FAQ />
         <Contact />

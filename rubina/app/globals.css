@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@landing-legal/core/styles/legal.css";
 
 :root {
   --parchment: #faf7f2;

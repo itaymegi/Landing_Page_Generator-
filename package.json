@@ -1,8 +1,9 @@
 {
-  "name": "firsttest",
+  "name": "landing-page-generator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": ["packages/*"],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -1,0 +1,203 @@
+@import "tailwindcss";
+@import "@landing-legal/core/styles/legal.css";
+
+:root {
+  --background: #faf7f2;
+  --cream: #f3eee6;
+  --beige: #e8dccb;
+  --brown: #5a4634;
+  --text: #2b2b2b;
+  --accent: #a67c52;
+  --accent-deep: #8b6340;
+  --foreground: var(--text);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-cream: var(--cream);
+  --color-beige: var(--beige);
+  --color-brown: var(--brown);
+  --color-text: var(--text);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-heebo);
+  --font-serif: var(--font-frank);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    box-shadow: 0 4px 20px rgba(166, 124, 82, 0.35);
+  }
+  50% {
+    box-shadow: 0 4px 28px rgba(166, 124, 82, 0.55);
+  }
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-heebo), system-ui, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.75;
+  -webkit-tap-highlight-color: transparent;
+}
+
+section[id] {
+  scroll-margin-top: 1.5rem;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 40%, transparent);
+  color: var(--text);
+}
+
+.font-serif {
+  font-family: var(--font-frank), Georgia, serif;
+  letter-spacing: 0.02em;
+}
+
+.container-shani {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 90rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-shani {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-shani {
+    padding-inline: 3rem;
+  }
+}
+
+.section-py {
+  padding-block: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-py {
+    padding-block: 6.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-py {
+    padding-block: 8.75rem;
+  }
+}
+
+.rule-accent {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero-zoom {
+  animation: hero-zoom 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.75s ease-out,
+    transform 0.75s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.masonry-grid {
+  columns: 2;
+  column-gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    columns: 3;
+    column-gap: 1rem;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-item {
+    margin-bottom: 1rem;
+  }
+}
+
+.floating-wa-pulse {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-zoom,
+  .floating-wa-pulse {
+    animation: none;
+  }
+}
