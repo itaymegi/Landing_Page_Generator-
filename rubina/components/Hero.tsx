@@ -15,7 +15,7 @@ export function Hero() {
           alt={hero.imageAlt}
           fill
           priority
-          className="hero-zoom object-cover object-center"
+          className="hero-zoom object-cover object-top"
           sizes="100vw"
         />
       </div>
