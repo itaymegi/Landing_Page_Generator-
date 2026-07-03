@@ -63,7 +63,7 @@ export function WhatsAppButton({
 export function MobileWhatsAppBar() {
   return (
     <div className="mobile-whatsapp-bar fixed inset-x-0 bottom-0 z-50 border-t border-cream bg-parchment/98 px-3 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(90,70,52,0.08)] backdrop-blur-lg sm:hidden">
-      <WhatsAppButton label="הזמנה בוואטסאפ" size="md" fullWidth />
+      <WhatsAppButton label="Order on WhatsApp" size="md" fullWidth />
     </div>
   );
 }

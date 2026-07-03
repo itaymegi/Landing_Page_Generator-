@@ -64,6 +64,7 @@ export type SiteConfig = {
     whatsappNumber: string;
     whatsappDefaultMessage: string;
     instagram: string;
+    tiktok: string;
     email: string;
     phones: string[];
   };
@@ -208,7 +209,8 @@ export const site: SiteConfig = {
     whatsappDefaultMessage:
       "היי רובינה! אשמח לשמוע פרטים על המארזים שלכם",
     instagram: "https://www.instagram.com/rubina.cheese",
-    email: "hello@rubina.example.com",
+    tiktok: "https://www.tiktok.com/@rubina.cheese?_r=1&_t=ZS-97g04eLaznG",
+    email: "idanpitovski16@gmail.com",
     phones: ["052-783-6631"],
   },
   colors: {
@@ -401,7 +403,7 @@ export const site: SiteConfig = {
   },
   legal: {
     businessName: "Rubina",
-    email: "hello@rubina.example.com",
+    email: "idanpitovski16@gmail.com",
     phone: "052-783-6631",
     websiteUrl: "https://rubina.example.com",
     lastUpdated: "2026-07-01",
