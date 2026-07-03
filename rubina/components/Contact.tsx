@@ -88,6 +88,12 @@ export function Contact() {
             {contactSection.orderDays}
           </p>
         </Reveal>
+
+        <Reveal delay={240}>
+          <p className="mt-5 text-sm leading-relaxed text-white/50">
+            {contactSection.closingMessage}
+          </p>
+        </Reveal>
       </div>
     </section>
   );
