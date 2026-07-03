@@ -13,14 +13,8 @@ export type GalleryImage = {
   alt: string;
 };
 
-const GALLERY_IMAGE_PATTERN = /^\/images\/gallery-\d+\.png$/;
-
-export function isGalleryImage(src: string): boolean {
-  return GALLERY_IMAGE_PATTERN.test(src);
-}
-
 export function filterGalleryImages(images: GalleryImage[]): GalleryImage[] {
-  return images.filter((image) => isGalleryImage(image.src));
+  return images;
 }
 
 export type OccasionTag = {
@@ -183,16 +177,17 @@ export function getSiteUrl(): string {
 }
 
 const galleryImages: GalleryImage[] = [
-  { src: "/images/gallery-1.png", alt: "שלושה מארזי Rubina על מפת פיקניק בשדה חיטה" },
-  { src: "/images/gallery-2.png", alt: "מארזי גבינות ויין על רקע קש כפרי" },
-  { src: "/images/gallery-3.png", alt: "מארז Rubina על ערימת חציר ליד האסם" },
-  { src: "/images/gallery-4.png", alt: "מארז מעוצב על רקע רפת — מהחווה אליכם" },
-  { src: "/images/gallery-5.png", alt: "משלוח מארזי Rubina בדרך אל הלקוח" },
-  { src: "/images/gallery-6.png", alt: "שני מארזים על ערימת חציר בשעת הזהב" },
-  { src: "/images/gallery-7.png", alt: "מארזי פיקניק מעוצבים על מפה לבנה" },
-  { src: "/images/gallery-8.png", alt: "מארז פיקניק מלא — גבינות, יין, לחם ומגש מעוצב בשדה חיטה" },
-  { src: "/images/gallery-9.png", alt: "חוויית פיקניק יוקרתית עם מארז Rubina בשדה" },
-  { src: "/images/gallery-10.png", alt: "מבחר גבינות, יין ותוספות לפני אריזת המארזים" },
+  { src: "/images/gallery-1.jpg",  alt: "שני מארזי Rubina על ערימת קש — מתנה מיוחדת מהחווה" },
+  { src: "/images/gallery-2.jpg",  alt: "ערימת מארזים בדרך ללקוחות — כל מארז נעשה בעבודת יד" },
+  { src: "/images/gallery-3.jpg",  alt: "שלושה מארזים פתוחים עם גבינות ויין על מפה לבנה" },
+  { src: "/images/gallery-4.jpg",  alt: "מארז רובינה עם גבינות, יין ותוספות מובחרות" },
+  { src: "/images/gallery-5.jpg",  alt: "מרכיבי המארזים לפני האריזה — גבינות, יין ופינוקים" },
+  { src: "/images/gallery-6.jpg",  alt: "מגוון מארזים פתוחים — כל אחד מוכן עם אהבה" },
+  { src: "/images/gallery-7.jpg",  alt: "הצוות מאחורי Rubina — מארזים עם חיוך ולב" },
+  { src: "/images/gallery-8.jpg",  alt: "סלסלת פיקניק יוקרתית של רובינה בשדה" },
+  { src: "/images/gallery-9.jpg",  alt: "מארז פתוח עם גבינות, יין ופינוקים — מוכן למשלוח" },
+  { src: "/images/gallery-10.jpg", alt: "סלסלת קש עם חמניה, גבינות ויין — מתנה מושקעת" },
+  { src: "/images/gallery-11.jpg", alt: "שורות מארזים אחידים — הזמנות גדולות בעבודת יד" },
 ];
 
 export const site: SiteConfig = {
@@ -284,50 +279,60 @@ export const site: SiteConfig = {
         title: "מארז Gold",
         description:
           "מארז גולד — מכיל 11 סוגי גבינות, יין ישראלי, סכין ותוספות לשדרוג החוויה: קרקרים, פיצוחים, זיתים.",
-        image: "/images/product-gold.png",
-        imageAlt: "מארז Gold — יין אדום, גבינות ותוספות על רקע קש",
+        image: "/images/product-gold-1.jpg",
+        imageAlt: "מארז Gold פתוח — גבינות מובחרות ויין שרדונה על רקע קש",
+        images: [
+          { src: "/images/product-gold-1.jpg", alt: "מארז Gold פתוח — גבינות, יין שרדונה ותוספות" },
+          { src: "/images/product-gold-2.jpg", alt: "מארז Gold — גבינות ויין לבן Ben David" },
+          { src: "/images/product-gold-3.jpg", alt: "מארז Gold סגור עם סרט — מוכן למתנה" },
+        ],
       },
       {
         id: "rubina",
         title: "מארז רובינה",
         description:
           "מארז רובינה — מכיל 8 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, פיצוחים, זיתים.",
-        image: "/images/product-rubina.png",
-        imageAlt: "מארז רובינה — מארז החתימה עם גבינות בוטיק ויין",
+        image: "/images/product-rubina-1.jpg",
+        imageAlt: "מארז רובינה פתוח — גבינות בוטיק ויין מובחר",
+        images: [
+          { src: "/images/product-rubina-1.jpg", alt: "מארז רובינה פתוח — גבינות ויין מובחר" },
+          { src: "/images/product-rubina-2.jpg", alt: "מארז רובינה — תצוגה שנייה עם גבינות ויין" },
+          { src: "/images/product-rubina-3.jpg", alt: "מארז רובינה סגור עם סרט — מוכן למתנה" },
+        ],
       },
       {
         id: "classic",
         title: "מארז קלאסי",
         description:
           "מארז קלאסי — מכיל 6 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, זיתים.",
-        image: "/images/product-classic.png",
-        imageAlt: "מארז קלאסי — גבינות, יין לבן ותוספות על רקע קש",
+        image: "/images/product-classic-1.jpg",
+        imageAlt: "מארז קלאסי פתוח — גבינות ויין אדום Montesano Cabernet Franc",
+        images: [
+          { src: "/images/product-classic-1.jpg", alt: "מארז קלאסי פתוח — גבינות ויין אדום Montesano" },
+          { src: "/images/product-classic-2.jpg", alt: "מארז קלאסי סגור עם סרט — מוכן למתנה" },
+          { src: "/images/product-classic-3.jpg", alt: "מארז קלאסי פתוח — תצוגה מלאה על רקע קש" },
+        ],
       },
       {
         id: "ari",
         title: "מארז ARI",
         description:
           "מארז ARI — מכיל 4 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, זיתים.",
-        image: "/images/product-ari.png",
-        imageAlt: "מארז ARI — יין לבן, גבינות ותוספות על רקע קש",
+        image: "/images/product-ari-1.jpg",
+        imageAlt: "מארז ARI פתוח — גבינות ויין לבן Sauvignon Blanc",
+        images: [
+          { src: "/images/product-ari-1.jpg", alt: "מארז ARI פתוח — גבינות ויין לבן Sauvignon Blanc" },
+          { src: "/images/product-ari-2.jpg", alt: "מארז ARI סגור עם סרט — מוכן למתנה" },
+          { src: "/images/product-ari-3.jpg", alt: "מארז ARI פתוח — תצוגה מלאה על רקע קש" },
+        ],
       },
       {
         id: "custom",
         title: "מארז מותאם אישית",
         description:
-          "רוצים משהו שמתאים בדיוק לכם? נבנה יחד מארז לפי טעם, אירוע ותקציב — עם הלב והידיים שלנו.",
-        image: "/images/product-custom-made-2.png",
-        imageAlt: "מארז בהרכבה אישית",
-        images: [
-          {
-            src: "/images/product-custom-made-2.png",
-            alt: "מארז בהרכבה אישית — סלסלת חבלים בשדה החיטה",
-          },
-          {
-            src: "/images/product-custom-made.png",
-            alt: "מארז בהרכבה אישית — סלסלת פיקניק עם חמניה",
-          },
-        ],
+          "רוצים מארז שמתאים בדיוק לכם? נבנה יחד מארז לפי טעם, אירוע ותקציב — עם הלב והידיים שלנו.",
+        image: "/images/product-custom-made.png",
+        imageAlt: "מארז סלסלה מותאם אישית עם חמניה בשדה חיטה",
       },
     ],
   },
