@@ -5,7 +5,7 @@ export type ProductItem = {
   image: string;
   imageAlt: string;
   images?: { src: string; alt: string }[];
-  price?: string;
+  price?: number;
 };
 
 export type GalleryImage = {
@@ -66,6 +66,7 @@ export type SiteConfig = {
   nav: NavLink[];
   hero: {
     headline: string;
+    tagline: string;
     subtitle: string;
     ctaLabel: string;
     secondaryCta: string;
@@ -226,12 +227,13 @@ export const site: SiteConfig = {
   ],
   hero: {
     headline: "מארזי גבינות ויין",
+    tagline: "Luxury Cheese & Wine Gift Boxes, Curated to Impress.",
     subtitle:
       "מארזים בעבודת יד, עם גבינות נבחרות, יין ופינוקים שנארזים בקפידה ומגיעים עד אליכם.",
-    ctaLabel: "Order on WhatsApp",
+    ctaLabel: "הזמנה בWhatsApp",
     secondaryCta: "צפייה במארזים",
-    image: "/images/product-rubina.png",
-    imageAlt: "מארז גבינות ויין מעוצב של רובינה",
+    image: "/images/hero.png",
+    imageAlt: "מארזי גבינות ויין על רקע שדה חיטה",
   },
   trustStrip: {
     items: [
@@ -277,6 +279,7 @@ export const site: SiteConfig = {
       {
         id: "gold",
         title: "מארז Gold",
+        price: 390,
         description:
           "מארז גולד — מכיל 11 סוגי גבינות, יין ישראלי, סכין ותוספות לשדרוג החוויה: קרקרים, פיצוחים, זיתים.",
         image: "/images/product-gold-1.jpg",
@@ -290,6 +293,7 @@ export const site: SiteConfig = {
       {
         id: "rubina",
         title: "מארז רובינה",
+        price: 290,
         description:
           "מארז רובינה — מכיל 8 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, פיצוחים, זיתים.",
         image: "/images/product-rubina-1.jpg",
@@ -303,6 +307,7 @@ export const site: SiteConfig = {
       {
         id: "classic",
         title: "מארז קלאסי",
+        price: 240,
         description:
           "מארז קלאסי — מכיל 6 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, זיתים.",
         image: "/images/product-classic-1.jpg",
@@ -316,6 +321,7 @@ export const site: SiteConfig = {
       {
         id: "ari",
         title: "מארז ARI",
+        price: 190,
         description:
           "מארז ARI — מכיל 4 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, זיתים.",
         image: "/images/product-ari-1.jpg",
@@ -384,10 +390,10 @@ export const site: SiteConfig = {
     nameLabel: "שם",
     boxTypeLabel: "סוג מארז",
     boxTypeOptions: [
-      { value: "מארז Gold", label: "מארז Gold" },
-      { value: "מארז רובינה", label: "מארז רובינה" },
-      { value: "מארז קלאסי", label: "מארז קלאסי" },
-      { value: "מארז ARI", label: "מארז ARI" },
+      { value: "מארז Gold", label: "מארז Gold — 390₪" },
+      { value: "מארז רובינה", label: "מארז רובינה — 290₪" },
+      { value: "מארז קלאסי", label: "מארז קלאסי — 240₪" },
+      { value: "מארז ARI", label: "מארז ARI — 190₪" },
       { value: "מארז מותאם אישית", label: "מארז מותאם אישית" },
       { value: "אחר", label: "אחר / עוד לא בטוח/ה" },
     ],
@@ -399,10 +405,10 @@ export const site: SiteConfig = {
     submitLabel: "שליחת פרטים בוואטסאפ",
   },
   contactSection: {
-    heading: "רוצים להפרוצים להפתיע מישהו ברגע מפנק טעים ומדויק?",
+    heading: "רוצים להפתיע מישהו ברגע מפנק טעים ומדויק?",
     subtitle:
       "שלחו לנו הודעה ונעזור לכם לבחור את המארז שמתאים בדיוק לאירוע, לטעם ולתקציב.",
-    whatsappLabel: "להזמנה בוואטסאפ",
+    whatsappLabel: "הזמנה בWhatsApp",
     instagramLabel: "Instagram",
     phoneLabel: "טלפון",
     deliveryAreas: "משלוחים למרכז הארץ",

@@ -4,14 +4,32 @@ import { useSyncExternalStore } from "react";
 import { site, siteWhatsAppHref } from "@/config/site";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
-function useScrolled(threshold = 24) {
+let scrolledSnapshot = false;
+
+function getScrolledSnapshot() {
+  if (typeof window === "undefined") return false;
+  const y = window.scrollY;
+  scrolledSnapshot = scrolledSnapshot ? y > 8 : y > 24;
+  return scrolledSnapshot;
+}
+
+function useScrolled() {
   return useSyncExternalStore(
     (onStoreChange) => {
-      const onScroll = () => onStoreChange();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
+      let lastValue = getScrolledSnapshot();
+
+      const update = () => {
+        const next = getScrolledSnapshot();
+        if (next !== lastValue) {
+          lastValue = next;
+          onStoreChange();
+        }
+      };
+
+      window.addEventListener("scroll", update, { passive: true });
+      return () => window.removeEventListener("scroll", update);
     },
-    () => window.scrollY > threshold,
+    getScrolledSnapshot,
     () => false,
   );
 }

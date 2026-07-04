@@ -43,7 +43,7 @@ export function OrderPlanner() {
     <section id="planner" className="section-py bg-cream/30">
       <div className="container-rubina mx-auto max-w-2xl">
         <Reveal className="text-center">
-          <p className="font-display text-sm uppercase tracking-[0.28em] text-gold-deep">
+          <p className="text-sm uppercase tracking-[0.28em] text-gold-deep">
             {planner.eyebrow}
           </p>
           <h2 className="mt-3 font-serif text-3xl font-light tracking-wide text-brown sm:text-4xl">

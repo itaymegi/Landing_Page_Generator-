@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { site } from "@/config/site";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
@@ -20,7 +21,7 @@ export default function NotFound() {
           >
             חזרה לדף הבית
           </Link>
-          <WhatsAppButton label="הזמנה בוואטסאפ" size="md" />
+          <WhatsAppButton label={site.contactSection.whatsappLabel} size="md" />
         </div>
       </div>
     </>

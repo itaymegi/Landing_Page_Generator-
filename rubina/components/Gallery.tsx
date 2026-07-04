@@ -4,19 +4,23 @@ import { Reveal } from "@/components/ui/Reveal";
 
 const GalleryInteractive = dynamic(
   () =>
-    import("@/components/GalleryInteractive").then((mod) => mod.GalleryInteractive),
+    import("@/components/GalleryInteractive").then(
+      (mod) => mod.GalleryInteractive,
+    ),
   {
     loading: () => (
-      <div
-        className="mt-12 grid grid-cols-2 gap-2 sm:mt-16 sm:gap-3 lg:grid-cols-4 lg:gap-4"
-        aria-hidden="true"
-      >
-        {Array.from({ length: 6 }).map((_, index) => (
-          <div
-            key={index}
-            className={`animate-pulse bg-cream/60 ${index === 0 || index === 5 ? "col-span-2 aspect-[16/10]" : "col-span-1 aspect-square"}`}
-          />
-        ))}
+      <div className="mt-12 sm:mt-16" aria-hidden="true">
+        {/* Main slide skeleton */}
+        <div className="relative aspect-[4/3] w-full animate-pulse overflow-hidden rounded-2xl bg-cream/60 sm:aspect-[16/9]" />
+        {/* Thumbnails skeleton */}
+        <div className="mt-3 flex gap-2 sm:mt-4 sm:gap-3">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div
+              key={i}
+              className="h-16 w-24 shrink-0 animate-pulse rounded-lg bg-cream/60 sm:h-20 sm:w-28"
+            />
+          ))}
+        </div>
       </div>
     ),
   },

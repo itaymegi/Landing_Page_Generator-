@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Frank_Ruhl_Libre, Heebo } from "next/font/google";
+import { Allura, Cormorant_Garamond, Frank_Ruhl_Libre } from "next/font/google";
 import { getSiteUrl, site } from "@/config/site";
 import { Analytics } from "@/components/Analytics";
 import { JsonLd } from "@/components/JsonLd";
@@ -11,16 +11,16 @@ const frank = Frank_Ruhl_Libre({
   weight: ["300", "400", "500", "700"],
 });
 
-const heebo = Heebo({
-  variable: "--font-heebo",
-  subsets: ["hebrew", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
 const cormorant = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
+});
+
+const allura = Allura({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const siteUrl = getSiteUrl();
@@ -70,10 +70,9 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      data-scroll-behavior="smooth"
-      className={`${frank.variable} ${heebo.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${frank.variable} ${cormorant.variable} ${allura.variable} h-full antialiased`}
     >
-      <body className="min-h-full overflow-x-hidden bg-parchment text-text">
+      <body className="min-h-full overflow-x-clip bg-parchment text-text">
         <JsonLd />
         {children}
         <Analytics />

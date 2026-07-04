@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/config/site";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Hero() {
@@ -15,46 +14,54 @@ export function Hero() {
           alt={hero.imageAlt}
           fill
           priority
-          className="hero-zoom object-cover [object-position:center_40%]"
+          className="hero-zoom object-cover object-top"
           sizes="100vw"
         />
       </div>
 
       <div
-        className="absolute inset-0 bg-gradient-to-t from-brown/90 via-brown/50 to-brown/25"
+        className="absolute inset-0 bg-gradient-to-b from-brown/80 via-brown/40 to-transparent"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(90,70,52,0.35)_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_0%,rgba(90,70,52,0.25)_100%)]"
         aria-hidden="true"
       />
 
-      <div className="relative flex min-h-[90vh] flex-col justify-end pb-24 pt-32 sm:min-h-[92vh] sm:pb-28 lg:pb-32">
-        <div className="container-rubina">
+      <div className="relative flex min-h-[90vh] flex-col justify-start pb-8 pt-28 sm:min-h-[92vh] sm:pt-32 lg:pt-36">
+        <div className="container-rubina max-h-[55vh] sm:max-h-[58vh]">
           <Reveal delay={0}>
-            <p className="font-display text-2xl tracking-[0.35em] text-white/90 sm:text-3xl">
+            <p className="font-display text-xl tracking-[0.35em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-2xl lg:text-3xl">
               {brand.logoText}
             </p>
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="mt-6 max-w-3xl font-serif text-5xl font-light leading-[1.05] tracking-wide text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mt-4 max-w-2xl font-serif text-4xl font-light leading-[1.05] tracking-wide text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:mt-5 sm:text-5xl lg:text-6xl">
               {hero.headline}
             </h1>
           </Reveal>
 
+          <Reveal delay={150}>
+            <p
+              dir="ltr"
+              className="font-script mt-3 max-w-md text-3xl leading-[1.35] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:mt-4 sm:max-w-lg sm:text-[2.25rem] lg:text-[2.5rem]"
+            >
+              {hero.tagline}
+            </p>
+          </Reveal>
+
           <Reveal delay={200}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-base lg:text-lg">
               {hero.subtitle}
             </p>
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-              <WhatsAppButton label={hero.ctaLabel} size="lg" />
+            <div className="mt-6 sm:mt-8">
               <Link
                 href="#products"
-                className="text-base font-medium text-white/60 underline-offset-4 transition-colors hover:text-white/90 hover:underline"
+                className="text-base font-medium text-white/70 underline-offset-4 transition-colors hover:text-white hover:underline"
               >
                 {hero.secondaryCta}
               </Link>
