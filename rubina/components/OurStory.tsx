@@ -30,7 +30,7 @@ export function OurStory() {
           </p>
           <span className="rule-gold mt-5" aria-hidden="true" />
 
-          <h2 className="mt-8 max-w-lg font-serif text-4xl font-light leading-tight tracking-wide text-brown sm:text-5xl lg:text-[3rem]">
+          <h2 className="mt-8 max-w-lg font-serif text-2xl font-light leading-tight tracking-wide text-brown sm:text-4xl lg:text-[3rem]">
             {ourStory.headline}
           </h2>
 
