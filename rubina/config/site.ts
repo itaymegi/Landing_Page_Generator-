@@ -179,12 +179,9 @@ export function getSiteUrl(): string {
 
 const galleryImages: GalleryImage[] = [
   { src: "/images/gallery-1.jpg",  alt: "שני מארזי Rubina על ערימת קש — מתנה מיוחדת מהחווה" },
-  { src: "/images/gallery-2.jpg",  alt: "ערימת מארזים בדרך ללקוחות — כל מארז נעשה בעבודת יד" },
   { src: "/images/gallery-3.jpg",  alt: "שלושה מארזים פתוחים עם גבינות ויין על מפה לבנה" },
   { src: "/images/gallery-4.jpg",  alt: "מארז רובינה עם גבינות, יין ותוספות מובחרות" },
   { src: "/images/gallery-5.jpg",  alt: "מרכיבי המארזים לפני האריזה — גבינות, יין ופינוקים" },
-  { src: "/images/gallery-6.jpg",  alt: "מגוון מארזים פתוחים — כל אחד מוכן עם אהבה" },
-  { src: "/images/gallery-7.jpg",  alt: "הצוות מאחורי Rubina — מארזים עם חיוך ולב" },
   { src: "/images/gallery-8.jpg",  alt: "סלסלת פיקניק יוקרתית של רובינה בשדה" },
   { src: "/images/gallery-9.jpg",  alt: "מארז פתוח עם גבינות, יין ופינוקים — מוכן למשלוח" },
   { src: "/images/gallery-10.jpg", alt: "סלסלת קש עם חמניה, גבינות ויין — מתנה מושקעת" },
@@ -262,7 +259,7 @@ export const site: SiteConfig = {
   },
   ourStory: {
     title: "איך Rubina נולדה",
-    headline: "היי כולם 🍸🧀🫒🍇 🌾 🧺",
+    headline: "ברוכים הבאים",
     intro:
       "אנחנו עידן ורומי זוג מילואימניקים ממושב עזריה , הקמנו עסק של מארזי בוטיק מיוחדים של יין וגבינות.",
     paragraphs: [
@@ -278,7 +275,7 @@ export const site: SiteConfig = {
     items: [
       {
         id: "gold",
-        title: "מארז Gold",
+        title: "מארז גולד",
         price: 390,
         description:
           "מארז גולד — מכיל 11 סוגי גבינות, יין ישראלי, סכין ותוספות לשדרוג החוויה: קרקרים, פיצוחים, זיתים.",
@@ -320,7 +317,7 @@ export const site: SiteConfig = {
       },
       {
         id: "ari",
-        title: "מארז ARI",
+        title: "מארז ארי",
         price: 190,
         description:
           "מארז ARI — מכיל 4 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, זיתים.",
@@ -390,10 +387,10 @@ export const site: SiteConfig = {
     nameLabel: "שם",
     boxTypeLabel: "סוג מארז",
     boxTypeOptions: [
-      { value: "מארז Gold", label: "מארז Gold — 390₪" },
+      { value: "מארז גולד", label: "מארז גולד — 390₪" },
       { value: "מארז רובינה", label: "מארז רובינה — 290₪" },
       { value: "מארז קלאסי", label: "מארז קלאסי — 240₪" },
-      { value: "מארז ARI", label: "מארז ARI — 190₪" },
+      { value: "מארז ארי", label: "מארז ארי — 190₪" },
       { value: "מארז מותאם אישית", label: "מארז מותאם אישית" },
       { value: "אחר", label: "אחר / עוד לא בטוח/ה" },
     ],

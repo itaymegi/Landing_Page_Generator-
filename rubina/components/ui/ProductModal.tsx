@@ -12,20 +12,6 @@ type ProductModalProps = {
 };
 
 function ProductTitle({ title }: { title: string }) {
-  if (title.includes("Gold")) {
-    return (
-      <>
-        מארז <span className="font-display">Gold</span>
-      </>
-    );
-  }
-  if (title.includes("ARI")) {
-    return (
-      <>
-        מארז <span className="font-display">ARI</span>
-      </>
-    );
-  }
   return <>{title}</>;
 }
 
