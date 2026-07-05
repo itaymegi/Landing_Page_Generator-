@@ -12,8 +12,9 @@ const labelClass = "block text-sm font-medium text-brown";
 
 type PackageRow = { id: string; boxType: string; quantity: string };
 
+let _rowCounter = 0;
 function newRow(defaultType: string): PackageRow {
-  return { id: crypto.randomUUID(), boxType: defaultType, quantity: "1" };
+  return { id: String(++_rowCounter), boxType: defaultType, quantity: "1" };
 }
 
 export function OrderPlanner() {
