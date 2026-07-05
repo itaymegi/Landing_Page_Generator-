@@ -320,13 +320,13 @@ export const site: SiteConfig = {
         title: "מארז ארי",
         price: 190,
         description:
-          "מארז ARI — מכיל 4 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, זיתים.",
+          "מארז ארי — מכיל 4 סוגי גבינות, יין, סכין ותוספות לשדרוג החוויה: קרקרים, זיתים.",
         image: "/images/product-ari-1.jpg",
-        imageAlt: "מארז ARI פתוח — גבינות ויין לבן Sauvignon Blanc",
+        imageAlt: "מארז פתוח — גבינות ויין לבן Sauvignon Blanc",
         images: [
-          { src: "/images/product-ari-1.jpg", alt: "מארז ARI פתוח — גבינות ויין לבן Sauvignon Blanc" },
-          { src: "/images/product-ari-2.jpg", alt: "מארז ARI סגור עם סרט — מוכן למתנה" },
-          { src: "/images/product-ari-3.jpg", alt: "מארז ARI פתוח — תצוגה מלאה על רקע קש" },
+          { src: "/images/product-ari-1.jpg", alt: "מארז פתוח — גבינות ויין לבן Sauvignon Blanc" },
+          { src: "/images/product-ari-2.jpg", alt: "מארז סגור עם סרט — מוכן למתנה" },
+          { src: "/images/product-ari-3.jpg", alt: "מארז פתוח — תצוגה מלאה על רקע קש" },
         ],
       },
       {
@@ -399,7 +399,7 @@ export const site: SiteConfig = {
     notesLabel: "הערות",
     successMessage:
       "מעולה! נפתח עבורכם חלון וואטסאפ עם הפרטים — נשמח לחזור אליכם.",
-    submitLabel: "שליחת פרטים בוואטסאפ",
+    submitLabel: "שליחת פרטים בWhatsApp",
   },
   contactSection: {
     heading: "רוצים להפתיע מישהו ברגע מפנק טעים ומדויק?",
