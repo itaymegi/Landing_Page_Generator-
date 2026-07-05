@@ -371,7 +371,8 @@ export const site: SiteConfig = {
       },
       {
         question: "כשרות?",
-        answer: "כלל המוצרים שלנו כשרים.",
+        answer:
+          "כלל המוצרים שלנו כשרים. לגבי כשרות מדויקת ניתן לפנות אלינו לWhatsApp.",
       },
       {
         question: "רגישויות?",
