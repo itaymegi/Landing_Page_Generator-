@@ -46,42 +46,22 @@ export function ProductGrid({ items }: ProductGridProps) {
               <div className="px-6 pb-8 pt-8 sm:px-8">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="text-xs uppercase tracking-[0.2em] text-gold/50">
-                      מארז
-                    </p>
                     <button
                       type="button"
                       onClick={() => setActive(product)}
-                      className="mt-2 text-start font-serif text-2xl font-light tracking-wide text-brown transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:text-3xl"
+                      className="text-start font-serif text-2xl font-light tracking-wide text-brown transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:text-3xl"
                       aria-label={`פרטים על ${product.title}`}
                     >
                       <ProductTitle title={product.title} />
                     </button>
                   </div>
-                  <ProductPrice price={product.price} size="md" className="pt-5" />
+                  <ProductPrice price={product.price} size="md" className="pt-1" />
                 </div>
 
                 <p className="mt-4 max-w-md text-sm leading-relaxed text-text/70 sm:text-base">
                   {product.description}
                 </p>
 
-                <button
-                  type="button"
-                  onClick={() => setActive(product)}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gold-deep transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                >
-                  לפרטים נוספים
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    aria-hidden="true"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
               </div>
             </article>
           </Reveal>

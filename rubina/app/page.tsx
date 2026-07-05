@@ -19,8 +19,8 @@ export default function Home() {
         <Hero />
         <TrustStrip />
         <OurStory />
-        <Products />
         <Occasions />
+        <Products />
         <Gallery />
         <FAQ />
         <OrderPlanner />

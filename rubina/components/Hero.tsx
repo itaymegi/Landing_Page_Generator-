@@ -52,7 +52,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={200}>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-base lg:text-lg">
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-lg lg:text-xl">
               {hero.subtitle}
             </p>
           </Reveal>
