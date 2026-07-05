@@ -111,11 +111,17 @@ export type SiteConfig = {
     nameLabel: string;
     boxTypeLabel: string;
     boxTypeOptions: BoxTypeOption[];
-    quantityLabel: string;
     dateLabel: string;
     notesLabel: string;
     successMessage: string;
     submitLabel: string;
+    calculatorLabel: string;
+    addPackageLabel: string;
+    removePackageLabel: string;
+    breakdownLabel: string;
+    estimatedTotalLabel: string;
+    priceDisclaimer: string;
+    customPriceNote: string;
   };
   contactSection: {
     heading: string;
@@ -395,12 +401,18 @@ export const site: SiteConfig = {
       { value: "מארז מותאם אישית", label: "מארז מותאם אישית" },
       { value: "אחר", label: "אחר / עוד לא בטוח/ה" },
     ],
-    quantityLabel: "כמות מארזים",
     dateLabel: "תאריך רצוי",
     notesLabel: "הערות",
     successMessage:
       "מעולה! נפתח עבורכם חלון וואטסאפ עם הפרטים — נשמח לחזור אליכם.",
     submitLabel: "שליחת פרטים בWhatsApp",
+    calculatorLabel: "בחירת מארזים",
+    addPackageLabel: "הוספת מארז נוסף",
+    removePackageLabel: "הסרה",
+    breakdownLabel: "פירוט הזמנה",
+    estimatedTotalLabel: "סה״כ משוער",
+    priceDisclaimer: "מחיר משוער · המחיר הסופי יאושר ב-WhatsApp",
+    customPriceNote: "לפי הצעת מחיר",
   },
   contactSection: {
     heading: "רוצים להפתיע מישהו ברגע מפנק טעים ומדויק?",
@@ -448,4 +460,9 @@ export function siteWhatsAppHref(message?: string): string {
     site.contact.whatsappNumber,
     message ?? site.contact.whatsappDefaultMessage,
   );
+}
+
+/** Returns the price for a given package title, or undefined for custom/unpriced options. */
+export function getProductPrice(title: string): number | undefined {
+  return site.products.items.find((p) => p.title === title)?.price;
 }
