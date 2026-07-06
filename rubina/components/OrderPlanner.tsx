@@ -113,64 +113,98 @@ export function OrderPlanner() {
               </legend>
 
               <div className="flex flex-col gap-3">
-                {rows.map((row, idx) => (
-                  <div
-                    key={row.id}
-                    className="flex items-end gap-3"
-                  >
-                    <div className="flex-1">
-                      {idx === 0 && (
-                        <label className="mb-1 block text-xs text-brown/50">
-                          {planner.boxTypeLabel}
-                        </label>
-                      )}
-                      <select
-                        value={row.boxType}
-                        onChange={(e) =>
-                          updateRow(row.id, { boxType: e.target.value })
-                        }
-                        className="w-full rounded-xl border border-cream bg-white px-4 py-3 text-base text-brown shadow-sm outline-none transition-colors focus:border-gold focus:ring-2 focus:ring-gold/25"
-                        aria-label={planner.boxTypeLabel}
-                      >
-                        {planner.boxTypeOptions.map((opt) => (
-                          <option key={opt.value} value={opt.value}>
-                            {opt.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                {rows.map((row, idx) => {
+                  const li = lineItems[idx];
+                  return (
+                    <div
+                      key={row.id}
+                      className="rounded-xl border border-cream/80 bg-cream/15 p-3 sm:p-4"
+                    >
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+                        <div className="min-w-0 flex-1">
+                          <label className="mb-1 block text-xs text-brown/50">
+                            {planner.boxTypeLabel}
+                          </label>
+                          <select
+                            value={row.boxType}
+                            onChange={(e) =>
+                              updateRow(row.id, { boxType: e.target.value })
+                            }
+                            className="w-full rounded-xl border border-cream bg-white px-4 py-3 text-base text-brown shadow-sm outline-none transition-colors focus:border-gold focus:ring-2 focus:ring-gold/25"
+                            aria-label={planner.boxTypeLabel}
+                          >
+                            {planner.boxTypeOptions.map((opt) => (
+                              <option key={opt.value} value={opt.value}>
+                                {opt.label}
+                              </option>
+                            ))}
+                          </select>
+                          {li && (
+                            <p className="mt-1.5 text-sm text-gold-deep">
+                              {li.isCustom ? (
+                                <span className="text-brown/50">
+                                  {planner.customPriceNote}
+                                </span>
+                              ) : (
+                                <>
+                                  {(li.unitPrice ?? 0).toLocaleString("he-IL")}
+                                  <span className="mr-0.5 text-xs text-gold/75">
+                                    ₪
+                                  </span>
+                                  <span className="text-brown/40"> ליחידה</span>
+                                </>
+                              )}
+                            </p>
+                          )}
+                        </div>
 
-                    <div className="w-24 shrink-0">
-                      {idx === 0 && (
-                        <label className="mb-1 block text-xs text-brown/50">
-                          כמות
-                        </label>
-                      )}
-                      <input
-                        type="number"
-                        min={1}
-                        inputMode="numeric"
-                        value={row.quantity}
-                        onChange={(e) =>
-                          updateRow(row.id, { quantity: e.target.value })
-                        }
-                        className="w-full rounded-xl border border-cream bg-white px-4 py-3 text-center text-base text-brown shadow-sm outline-none transition-colors focus:border-gold focus:ring-2 focus:ring-gold/25"
-                        aria-label="כמות"
-                      />
-                    </div>
+                        <div className="flex items-end gap-2 sm:gap-3">
+                          <div className="w-20 sm:w-24">
+                            <label className="mb-1 block text-xs text-brown/50">
+                              כמות
+                            </label>
+                            <input
+                              type="number"
+                              min={1}
+                              inputMode="numeric"
+                              value={row.quantity}
+                              onChange={(e) =>
+                                updateRow(row.id, { quantity: e.target.value })
+                              }
+                              className="w-full rounded-xl border border-cream bg-white px-4 py-3 text-center text-base text-brown shadow-sm outline-none transition-colors focus:border-gold focus:ring-2 focus:ring-gold/25"
+                              aria-label="כמות"
+                            />
+                          </div>
 
-                    {rows.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => removeRow(row.id)}
-                        className="mb-[3px] shrink-0 rounded-lg px-3 py-3 text-sm text-brown/40 transition-colors hover:bg-cream/60 hover:text-brown/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                        aria-label={`${planner.removePackageLabel} שורה ${idx + 1}`}
-                      >
-                        {planner.removePackageLabel}
-                      </button>
-                    )}
-                  </div>
-                ))}
+                          {rows.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => removeRow(row.id)}
+                              className="flex h-[3.25rem] w-11 shrink-0 items-center justify-center rounded-xl text-brown/40 transition-colors hover:bg-cream/70 hover:text-brown/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                              aria-label={`${planner.removePackageLabel} שורה ${idx + 1}`}
+                              title={planner.removePackageLabel}
+                            >
+                              <svg
+                                className="h-5 w-5"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={1.75}
+                                aria-hidden="true"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               <button
@@ -195,13 +229,13 @@ export function OrderPlanner() {
                 <div className="flex flex-col gap-1.5">
                   {lineItems.map((li) => (
                     <div key={li.id} className="flex items-baseline justify-between gap-4 text-sm">
-                      <span className="text-brown/70">
+                      <span className="min-w-0 truncate text-brown/70">
                         {li.qty >= 1 ? `${li.qty} × ` : ""}{li.boxType}
                       </span>
                       {li.isCustom ? (
-                        <span className="text-brown/50 italic">{planner.customPriceNote}</span>
+                        <span className="shrink-0 text-brown/50 italic">{planner.customPriceNote}</span>
                       ) : (
-                        <span className="font-serif font-light tabular-nums text-gold-deep">
+                        <span className="shrink-0 font-serif font-light tabular-nums text-gold-deep">
                           {(li.lineTotal ?? 0).toLocaleString("he-IL")}
                           <span className="mr-0.5 text-xs text-gold/75">₪</span>
                         </span>
