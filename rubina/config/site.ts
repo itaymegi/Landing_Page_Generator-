@@ -192,6 +192,14 @@ const galleryImages: GalleryImage[] = [
   { src: "/images/gallery-9.jpg",  alt: "מארז פתוח עם גבינות, יין ופינוקים — מוכן למשלוח" },
   { src: "/images/gallery-10.jpg", alt: "סלסלת קש עם חמניה, גבינות ויין — מתנה מושקעת" },
   { src: "/images/gallery-11.jpg", alt: "שורות מארזים אחידים — הזמנות גדולות בעבודת יד" },
+  { src: "/images/gallery-12.jpg", alt: "סלסלת פיקניק על מפה אדומה-לבנה — שקיעה בשדה" },
+  { src: "/images/gallery-13.jpg", alt: "סלסלת פיקניק עם יין וגבינות על שולחן בשדה" },
+  { src: "/images/gallery-14.jpg", alt: "סלסלת פיקניק עם גבינות ויין על רקע שדה ירוק" },
+  { src: "/images/gallery-15.jpg", alt: "סלסלת פיקניק עם יין, גבינות ומקרונים בטבע" },
+  { src: "/images/gallery-16.jpg", alt: "שתי סלסלאות פיקניק על מפה אדומה-לבנה בשדה" },
+  { src: "/images/gallery-17.jpg", alt: "שתי סלסלאות פיקניק על שולחן לבן בשדה" },
+  { src: "/images/gallery-18.jpg", alt: "סלסלת פיקניק מלאה עם גבינות ויין בשעת השקיעה" },
+  { src: "/images/gallery-19.jpg", alt: "סלסלת פיקניק עם גבינות, יין ומקרונים בשדה" },
 ];
 
 export const site: SiteConfig = {
@@ -336,6 +344,22 @@ export const site: SiteConfig = {
         ],
       },
       {
+        id: "sunset",
+        title: "מארז Sunset",
+        description:
+          "מארז sunset — מכיל פלטה המורכבת מ6 סוגי גבינות, יין, לאבנה, לחם וחמאה, 5 כדורי שוקולד, 4 מקרונים ושדרוגים נוספים שייגרמו לחווייה להרגיש מושלמת.",
+        image: "/images/product-sunset.jpg",
+        imageAlt: "מארז Sunset — סלסלת פיקניק יוקרתית עם גבינות, יין ומקרונים",
+      },
+      {
+        id: "sunrise",
+        title: "מארז Sunrise",
+        description:
+          "מארז sunrise — מכיל פלטה המורכבת מ4 סוגי גבינות, יין, לאבנה, לחם וחמאה, 3 כדורי שוקולד, זוג מקרונים ושדרוגים נוספים שייגרמו לחוויה להרגיש מושלמת.",
+        image: "/images/product-sunrise.jpg",
+        imageAlt: "מארז Sunrise — סלסלת פיקניק עם גבינות, יין ופינוקים",
+      },
+      {
         id: "custom",
         title: "מארז מותאם אישית",
         description:
@@ -398,6 +422,8 @@ export const site: SiteConfig = {
       { value: "מארז רובינה", label: "מארז רובינה" },
       { value: "מארז קלאסי", label: "מארז קלאסי" },
       { value: "מארז ארי", label: "מארז ארי" },
+      { value: "מארז Sunset", label: "מארז Sunset" },
+      { value: "מארז Sunrise", label: "מארז Sunrise" },
       { value: "מארז מותאם אישית", label: "מארז מותאם אישית" },
       { value: "אחר", label: "אחר / עוד לא בטוח/ה" },
     ],

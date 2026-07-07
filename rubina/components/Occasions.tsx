@@ -12,7 +12,7 @@ export function Occasions() {
             {occasions.title}
           </h2>
           <span className="rule-gold rule-gold-center mt-6" aria-hidden="true" />
-          <p className="mx-auto mt-4 max-w-xl text-base italic leading-relaxed text-text/60 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-xl font-serif text-base leading-relaxed text-brown/70 sm:text-lg">
             {occasions.subtitle}
           </p>
         </Reveal>

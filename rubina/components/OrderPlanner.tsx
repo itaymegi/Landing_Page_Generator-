@@ -318,7 +318,7 @@ export function OrderPlanner() {
 
             <button
               type="submit"
-              className="mt-7 inline-flex min-h-14 w-full items-center justify-center gap-2.5 rounded-full bg-gold px-8 text-base font-medium text-white shadow-md shadow-gold/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-deep hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+              className="mt-7 inline-flex min-h-14 w-full items-center justify-center gap-2.5 rounded-full bg-gold px-8 font-serif text-base font-light text-white shadow-md shadow-gold/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-deep hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
               <WhatsAppIcon />
               {planner.submitLabel}

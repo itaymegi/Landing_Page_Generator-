@@ -29,7 +29,7 @@ export function Hero() {
       />
 
       <div className="relative flex min-h-[90vh] flex-col justify-start pb-8 pt-28 sm:min-h-[92vh] sm:pt-32 lg:pt-36">
-        <div className="container-rubina max-h-[55vh] sm:max-h-[58vh]">
+        <div className="container-rubina max-h-[55vh] text-center sm:max-h-[58vh]">
           <Reveal delay={0}>
             <p className="font-display text-xl tracking-[0.35em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-2xl lg:text-3xl">
               {brand.logoText}
@@ -37,7 +37,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="mt-4 max-w-2xl font-serif text-4xl font-light leading-[1.05] tracking-wide text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:mt-5 sm:text-5xl lg:text-6xl">
+            <h1 className="mx-auto mt-4 max-w-2xl font-serif text-4xl font-light leading-[1.05] tracking-wide text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:mt-5 sm:text-5xl lg:text-6xl">
               {hero.headline}
             </h1>
           </Reveal>
@@ -45,20 +45,20 @@ export function Hero() {
           <Reveal delay={150}>
             <p
               dir="ltr"
-              className="font-script mt-3 max-w-md text-3xl leading-[1.35] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:mt-4 sm:max-w-lg sm:text-[2.25rem] lg:text-[2.5rem]"
+              className="font-script mx-auto mt-3 max-w-md text-center text-3xl leading-[1.35] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:mt-4 sm:max-w-lg sm:text-[2.25rem] lg:text-[2.5rem]"
             >
               {hero.tagline}
             </p>
           </Reveal>
 
           <Reveal delay={200}>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-lg lg:text-xl">
+            <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-xl lg:text-2xl">
               {hero.subtitle}
             </p>
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-6 sm:mt-8">
+            <div className="mt-6 flex justify-center sm:mt-8">
               <Link
                 href="#products"
                 className="text-base font-medium text-white/70 underline-offset-4 transition-colors hover:text-white hover:underline"
