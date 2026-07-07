@@ -73,7 +73,7 @@ export function Header() {
     >
       <div className="container-rubina flex h-16 items-center justify-between gap-4">
         <a href="#" className="group shrink-0" aria-label={`${site.brand.name} — דף הבית`}>
-          <BrandLogo size="md" showTagline={false} inverse={!scrolled} />
+          <BrandLogo size="md" showTagline={false} hideTextOnMobile inverse={!scrolled} />
         </a>
 
         {scrolled ? (

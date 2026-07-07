@@ -89,6 +89,7 @@ export type SiteConfig = {
     imageAlt: string;
   };
   trustStrip: {
+    title?: string;
     items: { label: string }[];
   };
   occasions: {
@@ -226,14 +227,13 @@ export const site: SiteConfig = {
       "מאפי סינבון טריים בעבודת יד, עם בצק רך, מילוי קינמון מפנק וציפויים עשירים — כמו בבית.",
   },
   contact: {
-    // TODO: החליפו במספר הוואטסאפ האמיתי של Netta's Cinnamon (פורמט בינ״ל, ללא +)
-    whatsappNumber: "9720000000000",
+    whatsappNumber: "972536232382",
     whatsappDefaultMessage:
       "היי Netta's Cinnamon! אשמח לשמוע פרטים על הסינבונים שלכם 🙂",
     instagram: "https://www.instagram.com/__nettascinnamon",
     tiktok: "",
     email: "",
-    phones: [],
+    phones: ["053-623-2382"],
   },
   colors: {
     cream: "#F0E2D0",
@@ -263,6 +263,7 @@ export const site: SiteConfig = {
     imageAlt: "סינבונים אפויים זהובים עם מילוי קינמון עשיר",
   },
   trustStrip: {
+    title: "מה הופך את זה לכל כך ממכר?",
     items: [
       { label: "בצק רך ואוורירי" },
       { label: "נאפה בעבודת יד" },
@@ -462,6 +463,7 @@ export const site: SiteConfig = {
   },
   legal: {
     businessName: "Netta's Cinnamon",
+    phone: "053-623-2382",
     websiteUrl: "https://nettascinnamon.example.com",
     lastUpdated: "2026-07-07",
     deliveryAreas: "גן יבנה והסביבה",

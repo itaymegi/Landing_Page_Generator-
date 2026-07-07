@@ -64,7 +64,6 @@ export function Hero() {
                 label={hero.ctaLabel}
                 variant="primary"
                 size="lg"
-                className="shadow-lg shadow-black/20"
               />
               <Link
                 href="#products"

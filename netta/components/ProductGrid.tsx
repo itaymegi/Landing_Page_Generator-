@@ -24,7 +24,7 @@ export function ProductGrid({ items }: ProductGridProps) {
       <div className="mt-16 grid gap-20 sm:gap-24 lg:grid-cols-2 lg:gap-x-20 lg:gap-y-28">
         {items.map((product, index) => (
           <Reveal key={product.id} delay={index * 80}>
-            <article className="group overflow-hidden rounded-xl border border-cream bg-white shadow-lg shadow-brown/8">
+            <article className="group overflow-hidden rounded-2xl border border-cream/80 bg-white shadow-lg shadow-brown/6 transition-shadow duration-300 hover:shadow-xl hover:shadow-brown/10">
               {/*
                * Image area — uses a plain div so that the carousel's
                * internal buttons are not nested inside another <button>.

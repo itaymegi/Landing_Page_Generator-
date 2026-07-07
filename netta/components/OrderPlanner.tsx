@@ -140,23 +140,13 @@ export function OrderPlanner() {
                               </option>
                             ))}
                           </select>
-                          {li && (
+                          {li && !li.isCustom ? (
                             <p className="mt-1.5 text-sm text-gold-deep">
-                              {li.isCustom ? (
-                                <span className="text-brown/50">
-                                  {planner.customPriceNote}
-                                </span>
-                              ) : (
-                                <>
-                                  {(li.unitPrice ?? 0).toLocaleString("he-IL")}
-                                  <span className="mr-0.5 text-xs text-gold/75">
-                                    ₪
-                                  </span>
-                                  <span className="text-brown/40"> ליחידה</span>
-                                </>
-                              )}
+                              {(li.unitPrice ?? 0).toLocaleString("he-IL")}
+                              <span className="mr-0.5 text-xs text-gold/75">₪</span>
+                              <span className="text-brown/40"> ליחידה</span>
                             </p>
-                          )}
+                          ) : null}
                         </div>
 
                         <div className="flex items-end gap-2 sm:gap-3">
@@ -228,22 +218,26 @@ export function OrderPlanner() {
                 </p>
 
                 <div className="flex flex-col gap-1.5">
-                  {lineItems.map((li) => (
+                  {lineItems
+                    .filter((li) => li.qty >= 1)
+                    .map((li) => (
                     <div key={li.id} className="flex items-baseline justify-between gap-4 text-sm">
                       <span className="min-w-0 truncate text-brown/70">
                         {li.qty >= 1 ? `${li.qty} × ` : ""}{li.boxType}
                       </span>
-                      {li.isCustom ? (
-                        <span className="shrink-0 text-brown/50 italic">{planner.customPriceNote}</span>
-                      ) : (
+                      {!li.isCustom ? (
                         <span className="shrink-0 font-serif font-light tabular-nums text-gold-deep">
                           {(li.lineTotal ?? 0).toLocaleString("he-IL")}
                           <span className="mr-0.5 text-xs text-gold/75">₪</span>
                         </span>
-                      )}
+                      ) : null}
                     </div>
                   ))}
                 </div>
+
+                {hasCustomItems && !hasValidRows ? (
+                  <p className="mt-3 text-sm text-brown/50">{planner.customPriceNote}</p>
+                ) : null}
 
                 {hasValidRows && (
                   <>

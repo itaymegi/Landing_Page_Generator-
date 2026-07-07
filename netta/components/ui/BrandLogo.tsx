@@ -5,13 +5,14 @@ type BrandLogoProps = {
   size?: "sm" | "md" | "lg";
   showTagline?: boolean;
   inverse?: boolean;
+  hideTextOnMobile?: boolean;
   className?: string;
 };
 
 const markSizes = {
-  sm: 32,
-  md: 36,
-  lg: 44,
+  sm: 36,
+  md: 40,
+  lg: 48,
 };
 
 const textSizes = {
@@ -24,6 +25,7 @@ export function BrandLogo({
   size = "md",
   showTagline = true,
   inverse = false,
+  hideTextOnMobile = false,
   className = "",
 }: BrandLogoProps) {
   const mark = markSizes[size];
@@ -46,7 +48,7 @@ export function BrandLogo({
           priority
         />
       </div>
-      <div className="flex flex-col leading-none">
+      <div className={`flex flex-col leading-none ${hideTextOnMobile ? "hidden sm:flex" : ""}`}>
         <span
           className={`font-display font-light transition-colors ${textColor} ${textSizes[size]}`}
         >

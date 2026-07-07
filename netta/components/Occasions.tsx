@@ -21,7 +21,7 @@ export function Occasions() {
           <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3 sm:mt-12 sm:gap-4">
             {occasions.items.map((item) => (
               <li key={item.label}>
-                <span className="inline-flex items-center rounded-full border border-gold/25 px-4 py-2 text-sm font-light tracking-wide text-brown/80 transition-colors duration-200 hover:border-gold/60 hover:text-brown sm:px-5 sm:py-2.5 sm:text-base">
+                <span className="inline-flex items-center rounded-full border border-gold/25 bg-white/70 px-4 py-2 text-sm font-light tracking-wide text-brown/80 transition-colors duration-200 hover:border-gold/60 hover:bg-white hover:text-brown sm:px-5 sm:py-2.5 sm:text-base">
                   {item.label}
                 </span>
               </li>
