@@ -19,9 +19,9 @@ const TU_BAV = {
   scrollThreshold: 0.28,
   storageKey: "rubina_tubav_dismissed_v1",
   whatsappNumber: "972527836631",
-  eyebrow: "ט״ו באב · מהדורה מוגבלת",
-  headline: "מארזים רומנטיים לרגעים זוגיים",
-  subline: "Sunset & Sunrise — פיקניק, שקיעה ובוקר בשדה",
+  eyebrow: "מארזים רומנטיים לרגעים זוגיים",
+  headline: "ט״ו באב · מהדורה מוגבלת",
+  subline: "Sunset & Sunrise basket",
   detailsNote: "לפרטים מלאים — שלחו הודעה",
   closeLabel: "סגור",
   dismissLabel: "הבנתי, תודה",
@@ -46,7 +46,7 @@ const TU_BAV = {
       name: "Sunrise",
       tagline: "בוקר בשדה — מארז עדין לזוגות",
       image: "/images/product-sunrise1.jpg",
-      objectPosition: "center 75%",
+      objectPosition: galleryFocus.picnic,
       highlights: [
         "פלטה של 4 סוגי גבינות",
         "יין, לאבנה, לחם וחמאה",
@@ -168,13 +168,13 @@ export function TuBavPromo() {
 
         {/* Header */}
         <div className="px-6 pt-8 text-center sm:px-8 sm:pt-9">
-          <p className="font-display text-[0.65rem] uppercase tracking-[0.32em] text-gold-deep">
+          <p className="text-sm font-light leading-relaxed text-brown/65">
             {TU_BAV.eyebrow}
           </p>
-          <h2 className="mx-auto mt-3 font-serif text-2xl font-light leading-snug tracking-wide text-brown">
+          <h2 className="mx-auto mt-3 font-serif text-2xl font-light leading-snug tracking-wide text-brown sm:text-3xl">
             {TU_BAV.headline}
           </h2>
-          <p className="mx-auto mt-2 max-w-xs text-sm font-light leading-relaxed text-brown/65">
+          <p className="mx-auto mt-2 max-w-xs font-display text-sm uppercase tracking-[0.22em] text-gold-deep">
             {TU_BAV.subline}
           </p>
           <span className="rule-gold rule-gold-center mt-5" aria-hidden="true" />

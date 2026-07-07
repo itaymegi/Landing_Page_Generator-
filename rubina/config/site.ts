@@ -358,10 +358,10 @@ export const site: SiteConfig = {
         description:
           "מארז sunset — מכיל פלטה המורכבת מ6 סוגי גבינות, יין, לאבנה, לחם וחמאה, 5 כדורי שוקולד, 4 מקרונים ושדרוגים נוספים שייגרמו לחווייה להרגיש מושלמת.",
         image: "/images/product-sunset1.jpg",
-        imageAlt: "מארז Sunset — סלסלת פיקניק על שולחן בשדה בשעת שקיעה",
+        imageAlt: "מארז Sunset — סלסלת פיקניק על מפה אדומה-לבנה בשדה",
         images: [
-          { src: "/images/product-sunset1.jpg", alt: "מארז Sunset — סלסלת פיקניק על שולחן בשדה בשעת שקיעה", objectPosition: galleryFocus.picnic },
-          { src: "/images/product-sunset2.jpg", alt: "מארז Sunset — גבינות, יין ומקרונים על מפה אדומה-לבנה" },
+          { src: "/images/product-sunset1.jpg", alt: "מארז Sunset — סלסלת פיקניק על מפה אדומה-לבנה בשדה", objectPosition: galleryFocus.picnic },
+          { src: "/images/product-sunset2.jpg", alt: "מארז Sunset — סלסלת פיקניק על שולחן לבן בשעת שקיעה" },
           { src: "/images/product-sunset3.jpg", alt: "מארז Sunset — תצוגה נוספת של הסלסלה בשדה", objectPosition: galleryFocus.picnic },
         ],
       },
@@ -373,9 +373,9 @@ export const site: SiteConfig = {
         image: "/images/product-sunrise1.jpg",
         imageAlt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה",
         images: [
-          { src: "/images/product-sunrise1.jpg", alt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה", objectPosition: "center 75%" },
-          { src: "/images/product-sunrise2.jpg", alt: "מארז Sunrise — סלסלת פיקניק על שולחן לבן בשדה" },
-          { src: "/images/product-sunrise3.jpg", alt: "מארז Sunrise — תצוגה נוספת עם גבינות, יין ופינוקים", objectPosition: galleryFocus.picnic },
+          { src: "/images/product-sunrise1.jpg", alt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה", objectPosition: galleryFocus.picnic },
+          { src: "/images/product-sunrise2.jpg", alt: "מארז Sunrise — סלסלת פיקניק על שולחן לבן בשקיעה" },
+          { src: "/images/product-sunrise3.jpg", alt: "מארז Sunrise — תקריב של הסלסלה עם גבינות ויין", objectPosition: "center 75%" },
         ],
       },
       {
