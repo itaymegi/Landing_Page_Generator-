@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { site, whatsappHref, getProductPrice } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppButton";
+import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
 import { FormConsent } from "@landing-legal/core";
 
 const inputClass =
@@ -177,7 +178,7 @@ export function OrderPlanner() {
                           </div>
 
                           {rows.length > 1 && (
-                            <button
+                            <HydrationSafeButton
                               type="button"
                               onClick={() => removeRow(row.id)}
                               className="flex h-[3.25rem] w-11 shrink-0 items-center justify-center rounded-xl text-brown/40 transition-colors hover:bg-cream/70 hover:text-brown/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
@@ -198,7 +199,7 @@ export function OrderPlanner() {
                                   d="M6 18L18 6M6 6l12 12"
                                 />
                               </svg>
-                            </button>
+                            </HydrationSafeButton>
                           )}
                         </div>
                       </div>
@@ -207,7 +208,7 @@ export function OrderPlanner() {
                 })}
               </div>
 
-              <button
+              <HydrationSafeButton
                 type="button"
                 onClick={addRow}
                 className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-dashed border-gold/40 px-4 py-2 text-sm text-gold-deep transition-colors hover:border-gold hover:bg-gold/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
@@ -216,7 +217,7 @@ export function OrderPlanner() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
                 {planner.addPackageLabel}
-              </button>
+              </HydrationSafeButton>
             </fieldset>
 
             {/* Live breakdown panel */}
@@ -316,13 +317,13 @@ export function OrderPlanner() {
               </p>
             ) : null}
 
-            <button
+            <HydrationSafeButton
               type="submit"
               className="mt-7 inline-flex min-h-14 w-full items-center justify-center gap-2.5 rounded-full bg-gold px-8 font-serif text-base font-light text-white shadow-md shadow-gold/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-deep hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
               <WhatsAppIcon />
               {planner.submitLabel}
-            </button>
+            </HydrationSafeButton>
             <FormConsent />
           </form>
         </Reveal>

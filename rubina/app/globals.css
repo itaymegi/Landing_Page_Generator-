@@ -77,6 +77,80 @@
   animation: progress linear forwards;
 }
 
+/* Tu B'Av campaign (temporary) — remove with TuBavPromo.tsx */
+@keyframes tubav-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-0.5rem);
+    opacity: 1;
+  }
+}
+
+@keyframes tubav-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.tubav-float {
+  animation: tubav-float 4s ease-in-out infinite;
+}
+
+.tubav-glow {
+  animation: tubav-glow 5s ease-in-out infinite;
+}
+
+.tubav-enter {
+  animation: tubav-fade-in 0.45s ease-out both;
+}
+
+@keyframes tubav-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tubav-drift {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-0.75rem) scale(1.05);
+  }
+}
+
+@keyframes tubav-sway {
+  0%,
+  100% {
+    transform: translateX(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateX(0.4rem) rotate(4deg);
+  }
+}
+
+.tubav-drift {
+  animation: tubav-drift 8s ease-in-out infinite;
+}
+
+.tubav-sway {
+  animation: tubav-sway 9s ease-in-out infinite;
+}
+
 html {
   color-scheme: light only;
   scroll-behavior: auto;
@@ -208,7 +282,12 @@ section[id] {
   }
 
   .scroll-cue-animate,
-  .hero-zoom {
+  .hero-zoom,
+  .tubav-float,
+  .tubav-glow,
+  .tubav-enter,
+  .tubav-drift,
+  .tubav-sway {
     animation: none;
   }
 }

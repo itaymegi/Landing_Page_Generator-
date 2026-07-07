@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ProductItem } from "@/config/site";
+import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
 
 type ProductCardImageProps = {
   product: ProductItem;
@@ -38,7 +39,7 @@ export function ProductCardImage({
   hover = true,
 }: ProductCardImageProps) {
   /* Normalise to a flat array of {src, alt} */
-  const images =
+  const images: { src: string; alt: string; objectPosition?: string }[] =
     product.images && product.images.length > 0
       ? product.images
       : [{ src: product.image, alt: product.imageAlt }];
@@ -100,6 +101,7 @@ export function ProductCardImage({
         alt={images[0].alt}
         fill
         className={`object-cover ${hoverClass}`}
+        style={images[0].objectPosition ? { objectPosition: images[0].objectPosition } : undefined}
         sizes={sizes}
         priority={priority}
       />
@@ -126,6 +128,7 @@ export function ProductCardImage({
             alt={image.alt}
             fill
             className="object-cover"
+            style={image.objectPosition ? { objectPosition: image.objectPosition } : undefined}
             sizes={sizes}
             priority={priority && index === 0}
             loading="eager"
@@ -140,24 +143,24 @@ export function ProductCardImage({
       />
 
       {/* Prev arrow (right side in RTL = previous) */}
-      <button
+      <HydrationSafeButton
         type="button"
         onClick={prev}
         className="absolute end-2 top-1/2 z-30 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-brown opacity-0 shadow-md backdrop-blur-sm transition-all duration-200 group-hover:opacity-100 hover:bg-white hover:scale-110 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold active:scale-95"
         aria-label="תמונה קודמת"
       >
         <ChevronIcon dir="right" />
-      </button>
+      </HydrationSafeButton>
 
       {/* Next arrow (left side in RTL = next) */}
-      <button
+      <HydrationSafeButton
         type="button"
         onClick={next}
         className="absolute start-2 top-1/2 z-30 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-brown opacity-0 shadow-md backdrop-blur-sm transition-all duration-200 group-hover:opacity-100 hover:bg-white hover:scale-110 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold active:scale-95"
         aria-label="תמונה הבאה"
       >
         <ChevronIcon dir="left" />
-      </button>
+      </HydrationSafeButton>
 
       {/* Dot indicators */}
       <div
@@ -165,7 +168,7 @@ export function ProductCardImage({
         onClick={(e) => e.stopPropagation()}
       >
         {images.map((_, idx) => (
-          <button
+          <HydrationSafeButton
             key={idx}
             type="button"
             onClick={(e) => goTo(idx, e)}

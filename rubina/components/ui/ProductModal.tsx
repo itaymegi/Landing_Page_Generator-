@@ -3,6 +3,7 @@
 import { useCallback, useEffect } from "react";
 import type { ProductItem } from "@/config/site";
 import { ProductCardImage } from "@/components/ui/ProductCardImage";
+import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
 import { ProductPrice } from "@/components/ui/ProductPrice";
 import { site, siteWhatsAppHref } from "@/config/site";
 
@@ -67,7 +68,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
           />
 
           {/* Close button */}
-          <button
+          <HydrationSafeButton
             type="button"
             onClick={onClose}
             className="absolute end-3 top-3 z-40 flex min-h-10 min-w-10 items-center justify-center rounded-full bg-charcoal/50 text-white backdrop-blur-sm transition-colors hover:bg-charcoal/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold active:scale-95"
@@ -87,7 +88,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </button>
+          </HydrationSafeButton>
         </div>
 
         {/* Product info */}

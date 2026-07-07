@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { GalleryImage } from "@/config/site";
+import { galleryFocus, type GalleryImage } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { Lightbox } from "@/components/ui/Lightbox";
+import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
 
 type GalleryInteractiveProps = {
   title: string;
@@ -13,6 +14,13 @@ type GalleryInteractiveProps = {
   previewImages: GalleryImage[];
   allImages: GalleryImage[];
 };
+
+/** Taller mobile frame + gentler desktop crop for portrait picnic shots. */
+const STAGE_ASPECT = "aspect-[4/5] w-full sm:aspect-[4/3] lg:aspect-[16/10]";
+
+function imageFocus(image: GalleryImage): string {
+  return image.objectPosition ?? galleryFocus.subject;
+}
 
 export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
   const images = allImages;
@@ -143,7 +151,7 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
           >
-            <div className="relative aspect-[4/3] w-full sm:aspect-[16/9]">
+            <div className={`relative ${STAGE_ASPECT}`}>
               {/* Slides */}
               {images.map((image, index) => (
                 <div
@@ -158,6 +166,7 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
                     alt={image.alt}
                     fill
                     className="object-cover"
+                    style={{ objectPosition: imageFocus(image) }}
                     sizes="(max-width: 1280px) 100vw, 1280px"
                     priority={index <= 1}
                     loading={index <= 2 ? "eager" : "lazy"}
@@ -172,7 +181,7 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
               />
 
               {/* Click to open lightbox */}
-              <button
+              <HydrationSafeButton
                 type="button"
                 onClick={() => setLightboxOpen(true)}
                 className="absolute inset-0 z-20 cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-inset"
@@ -182,7 +191,7 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
               {/* Prev / Next arrows */}
               {images.length > 1 && (
                 <>
-                  <button
+                  <HydrationSafeButton
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -194,8 +203,8 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
                     <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
-                  </button>
-                  <button
+                  </HydrationSafeButton>
+                  <HydrationSafeButton
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -207,7 +216,7 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
                     <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
-                  </button>
+                  </HydrationSafeButton>
                 </>
               )}
 
@@ -217,7 +226,7 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
                 {images.length > 1 && (
                   <div className="pointer-events-auto flex items-center gap-1.5">
                     {images.map((_, idx) => (
-                      <button
+                      <HydrationSafeButton
                         key={idx}
                         type="button"
                         onClick={(e) => {
@@ -264,7 +273,7 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
               aria-label="תמונות ממוזערות"
             >
               {images.map((image, index) => (
-                <button
+                <HydrationSafeButton
                   key={image.src}
                   type="button"
                   onClick={() => goTo(index)}
@@ -281,10 +290,11 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
                     alt={image.alt}
                     fill
                     className="object-cover"
+                    style={{ objectPosition: imageFocus(image) }}
                     sizes="112px"
                     loading="lazy"
                   />
-                </button>
+                </HydrationSafeButton>
               ))}
             </div>
           )}

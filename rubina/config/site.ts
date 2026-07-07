@@ -4,14 +4,23 @@ export type ProductItem = {
   description: string;
   image: string;
   imageAlt: string;
-  images?: { src: string; alt: string }[];
+  images?: { src: string; alt: string; objectPosition?: string }[];
   price?: number;
 };
 
 export type GalleryImage = {
   src: string;
   alt: string;
+  /** Crop anchor for object-cover — e.g. "center 68%" keeps low subjects visible. */
+  objectPosition?: string;
 };
+
+/** Shared crop anchors for gallery images. */
+export const galleryFocus = {
+  center: "center center",
+  subject: "center 62%",
+  picnic: "center 68%",
+} as const;
 
 export function filterGalleryImages(images: GalleryImage[]): GalleryImage[] {
   return images;
@@ -184,22 +193,22 @@ export function getSiteUrl(): string {
 }
 
 const galleryImages: GalleryImage[] = [
-  { src: "/images/gallery-1.jpg",  alt: "שני מארזי Rubina על ערימת קש — מתנה מיוחדת מהחווה" },
-  { src: "/images/gallery-3.jpg",  alt: "שלושה מארזים פתוחים עם גבינות ויין על מפה לבנה" },
-  { src: "/images/gallery-4.jpg",  alt: "מארז רובינה עם גבינות, יין ותוספות מובחרות" },
-  { src: "/images/gallery-5.jpg",  alt: "מרכיבי המארזים לפני האריזה — גבינות, יין ופינוקים" },
-  { src: "/images/gallery-8.jpg",  alt: "סלסלת פיקניק יוקרתית של רובינה בשדה" },
-  { src: "/images/gallery-9.jpg",  alt: "מארז פתוח עם גבינות, יין ופינוקים — מוכן למשלוח" },
-  { src: "/images/gallery-10.jpg", alt: "סלסלת קש עם חמניה, גבינות ויין — מתנה מושקעת" },
-  { src: "/images/gallery-11.jpg", alt: "שורות מארזים אחידים — הזמנות גדולות בעבודת יד" },
-  { src: "/images/gallery-12.jpg", alt: "סלסלת פיקניק על מפה אדומה-לבנה — שקיעה בשדה" },
-  { src: "/images/gallery-13.jpg", alt: "סלסלת פיקניק עם יין וגבינות על שולחן בשדה" },
-  { src: "/images/gallery-14.jpg", alt: "סלסלת פיקניק עם גבינות ויין על רקע שדה ירוק" },
-  { src: "/images/gallery-15.jpg", alt: "סלסלת פיקניק עם יין, גבינות ומקרונים בטבע" },
-  { src: "/images/gallery-16.jpg", alt: "שתי סלסלאות פיקניק על מפה אדומה-לבנה בשדה" },
-  { src: "/images/gallery-17.jpg", alt: "שתי סלסלאות פיקניק על שולחן לבן בשדה" },
-  { src: "/images/gallery-18.jpg", alt: "סלסלת פיקניק מלאה עם גבינות ויין בשעת השקיעה" },
-  { src: "/images/gallery-19.jpg", alt: "סלסלת פיקניק עם גבינות, יין ומקרונים בשדה" },
+  { src: "/images/gallery-1.jpg",  alt: "שני מארזי Rubina על ערימת קש — מתנה מיוחדת מהחווה", objectPosition: galleryFocus.subject },
+  { src: "/images/gallery-3.jpg",  alt: "שלושה מארזים פתוחים עם גבינות ויין על מפה לבנה", objectPosition: galleryFocus.center },
+  { src: "/images/gallery-4.jpg",  alt: "מארז רובינה עם גבינות, יין ותוספות מובחרות", objectPosition: galleryFocus.center },
+  { src: "/images/gallery-5.jpg",  alt: "מרכיבי המארזים לפני האריזה — גבינות, יין ופינוקים", objectPosition: galleryFocus.center },
+  { src: "/images/gallery-8.jpg",  alt: "סלסלת פיקניק יוקרתית של רובינה בשדה", objectPosition: galleryFocus.picnic },
+  { src: "/images/gallery-9.jpg",  alt: "מארז פתוח עם גבינות, יין ופינוקים — מוכן למשלוח", objectPosition: galleryFocus.center },
+  { src: "/images/gallery-10.jpg", alt: "סלסלת קש עם חמניה, גבינות ויין — מתנה מושקעת", objectPosition: galleryFocus.subject },
+  { src: "/images/gallery-11.jpg", alt: "שורות מארזים אחידים — הזמנות גדולות בעבודת יד", objectPosition: galleryFocus.center },
+  { src: "/images/gallery-12.jpg", alt: "סלסלת פיקניק על מפה אדומה-לבנה — שקיעה בשדה", objectPosition: galleryFocus.picnic },
+  { src: "/images/gallery-13.jpg", alt: "סלסלת פיקניק עם יין וגבינות על שולחן בשדה", objectPosition: galleryFocus.picnic },
+  { src: "/images/gallery-14.jpg", alt: "סלסלת פיקניק עם גבינות ויין על רקע שדה ירוק", objectPosition: galleryFocus.picnic },
+  { src: "/images/gallery-15.jpg", alt: "סלסלת פיקניק עם יין, גבינות ומקרונים בטבע", objectPosition: galleryFocus.picnic },
+  { src: "/images/gallery-16.jpg", alt: "שתי סלסלאות פיקניק על מפה אדומה-לבנה בשדה", objectPosition: galleryFocus.picnic },
+  { src: "/images/gallery-17.jpg", alt: "שתי סלסלאות פיקניק על שולחן לבן בשדה", objectPosition: galleryFocus.picnic },
+  { src: "/images/gallery-18.jpg", alt: "סלסלת פיקניק מלאה עם גבינות ויין בשעת השקיעה", objectPosition: galleryFocus.picnic },
+  { src: "/images/gallery-19.jpg", alt: "סלסלת פיקניק עם גבינות, יין ומקרונים בשדה", objectPosition: galleryFocus.picnic },
 ];
 
 export const site: SiteConfig = {
@@ -348,16 +357,26 @@ export const site: SiteConfig = {
         title: "מארז Sunset",
         description:
           "מארז sunset — מכיל פלטה המורכבת מ6 סוגי גבינות, יין, לאבנה, לחם וחמאה, 5 כדורי שוקולד, 4 מקרונים ושדרוגים נוספים שייגרמו לחווייה להרגיש מושלמת.",
-        image: "/images/product-sunset.jpg",
-        imageAlt: "מארז Sunset — סלסלת פיקניק יוקרתית עם גבינות, יין ומקרונים",
+        image: "/images/product-sunset1.jpg",
+        imageAlt: "מארז Sunset — סלסלת פיקניק על שולחן בשדה בשעת שקיעה",
+        images: [
+          { src: "/images/product-sunset1.jpg", alt: "מארז Sunset — סלסלת פיקניק על שולחן בשדה בשעת שקיעה", objectPosition: galleryFocus.picnic },
+          { src: "/images/product-sunset2.jpg", alt: "מארז Sunset — גבינות, יין ומקרונים על מפה אדומה-לבנה" },
+          { src: "/images/product-sunset3.jpg", alt: "מארז Sunset — תצוגה נוספת של הסלסלה בשדה", objectPosition: galleryFocus.picnic },
+        ],
       },
       {
         id: "sunrise",
         title: "מארז Sunrise",
         description:
           "מארז sunrise — מכיל פלטה המורכבת מ4 סוגי גבינות, יין, לאבנה, לחם וחמאה, 3 כדורי שוקולד, זוג מקרונים ושדרוגים נוספים שייגרמו לחוויה להרגיש מושלמת.",
-        image: "/images/product-sunrise.jpg",
-        imageAlt: "מארז Sunrise — סלסלת פיקניק עם גבינות, יין ופינוקים",
+        image: "/images/product-sunrise1.jpg",
+        imageAlt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה",
+        images: [
+          { src: "/images/product-sunrise1.jpg", alt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה", objectPosition: "center 75%" },
+          { src: "/images/product-sunrise2.jpg", alt: "מארז Sunrise — סלסלת פיקניק על שולחן לבן בשדה" },
+          { src: "/images/product-sunrise3.jpg", alt: "מארז Sunrise — תצוגה נוספת עם גבינות, יין ופינוקים", objectPosition: galleryFocus.picnic },
+        ],
       },
       {
         id: "custom",

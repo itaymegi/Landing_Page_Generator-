@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
 
 type LightboxProps = {
   src: string;
@@ -44,7 +45,7 @@ export function Lightbox({ src, alt, open, onClose }: LightboxProps) {
       aria-label={alt}
       onClick={onClose}
     >
-      <button
+      <HydrationSafeButton
         type="button"
         onClick={onClose}
         onPointerDown={(e) => {
@@ -70,13 +71,13 @@ export function Lightbox({ src, alt, open, onClose }: LightboxProps) {
             d="M6 18L18 6M6 6l12 12"
           />
         </svg>
-      </button>
+      </HydrationSafeButton>
 
       <div
         className="relative max-h-[85vh] w-full max-w-4xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative aspect-[4/3] w-full sm:aspect-[16/10]">
+        <div className="relative aspect-[4/5] w-full sm:aspect-[4/3] lg:aspect-[16/10]">
           <Image
             src={src}
             alt={alt}

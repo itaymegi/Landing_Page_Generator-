@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { ProductItem } from "@/config/site";
 import { ProductCardImage } from "@/components/ui/ProductCardImage";
+import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
 import { ProductModal } from "@/components/ui/ProductModal";
 import { ProductPrice } from "@/components/ui/ProductPrice";
 import { Reveal } from "@/components/ui/Reveal";
@@ -33,7 +34,7 @@ export function ProductGrid({ items }: ProductGridProps) {
               <div className="relative block w-full aspect-[3/4] overflow-hidden">
                 <ProductCardImage product={product} priority={index < 2} />
                 {/* Invisible overlay that opens modal on click (not on nav buttons) */}
-                <button
+                <HydrationSafeButton
                   type="button"
                   onClick={() => setActive(product)}
                   className="absolute inset-0 z-20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-inset"
@@ -46,14 +47,14 @@ export function ProductGrid({ items }: ProductGridProps) {
               <div className="px-6 pb-8 pt-8 sm:px-8">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <button
+                    <HydrationSafeButton
                       type="button"
                       onClick={() => setActive(product)}
                       className="text-start font-serif text-2xl font-light tracking-wide text-brown transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:text-3xl"
                       aria-label={`פרטים על ${product.title}`}
                     >
                       <ProductTitle title={product.title} />
-                    </button>
+                    </HydrationSafeButton>
                   </div>
                   <ProductPrice price={product.price} size="md" className="pt-1" />
                 </div>

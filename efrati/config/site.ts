@@ -97,6 +97,7 @@ export type SiteConfig = {
     title: string;
     openLabel: string;
     closeLabel: string;
+    instagramCta: string;
     previewImages: GalleryImage[];
     allImages: GalleryImage[];
   };
@@ -109,9 +110,16 @@ export type SiteConfig = {
     title: string;
     subtitle: string;
     nameLabel: string;
+    occasionLabel: string;
+    occasionPlaceholder: string;
+    cityLabel: string;
+    cityPlaceholder: string;
     boxTypeLabel: string;
     boxTypeOptions: BoxTypeOption[];
     dateLabel: string;
+    timeLabel: string;
+    guestsLabel: string;
+    guestsPlaceholder: string;
     notesLabel: string;
     successMessage: string;
     submitLabel: string;
@@ -119,9 +127,6 @@ export type SiteConfig = {
     addPackageLabel: string;
     removePackageLabel: string;
     breakdownLabel: string;
-    estimatedTotalLabel: string;
-    priceDisclaimer: string;
-    customPriceNote: string;
   };
   contactSection: {
     heading: string;
@@ -201,14 +206,14 @@ export const site: SiteConfig = {
     logoText: "הממלכה של אפרתי",
     logoSrc: "/images/logo.png",
     logoAlt: "הממלכה של אפרתי — עמדות אוכל לאירועים",
-    tagline: "עמדות מתוק ומלוח לאירועים",
+    tagline: "עמדות מעוצבות לאירועים",
     description:
-      "עמדות אוכל מתוק ומלוח לאירועים — אטרקציה צבעונית, מעוצבת ומרשימה שמשדרגת כל אירוע.",
+      "עמדות מעוצבות לאירועים — קינוחים, אוכל ועוד. אטרקציה צבעונית ומרשימה שהופכת כל אירוע לחוויה.",
   },
   contact: {
     whatsappNumber: "972526845245",
     whatsappDefaultMessage:
-      "היי! הגעתי מהאתר של הממלכה של אפרתי ואשמח לשמוע פרטים על עמדות לאירוע שלי",
+      "היי! הגעתי מהאתר של הממלכה של אפרתי 🤍\nבינתיים אספר לכם על האירוע שלי:\n\n• מה חוגגים? \n• מיקום האירוע (עיר): \n• תאריך ושעה: \n• כמות מוזמנים בערך: \n• במה אני מעוניין/ת? ",
     instagram: "https://www.instagram.com/hamamlaha_shel_efrati",
     tiktok: "",
     email: "",
@@ -234,7 +239,7 @@ export const site: SiteConfig = {
     headline: "האוכל הוא רק חלק מהחוויה",
     tagline: "Food is only part of the experience.",
     subtitle:
-      "עמדות קינוחים ונשנושים מעוצבות לאירועים — צבעוניות, מרשימות ומלאות חיים, שהופכות למוקד העניין של האירוע.",
+      "קינוחים, אוכל ועוד — עמדות מעוצבות, צבעוניות ומלאות חיים שהופכות למוקד העניין של האירוע.",
     ctaLabel: "הזמנה בWhatsApp",
     secondaryCta: "צפייה בשירותים",
     image: "/images/hero.jpg",
@@ -343,6 +348,7 @@ export const site: SiteConfig = {
     title: "רגעים מהאירועים שלנו",
     openLabel: "לגלריה המלאה",
     closeLabel: "סגור",
+    instagramCta: "עוד תמונות באינסטגרם שלנו",
     previewImages: galleryImages,
     allImages: galleryImages,
   },
@@ -372,7 +378,7 @@ export const site: SiteConfig = {
       {
         question: "איך מזמינים?",
         answer:
-          "שולחים לנו הודעה בוואטסאפ עם סוג האירוע, התאריך ומספר האורחים — ונחזור אליכם עם הצעה מותאמת.",
+          "שולחים לנו הודעה בוואטסאפ עם הפרטים: מה חוגגים, מיקום האירוע (עיר), תאריך ושעה, כמות מוזמנים בערך ובמה אתם מעוניינים — ונחזור אליכם עם הצעה מותאמת.",
       },
       {
         question: "לאיזה אזורים אתם מגיעים?",
@@ -384,8 +390,13 @@ export const site: SiteConfig = {
   planner: {
     eyebrow: "הזמנה",
     title: "בואו נתכנן את האירוע שלכם",
-    subtitle: "כמה פרטים קצרים ונחזור אליכם בוואטסאפ עם הצעה מותאמת אישית.",
+    subtitle:
+      "ספרו לנו כמה פרטים ונחזור אליכם בוואטסאפ עם הצעה מותאמת. אנחנו לעיתים באמצע אירוע — ונחזור אליכם בהקדם 🤍",
     nameLabel: "שם",
+    occasionLabel: "מה חוגגים?",
+    occasionPlaceholder: "חתונה / יום הולדת / אירוע חברה…",
+    cityLabel: "מיקום האירוע (עיר)",
+    cityPlaceholder: "באיזו עיר האירוע?",
     boxTypeLabel: "סוג שירות",
     boxTypeOptions: [
       { value: "גלידות אמריקאיות", label: "גלידות אמריקאיות" },
@@ -398,17 +409,17 @@ export const site: SiteConfig = {
       { value: "שילוב שירותים", label: "שילוב שירותים / עדיין לא בטוח/ה" },
     ],
     dateLabel: "תאריך האירוע",
-    notesLabel: "פרטים נוספים (מספר אורחים, מיקום וכו')",
+    timeLabel: "שעת האירוע",
+    guestsLabel: "כמות מוזמנים בערך",
+    guestsPlaceholder: "למשל 80",
+    notesLabel: "הערות נוספות (לא חובה)",
     successMessage:
       "מעולה! נפתח עבורכם חלון וואטסאפ עם הפרטים — נשמח לחזור אליכם בהקדם.",
     submitLabel: "שליחת פרטים בWhatsApp",
-    calculatorLabel: "בחירת שירותים לאירוע",
+    calculatorLabel: "במה אתם מעוניינים?",
     addPackageLabel: "הוספת שירות נוסף",
     removePackageLabel: "הסרה",
     breakdownLabel: "סיכום הבקשה",
-    estimatedTotalLabel: "סה״כ משוער",
-    priceDisclaimer: "המחיר הסופי יאושר בוואטסאפ בהתאם לאירוע",
-    customPriceNote: "לפי הצעת מחיר",
   },
   contactSection: {
     heading: "רוצים עמדה שתהפוך את האירוע לבלתי נשכח?",

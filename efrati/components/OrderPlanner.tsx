@@ -24,7 +24,11 @@ export function OrderPlanner() {
 
   const [rows, setRows] = useState<ServiceRow[]>([newRow(firstOption)]);
   const [name, setName] = useState("");
+  const [occasion, setOccasion] = useState("");
+  const [city, setCity] = useState("");
   const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [guests, setGuests] = useState("");
   const [notes, setNotes] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -41,19 +45,28 @@ export function OrderPlanner() {
     [rows],
   );
 
+  const dateTime = [date, time].filter(Boolean).join(" ");
+
   const message = useMemo(() => {
     const parts = [
-      `היי ${site.brand.name}! הגעתי דרך דף הנחיתה.`,
-      "אשמח לקבל פרטים והצעת מחיר לעמדות לאירוע.",
-      `שם: ${name || "-"}`,
-      "השירותים שמעניינים אותי:",
-      ...selectedServices.map((service) => `- ${service}`),
-      `תאריך: ${date || "-"}`,
-      `הערות: ${notes || "-"}`,
+      `היי ${site.brand.name}! הגעתי מהאתר 🤍`,
+      "בינתיים אספר לכם על האירוע שלי:",
+      "",
+      `• מה חוגגים? ${occasion || "-"}`,
+      `• מיקום האירוע (עיר): ${city || "-"}`,
+      `• תאריך ושעה: ${dateTime || "-"}`,
+      `• כמות מוזמנים בערך: ${guests || "-"}`,
+      "• במה אני מעוניין/ת?",
+      ...selectedServices.map((service) => `   - ${service}`),
+      `• שם: ${name || "-"}`,
     ];
 
+    if (notes.trim()) {
+      parts.push(`• הערות: ${notes.trim()}`);
+    }
+
     return parts.join("\n");
-  }, [selectedServices, name, date, notes]);
+  }, [name, occasion, city, dateTime, guests, selectedServices, notes]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,7 +96,95 @@ export function OrderPlanner() {
             onSubmit={handleSubmit}
             className="mt-12 rounded-2xl border border-cream bg-white p-6 shadow-lg shadow-brown/8 sm:p-9"
           >
-            <fieldset className="mb-6 border-0 p-0">
+            {/* Contact + event details */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <label className={labelClass} htmlFor="planner-name">
+                  {planner.nameLabel}
+                </label>
+                <input
+                  id="planner-name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className={inputClass}
+                  autoComplete="name"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className={labelClass} htmlFor="planner-occasion">
+                  {planner.occasionLabel}
+                </label>
+                <input
+                  id="planner-occasion"
+                  type="text"
+                  value={occasion}
+                  onChange={(e) => setOccasion(e.target.value)}
+                  className={inputClass}
+                  placeholder={planner.occasionPlaceholder}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass} htmlFor="planner-city">
+                  {planner.cityLabel}
+                </label>
+                <input
+                  id="planner-city"
+                  type="text"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  className={inputClass}
+                  placeholder={planner.cityPlaceholder}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass} htmlFor="planner-guests">
+                  {planner.guestsLabel}
+                </label>
+                <input
+                  id="planner-guests"
+                  type="number"
+                  min={1}
+                  inputMode="numeric"
+                  value={guests}
+                  onChange={(e) => setGuests(e.target.value)}
+                  className={inputClass}
+                  placeholder={planner.guestsPlaceholder}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass} htmlFor="planner-date">
+                  {planner.dateLabel}
+                </label>
+                <input
+                  id="planner-date"
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className={inputClass}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass} htmlFor="planner-time">
+                  {planner.timeLabel}
+                </label>
+                <input
+                  id="planner-time"
+                  type="time"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  className={inputClass}
+                />
+              </div>
+            </div>
+
+            {/* Service selection */}
+            <fieldset className="mt-6 mb-6 border-0 p-0">
               <legend className={`${labelClass} mb-3`}>
                 {planner.calculatorLabel}
               </legend>
@@ -92,11 +193,6 @@ export function OrderPlanner() {
                 {rows.map((row, idx) => (
                   <div key={row.id} className="flex items-end gap-3">
                     <div className="flex-1">
-                      {idx === 0 && (
-                        <label className="mb-1 block text-xs text-brown/50">
-                          {planner.boxTypeLabel}
-                        </label>
-                      )}
                       <select
                         value={row.boxType}
                         onChange={(e) => updateRow(row.id, e.target.value)}
@@ -137,59 +233,34 @@ export function OrderPlanner() {
               </button>
             </fieldset>
 
-            {selectedServices.length > 0 && (
-              <div className="mb-6 rounded-xl bg-gold/8 px-5 py-4">
-                <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-gold-deep">
-                  {planner.breakdownLabel}
-                </p>
-                <ul className="flex flex-col gap-1.5 text-sm text-brown/75">
-                  {selectedServices.map((service, idx) => (
-                    <li key={`${service}-${idx}`}>• {service}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {/* Optional notes */}
+            <div className="mb-6">
+              <label className={labelClass} htmlFor="planner-notes">
+                {planner.notesLabel}
+              </label>
+              <textarea
+                id="planner-notes"
+                rows={3}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className={`${inputClass} resize-none`}
+              />
+            </div>
 
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              <div className="sm:col-span-2">
-                <label className={labelClass} htmlFor="planner-name">
-                  {planner.nameLabel}
-                </label>
-                <input
-                  id="planner-name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className={inputClass}
-                  autoComplete="name"
-                />
-              </div>
-
-              <div className="sm:col-span-2">
-                <label className={labelClass} htmlFor="planner-date">
-                  {planner.dateLabel}
-                </label>
-                <input
-                  id="planner-date"
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className={inputClass}
-                />
-              </div>
-
-              <div className="sm:col-span-2">
-                <label className={labelClass} htmlFor="planner-notes">
-                  {planner.notesLabel}
-                </label>
-                <textarea
-                  id="planner-notes"
-                  rows={3}
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className={`${inputClass} resize-none`}
-                />
-              </div>
+            {/* Live summary */}
+            <div className="mb-6 rounded-xl bg-gold/8 px-5 py-4">
+              <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-gold-deep">
+                {planner.breakdownLabel}
+              </p>
+              <ul className="flex flex-col gap-1.5 text-sm text-brown/75">
+                {occasion && <li>• {planner.occasionLabel} {occasion}</li>}
+                {city && <li>• {planner.cityLabel}: {city}</li>}
+                {dateTime && <li>• תאריך ושעה: {dateTime}</li>}
+                {guests && <li>• {planner.guestsLabel}: {guests}</li>}
+                {selectedServices.map((service, idx) => (
+                  <li key={`${service}-${idx}`}>• {service}</li>
+                ))}
+              </ul>
             </div>
 
             {submitted ? (

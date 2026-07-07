@@ -10,6 +10,8 @@ import { OrderPlanner } from "@/components/OrderPlanner";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { MobileWhatsAppBar } from "@/components/ui/WhatsAppButton";
+import { TuBavPromo } from "@/components/TuBavPromo";
+import { TuBavAmbient } from "@/components/TuBavAmbient";
 
 export default function Home() {
   return (
@@ -28,6 +30,8 @@ export default function Home() {
       </main>
       <Footer />
       <MobileWhatsAppBar />
+      <TuBavPromo />
+      <TuBavAmbient />
     </>
   );
 }
