@@ -230,7 +230,7 @@ export const site: SiteConfig = {
     whatsappNumber: "972536232382",
     whatsappDefaultMessage:
       "היי Netta's Cinnamon! אשמח לשמוע פרטים על הסינבונים שלכם 🙂",
-    instagram: "https://www.instagram.com/__nettascinnamon",
+    instagram: "https://www.instagram.com/nettascinnamon___",
     tiktok: "",
     email: "",
     phones: ["053-623-2382"],
@@ -256,7 +256,7 @@ export const site: SiteConfig = {
     tagline: "Fresh Handmade Cinnamon Rolls",
     subtitle:
       "מאפי סינבון טריים בעבודת יד, עם ציפויים מפנקים וטעמים שמשאירים חשק לעוד.",
-    ctaLabel: "להזמנה בוואטסאפ",
+    ctaLabel: "הזמנה בWhatsApp",
     secondaryCta: "לטעמים שלנו",
     note: "איסוף עצמי מגן יבנה · משלוחים בתיאום",
     image: "/images/hero.jpg",
@@ -368,7 +368,7 @@ export const site: SiteConfig = {
         description: "מעיינים בטעמים ובמארזים ובוחרים את מה שמתחשק.",
       },
       {
-        title: "שולחים הודעה בוואטסאפ",
+        title: "שולחים הודעה בWhatsApp",
         description: "כותבים לנו מה בא לכם וכמה — ונחזור עם כל הפרטים.",
       },
       {
@@ -387,12 +387,12 @@ export const site: SiteConfig = {
       {
         question: "איך מזמינים?",
         answer:
-          "שולחים לנו הודעה בוואטסאפ עם הטעם/המארז שמעניין אתכם, כמות ותאריך — ונחזור אליכם עם כל הפרטים.",
+          "שולחים לנו הודעה בWhatsApp עם הטעם/המארז שמעניין אתכם, כמות ותאריך — ונחזור אליכם עם כל הפרטים.",
       },
       {
         question: "איפה אוספים? יש משלוחים?",
         answer:
-          "איסוף עצמי מגן יבנה. משלוחים בתיאום מראש — כתבו לנו בוואטסאפ ונבדוק יחד.",
+          "איסוף עצמי מגן יבנה. משלוחים בתיאום מראש — כתבו לנו בWhatsApp ונבדוק יחד.",
       },
       {
         question: "כמה זמן מראש כדאי להזמין?",
@@ -409,7 +409,7 @@ export const site: SiteConfig = {
   planner: {
     eyebrow: "הזמנה",
     title: "בואו נרכיב לכם מארז",
-    subtitle: "כמה פרטים קצרים ונחזור אליכם בוואטסאפ עם כל הפרטים.",
+    subtitle: "כמה פרטים קצרים ונחזור אליכם בWhatsApp עם כל הפרטים.",
     nameLabel: "שם",
     boxTypeLabel: "טעם / מארז",
     boxTypeOptions: [
@@ -424,32 +424,32 @@ export const site: SiteConfig = {
     dateLabel: "תאריך רצוי",
     notesLabel: "הערות",
     successMessage:
-      "מעולה! נפתח עבורכם חלון וואטסאפ עם הפרטים — נשמח לחזור אליכם.",
-    submitLabel: "שליחת פרטים בוואטסאפ",
+      "מעולה! נפתח עבורכם חלון WhatsApp עם הפרטים — נשמח לחזור אליכם.",
+    submitLabel: "שליחת פרטים בWhatsApp",
     calculatorLabel: "בחירת טעמים ומארזים",
     addPackageLabel: "הוספת פריט נוסף",
     removePackageLabel: "הסרה",
     breakdownLabel: "פירוט ההזמנה",
     estimatedTotalLabel: "סה״כ משוער",
     priceDisclaimer: "המחיר הסופי יאושר ב-WhatsApp",
-    customPriceNote: "מחיר בתיאום בוואטסאפ",
+    customPriceNote: "מחיר בתיאום ב-WhatsApp",
   },
   contactSection: {
     heading: "בא לכם להתפנק בסינבון טרי?",
     subtitle:
       "שלחו הודעה ונעזור לכם לבחור את המארז שמתאים בדיוק לכם.",
-    whatsappLabel: "להזמנה בוואטסאפ",
+    whatsappLabel: "הזמנה בWhatsApp",
     instagramLabel: "Instagram",
     phoneLabel: "טלפון",
     deliveryAreas: "איסוף עצמי מגן יבנה",
-    deliveryInfo: "משלוחים בתיאום — נשמח לתאם בוואטסאפ",
+    deliveryInfo: "משלוחים בתיאום — נשמח לתאם בWhatsApp",
     pickupInfo: "משלוחים בתיאום",
     leadTime: "הזמנה מראש — נשמח לתאם מועד",
     orderDays: "הזמנה מראש בתיאום",
     closingMessage:
       "כל מגש נאפה באהבה, בעבודת יד וטרי במיוחד בשבילכם 🤎",
     accessibilityNote:
-      "האתר מותאם לגלישה נוחה. לכל שאלה או בקשה — פנו אלינו בוואטסאפ.",
+      "האתר מותאם לגלישה נוחה. לכל שאלה או בקשה — פנו אלינו בWhatsApp.",
   },
   footer: {
     copyright: "© 2026 Netta's Cinnamon. כל הזכויות שמורות.",
@@ -457,7 +457,7 @@ export const site: SiteConfig = {
   meta: {
     title: "Netta's Cinnamon — סינבונים ביתיים בעבודת יד",
     description:
-      "מאפי סינבון טריים בעבודת יד, עם בצק רך, מילוי קינמון מפנק וציפויים עשירים. איסוף מגן יבנה ומשלוחים בתיאום. להזמנה בוואטסאפ.",
+      "מאפי סינבון טריים בעבודת יד, עם בצק רך, מילוי קינמון מפנק וציפויים עשירים. איסוף מגן יבנה ומשלוחים בתיאום. הזמנה בWhatsApp.",
     siteUrl: "https://nettascinnamon.example.com",
     ogImage: "/images/hero.jpg",
   },

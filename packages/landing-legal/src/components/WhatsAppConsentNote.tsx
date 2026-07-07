@@ -5,8 +5,8 @@
 export function WhatsAppConsentNote() {
   return (
     <p className="lp-wa-note">
-      בלחיצה על כפתור ההזמנה תועברו לוואטסאפ.
-      השימוש בוואטסאפ כפוף{" "}
+      בלחיצה על כפתור ההזמנה תועברו ל-WhatsApp.
+      השימוש ב-WhatsApp כפוף{" "}
       <a
         href="https://www.whatsapp.com/legal/privacy-policy-eea"
         target="_blank"

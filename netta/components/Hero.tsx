@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
@@ -65,12 +64,12 @@ export function Hero() {
                 variant="primary"
                 size="lg"
               />
-              <Link
+              <a
                 href="#products"
                 className="text-base font-medium text-white/75 underline-offset-4 transition-colors hover:text-white hover:underline"
               >
                 {hero.secondaryCta}
-              </Link>
+              </a>
               <p className="mt-1 text-sm font-light tracking-wide text-white/70 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
                 {hero.note}
               </p>

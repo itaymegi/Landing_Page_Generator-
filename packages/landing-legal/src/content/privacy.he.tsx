@@ -56,7 +56,7 @@ export function PrivacyPolicyContent({ context }: { context: LegalContext }) {
         {context.usesWhatsApp && (
           <p>
             חלק מהפניות מתבצעות דרך WhatsApp (בבעלות Meta). שימוש
-            בוואטסאפ כפוף{" "}
+            ב-WhatsApp כפוף{" "}
             <a
               href="https://www.whatsapp.com/legal/privacy-policy-eea"
               target="_blank"
