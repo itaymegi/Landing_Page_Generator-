@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { GalleryImage } from "@/config/site";
 import { site } from "@/config/site";
 import {
@@ -63,14 +64,31 @@ function GalleryModal({
           exit={{ opacity: 0, y: 40 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
         >
-          <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card/95 px-5 py-4 backdrop-blur-md sm:px-8">
-            <h3 className="font-serif text-xl text-text sm:text-2xl">
+          <div className="sticky top-0 z-10 flex items-center gap-4 border-b border-border bg-background px-5 py-4 sm:px-8">
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-accent/60 px-5 font-serif text-sm text-accent-deep transition-all hover:border-accent hover:bg-accent/8"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+              חזור
+            </button>
+            <h3 className="flex-1 text-center font-serif text-xl text-text sm:text-2xl">
               {site.gallery.title}
             </h3>
             <button
               type="button"
               onClick={onClose}
-              className="flex min-h-11 min-w-11 items-center justify-center rounded-full border border-border text-text-muted transition-colors hover:border-accent hover:text-accent-deep"
+              className="flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full border border-border text-text-muted transition-colors hover:border-accent hover:text-accent-deep"
               aria-label="סגור גלריה"
             >
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
@@ -102,7 +120,13 @@ export function Gallery() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [activeImages, setActiveImages] = useState<GalleryImage[]>(previewImages);
+  const scrollRef = useRef(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const filteredPreview = useMemo(
     () => filterGalleryByService(previewImages, activeFilter),
@@ -117,6 +141,19 @@ export function Gallery() {
   const openLightbox = (images: GalleryImage[], index: number) => {
     setActiveImages(images);
     setLightboxIndex(index);
+  };
+
+  const openFullGallery = () => {
+    scrollRef.current = window.scrollY;
+    setModalOpen(true);
+  };
+
+  const closeFullGallery = () => {
+    const savedY = scrollRef.current;
+    setModalOpen(false);
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: savedY, behavior: "instant" });
+    });
   };
 
   const lightboxOpen = lightboxIndex !== null;
@@ -179,7 +216,7 @@ export function Gallery() {
           <div className="mt-10 flex justify-center sm:mt-12">
             <button
               type="button"
-              onClick={() => setModalOpen(true)}
+              onClick={openFullGallery}
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-accent/60 px-8 text-base font-medium text-accent-deep transition-all hover:border-accent hover:bg-accent/8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               {gallery.viewAllLabel}
@@ -188,20 +225,26 @@ export function Gallery() {
         </Reveal>
       </div>
 
-      <GalleryModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        images={filteredAll}
-        onImageClick={(index) => openLightbox(filteredAll, index)}
-        lightboxOpen={lightboxOpen}
-      />
-
-      <Lightbox
-        images={activeImages}
-        initialIndex={lightboxIndex ?? 0}
-        open={lightboxOpen}
-        onClose={() => setLightboxIndex(null)}
-      />
+      {mounted
+        ? createPortal(
+            <>
+              <GalleryModal
+                open={modalOpen}
+                onClose={closeFullGallery}
+                images={filteredAll}
+                onImageClick={(index) => openLightbox(filteredAll, index)}
+                lightboxOpen={lightboxOpen}
+              />
+              <Lightbox
+                images={activeImages}
+                initialIndex={lightboxIndex ?? 0}
+                open={lightboxOpen}
+                onClose={() => setLightboxIndex(null)}
+              />
+            </>,
+            document.body,
+          )
+        : null}
     </PremiumSection>
   );
 }
