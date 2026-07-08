@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { site } from "@/config/site";
 import { useScrollLock } from "@/components/ui/useScrollLock";
+import { requestCloseOverlays } from "@/components/ui/closeOverlays";
 
 type MobileNavProps = {
   inverse?: boolean;
@@ -16,7 +17,7 @@ function MobileNavDrawer({ onClose }: { onClose: () => void }) {
     <>
       <motion.button
         type="button"
-        className="fixed inset-0 z-[100] bg-text/50 backdrop-blur-sm"
+        className="fixed inset-0 z-[125] bg-text/50 backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -24,7 +25,7 @@ function MobileNavDrawer({ onClose }: { onClose: () => void }) {
         aria-label="סגירת תפריט"
       />
       <motion.nav
-        className="fixed inset-y-0 end-0 z-[110] flex min-h-dvh w-[min(88vw,320px)] flex-col border-s border-border bg-card pb-[env(safe-area-inset-bottom)] shadow-2xl"
+        className="fixed inset-y-0 end-0 z-[130] flex min-h-dvh w-[min(88vw,320px)] flex-col border-s border-border bg-card pb-[env(safe-area-inset-bottom)] shadow-2xl"
         style={{ right: 0 }}
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
@@ -88,7 +89,10 @@ export function MobileNav({ inverse = false }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const mounted = useMounted();
 
-  const close = useCallback(() => setOpen(false), []);
+  const close = useCallback(() => {
+    requestCloseOverlays();
+    setOpen(false);
+  }, []);
 
   useScrollLock(open);
 

@@ -6,11 +6,13 @@ import { createPortal } from "react-dom";
 import type { GalleryImage } from "@/config/site";
 import { site } from "@/config/site";
 import {
+  DEFAULT_GALLERY_FILTER,
   filterGalleryByService,
   getAllPortfolioImages,
   getGalleryFilters,
   getPortfolioPreviewImages,
 } from "@/config/services";
+import { CLOSE_OVERLAYS_EVENT } from "@/components/ui/closeOverlays";
 import { Reveal } from "@/components/ui/Reveal";
 import { Lightbox } from "@/components/ui/Lightbox";
 import { MasonryImage } from "@/components/ui/MasonryImage";
@@ -117,7 +119,7 @@ function GalleryModal({
 
 export function Gallery() {
   const { gallery } = site;
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState(DEFAULT_GALLERY_FILTER);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -148,13 +150,22 @@ export function Gallery() {
     setModalOpen(true);
   };
 
-  const closeFullGallery = () => {
+  const closeFullGallery = useCallback(() => {
     const savedY = scrollRef.current;
     setModalOpen(false);
     requestAnimationFrame(() => {
       window.scrollTo({ top: savedY, behavior: "instant" });
     });
-  };
+  }, []);
+
+  useEffect(() => {
+    const handler = () => {
+      if (lightboxIndex !== null) setLightboxIndex(null);
+      if (modalOpen) closeFullGallery();
+    };
+    window.addEventListener(CLOSE_OVERLAYS_EVENT, handler);
+    return () => window.removeEventListener(CLOSE_OVERLAYS_EVENT, handler);
+  }, [modalOpen, lightboxIndex, closeFullGallery]);
 
   const lightboxOpen = lightboxIndex !== null;
 

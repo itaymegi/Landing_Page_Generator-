@@ -229,6 +229,8 @@ export function getPortfolioPreviewImages(): GalleryImage[] {
   return services.flatMap((service) => getServiceImages(service).slice(0, 2));
 }
 
+export const DEFAULT_GALLERY_FILTER = "bachelorette";
+
 export type GalleryFilter = {
   id: string;
   label: string;

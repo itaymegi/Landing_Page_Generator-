@@ -6,6 +6,7 @@ import { site, siteWhatsAppHref } from "@/config/site";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppButton";
 import { MobileNav } from "@/components/ui/MobileNav";
+import { requestCloseOverlays } from "@/components/ui/closeOverlays";
 
 function getScrolledSnapshot() {
   if (typeof window === "undefined") return false;
@@ -56,7 +57,7 @@ export function Header({ variant = "default" }: HeaderProps) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-[120] pt-[env(safe-area-inset-top)] transition-all duration-500 ${
         solid
           ? "border-b border-accent/14 bg-white/95 shadow-[0_1px_12px_rgba(0,0,0,0.03)] backdrop-blur-[14px]"
           : "border-b border-white/10 bg-gradient-to-b from-text/50 via-text/20 to-transparent"
@@ -72,6 +73,7 @@ export function Header({ variant = "default" }: HeaderProps) {
             <Link
               key={link.href}
               href={link.href}
+              onClick={requestCloseOverlays}
               className={`text-sm font-medium tracking-wide transition-colors ${
                 inverse
                   ? "text-white/85 hover:text-white"
