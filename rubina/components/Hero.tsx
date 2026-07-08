@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
+import { IMAGE_QUALITY } from "@/lib/image";
 
 export function Hero() {
   const { hero, brand } = site;
@@ -16,6 +17,7 @@ export function Hero() {
           priority
           className="hero-zoom object-cover object-top"
           sizes="100vw"
+          quality={IMAGE_QUALITY}
         />
       </div>
 

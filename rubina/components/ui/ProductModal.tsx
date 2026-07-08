@@ -37,9 +37,6 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
 
   if (!product) return null;
 
-  const hasMultipleImages =
-    product.images && product.images.length > 1;
-
   const whatsappMessage = `היי רובינה! אשמח לשמוע פרטים על ${product.title}`;
 
   return (
@@ -55,16 +52,13 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Image carousel */}
-        <div
-          className={`group relative w-full overflow-hidden sm:rounded-t-2xl ${
-            hasMultipleImages ? "aspect-[3/4]" : "aspect-[3/4]"
-          }`}
-        >
+        <div className="group relative w-full overflow-hidden bg-cream/30 sm:rounded-t-2xl aspect-[4/5]">
           <ProductCardImage
             product={product}
-            sizes="(max-width: 640px) 100vw, 512px"
+            sizes="(max-width: 640px) 100vw, 640px"
             priority
             hover={false}
+            fit="contain"
           />
 
           {/* Close button */}

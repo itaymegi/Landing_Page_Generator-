@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import { galleryFocus, site, whatsappHref } from "@/config/site";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppButton";
 import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
+import { IMAGE_QUALITY } from "@/lib/image";
 
 /* ------------------------------------------------------------------ *
  * Tu B'Av temporary campaign — single source of truth.
@@ -14,7 +15,7 @@ import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
  * ------------------------------------------------------------------ */
 const TU_BAV = {
   enabled: true,
-  delayMs: 10000,
+  delayMs: 6000,
   /** Open when user has scrolled this fraction of the page (or after delayMs). */
   scrollThreshold: 0.28,
   storageKey: "rubina_tubav_dismissed_v1",
@@ -190,7 +191,8 @@ export function TuBavPromo() {
               fill
               className="object-cover transition-opacity duration-500"
               style={{ objectPosition: active.objectPosition ?? galleryFocus.picnic }}
-              sizes="(max-width: 448px) 100vw, 448px"
+              sizes="(max-width: 448px) 100vw, 640px"
+              quality={IMAGE_QUALITY}
               priority
             />
           </div>

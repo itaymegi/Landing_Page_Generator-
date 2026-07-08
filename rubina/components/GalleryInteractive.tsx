@@ -6,6 +6,7 @@ import { galleryFocus, type GalleryImage } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { Lightbox } from "@/components/ui/Lightbox";
 import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
+import { IMAGE_QUALITY } from "@/lib/image";
 
 type GalleryInteractiveProps = {
   title: string;
@@ -16,7 +17,7 @@ type GalleryInteractiveProps = {
 };
 
 /** Taller mobile frame + gentler desktop crop for portrait picnic shots. */
-const STAGE_ASPECT = "aspect-[4/5] w-full sm:aspect-[4/3] lg:aspect-[16/10]";
+const STAGE_ASPECT = "aspect-[5/6] w-full sm:aspect-[4/3] lg:aspect-[16/10]";
 
 function imageFocus(image: GalleryImage): string {
   return image.objectPosition ?? galleryFocus.subject;
@@ -167,7 +168,8 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
                     fill
                     className="object-cover"
                     style={{ objectPosition: imageFocus(image) }}
-                    sizes="(max-width: 1280px) 100vw, 1280px"
+                    sizes="(max-width: 1280px) 100vw, 1920px"
+                    quality={IMAGE_QUALITY}
                     priority={index <= 1}
                     loading={index <= 2 ? "eager" : "lazy"}
                   />
@@ -292,6 +294,7 @@ export function GalleryInteractive({ allImages }: GalleryInteractiveProps) {
                     className="object-cover"
                     style={{ objectPosition: imageFocus(image) }}
                     sizes="112px"
+                    quality={IMAGE_QUALITY}
                     loading="lazy"
                   />
                 </HydrationSafeButton>

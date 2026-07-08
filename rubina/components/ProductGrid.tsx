@@ -31,7 +31,7 @@ export function ProductGrid({ items }: ProductGridProps) {
                * A visually hidden "open details" button handles keyboard
                * access for users who tab onto the image area.
                */}
-              <div className="relative block w-full aspect-[3/4] overflow-hidden">
+              <div className="relative block w-full aspect-[4/5] overflow-hidden">
                 <ProductCardImage product={product} priority={index < 2} />
                 {/* Invisible overlay that opens modal on click (not on nav buttons) */}
                 <HydrationSafeButton

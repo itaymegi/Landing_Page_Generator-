@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ProductItem } from "@/config/site";
 import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
+import { IMAGE_QUALITY } from "@/lib/image";
 
 type ProductCardImageProps = {
   product: ProductItem;
@@ -11,6 +12,7 @@ type ProductCardImageProps = {
   priority?: boolean;
   /** If false, suppresses hover zoom (used in modal). */
   hover?: boolean;
+  fit?: "cover" | "contain";
 };
 
 function ChevronIcon({ dir }: { dir: "left" | "right" }) {
@@ -34,11 +36,11 @@ function ChevronIcon({ dir }: { dir: "left" | "right" }) {
 
 export function ProductCardImage({
   product,
-  sizes = "(max-width: 1024px) 100vw, 45vw",
+  sizes = "(max-width: 1024px) 90vw, 50vw",
   priority = false,
   hover = true,
+  fit = "cover",
 }: ProductCardImageProps) {
-  /* Normalise to a flat array of {src, alt} */
   const images: { src: string; alt: string; objectPosition?: string }[] =
     product.images && product.images.length > 0
       ? product.images
@@ -46,6 +48,9 @@ export function ProductCardImage({
 
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef<number | null>(null);
+
+  const objectFitClass = fit === "contain" ? "object-contain" : "object-cover";
+  const wrapperBg = fit === "contain" ? "bg-cream/30" : "";
 
   useEffect(() => {
     if (images.length <= 1) return;
@@ -90,31 +95,32 @@ export function ProductCardImage({
     touchStartX.current = null;
   };
 
-  /* Single-image — simple, no carousel chrome */
   if (images.length === 1) {
     const hoverClass = hover
       ? "transition-transform duration-700 ease-out group-hover:scale-[1.03]"
       : "";
     return (
-      <Image
-        src={images[0].src}
-        alt={images[0].alt}
-        fill
-        className={`object-cover ${hoverClass}`}
-        style={images[0].objectPosition ? { objectPosition: images[0].objectPosition } : undefined}
-        sizes={sizes}
-        priority={priority}
-      />
+      <div className={`relative h-full w-full ${wrapperBg}`}>
+        <Image
+          src={images[0].src}
+          alt={images[0].alt}
+          fill
+          className={`${objectFitClass} ${hoverClass}`}
+          style={images[0].objectPosition ? { objectPosition: images[0].objectPosition } : undefined}
+          sizes={sizes}
+          quality={IMAGE_QUALITY}
+          priority={priority}
+        />
+      </div>
     );
   }
 
   return (
     <div
-      className="relative h-full w-full overflow-hidden"
+      className={`relative h-full w-full overflow-hidden ${wrapperBg}`}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* Slides */}
       {images.map((image, index) => (
         <div
           key={`${image.src}-${index}`}
@@ -127,22 +133,21 @@ export function ProductCardImage({
             src={image.src}
             alt={image.alt}
             fill
-            className="object-cover"
+            className={objectFitClass}
             style={image.objectPosition ? { objectPosition: image.objectPosition } : undefined}
             sizes={sizes}
+            quality={IMAGE_QUALITY}
             priority={priority && index === 0}
             loading="eager"
           />
         </div>
       ))}
 
-      {/* Gradient so controls are readable */}
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-20 bg-gradient-to-t from-charcoal/40 to-transparent"
         aria-hidden="true"
       />
 
-      {/* Prev arrow (right side in RTL = previous) */}
       <HydrationSafeButton
         type="button"
         onClick={prev}
@@ -152,7 +157,6 @@ export function ProductCardImage({
         <ChevronIcon dir="right" />
       </HydrationSafeButton>
 
-      {/* Next arrow (left side in RTL = next) */}
       <HydrationSafeButton
         type="button"
         onClick={next}
@@ -162,7 +166,6 @@ export function ProductCardImage({
         <ChevronIcon dir="left" />
       </HydrationSafeButton>
 
-      {/* Dot indicators */}
       <div
         className="absolute bottom-3 inset-x-0 z-30 flex justify-center gap-1.5"
         onClick={(e) => e.stopPropagation()}
@@ -183,7 +186,6 @@ export function ProductCardImage({
         ))}
       </div>
 
-      {/* Image count badge */}
       <div className="absolute end-2 top-2 z-30 rounded-full bg-charcoal/50 px-2 py-0.5 text-[10px] text-white/90 backdrop-blur-sm">
         {current + 1}/{images.length}
       </div>

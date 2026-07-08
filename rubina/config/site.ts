@@ -19,7 +19,7 @@ export type GalleryImage = {
 export const galleryFocus = {
   center: "center center",
   subject: "center 62%",
-  picnic: "center 68%",
+  picnic: "center 65%",
 } as const;
 
 export function filterGalleryImages(images: GalleryImage[]): GalleryImage[] {

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
+import { IMAGE_QUALITY } from "@/lib/image";
 
 export function OurStory() {
   const { ourStory } = site;
@@ -19,7 +20,8 @@ export function OurStory() {
               alt={ourStory.imageAlt}
               fill
               className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 45vw"
+              sizes="(max-width: 1024px) 90vw, 50vw"
+              quality={IMAGE_QUALITY}
             />
           </div>
         </Reveal>
