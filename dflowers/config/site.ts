@@ -165,7 +165,7 @@ export const site: SiteConfig = {
     { label: "צור קשר", href: "/#contact" },
   ],
   hero: {
-    headline: "יוצרים אירועים בלתי נשכחים בעיצוב פרחים נצחי",
+    headline: "אסתטיקה.דיוק.חוויה בלתי נשכחת",
     taglineEn: "Timeless floral design for unforgettable events",
     subtitle:
       "עיצוב, הפקה וסדנאות פרחים לחתונות, אירועים עסקיים וחגיגות פרטיות — עם ליווי אישי ותשומת לב לכל פרט.",

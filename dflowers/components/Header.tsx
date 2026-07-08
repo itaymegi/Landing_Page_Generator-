@@ -56,13 +56,13 @@ export function Header({ variant = "default" }: HeaderProps) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-500 ${
         solid
           ? "border-b border-accent/14 bg-white/95 shadow-[0_1px_12px_rgba(0,0,0,0.03)] backdrop-blur-[14px]"
-          : "border-b border-transparent bg-transparent"
+          : "border-b border-white/10 bg-gradient-to-b from-text/50 via-text/20 to-transparent"
       }`}
     >
-      <div className="container-dflowers flex h-16 items-center justify-between gap-3 lg:h-[4.5rem] lg:gap-4">
+      <div className="container-dflowers flex h-14 min-h-14 items-center justify-between gap-2 sm:h-16 sm:gap-3 lg:h-[4.5rem] lg:gap-4">
         <Link href="/" className="shrink-0" aria-label={`${site.brand.name} — דף הבית`}>
           <BrandLogo inverse={inverse} size="sm" />
         </Link>
@@ -83,7 +83,7 @@ export function Header({ variant = "default" }: HeaderProps) {
           ))}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+        <div className="flex shrink-0 items-center gap-0.5 sm:gap-1 md:gap-2">
           <MobileNav inverse={inverse} />
           <a
             href={siteWhatsAppHref("היי, אשמח לקבוע פגישת ייעוץ.")}
