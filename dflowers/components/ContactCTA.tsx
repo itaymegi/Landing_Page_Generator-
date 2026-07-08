@@ -8,7 +8,7 @@ export function ContactCTA() {
   const { contactCta } = site;
 
   return (
-    <section id="contact" className="relative overflow-hidden">
+    <section id="contact" className="relative isolate overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src={contactCta.backgroundImage}
@@ -18,17 +18,25 @@ export function ContactCTA() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-text/55" aria-hidden="true" />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(45,45,45,0.35)_100%)]"
+          aria-hidden="true"
+        />
       </div>
 
-      <div className="container-dflowers relative section-py text-center">
+      <div className="container-dflowers relative z-10 section-py text-center">
         <Reveal>
           <h2 className="mx-auto max-w-3xl font-serif text-3xl font-light leading-tight tracking-wide text-white sm:text-4xl lg:text-5xl">
             {contactCta.headline}
           </h2>
+          <span
+            className="rule-gold mx-auto mt-5 bg-accent"
+            aria-hidden="true"
+          />
         </Reveal>
 
         <Reveal delay={100}>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-xl text-base leading-[1.75] text-white/85 sm:text-lg">
             {contactCta.text}
           </p>
         </Reveal>

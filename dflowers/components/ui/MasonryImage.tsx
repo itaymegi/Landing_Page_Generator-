@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { GalleryImage } from "@/config/site";
+import { SoftGlowImage } from "@/components/ui/SoftGlowImage";
 
 const heights = [
   "h-48",
@@ -30,10 +31,11 @@ export function MasonryImage({
   sizes = "(max-width: 768px) 50vw, 25vw",
 }: MasonryImageProps) {
   const heightClass = heights[index % heights.length];
+  const withGlow = index % 3 === 0;
 
-  return (
+  const figure = (
     <figure
-      className={`masonry-item group relative cursor-pointer overflow-hidden bg-border ${heightClass}`}
+      className={`masonry-item group relative cursor-pointer overflow-hidden rounded-sm bg-border ${heightClass}`}
     >
       <button
         type="button"
@@ -61,4 +63,10 @@ export function MasonryImage({
       />
     </figure>
   );
+
+  if (withGlow) {
+    return <SoftGlowImage>{figure}</SoftGlowImage>;
+  }
+
+  return figure;
 }

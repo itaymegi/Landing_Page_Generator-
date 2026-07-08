@@ -7,13 +7,9 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppButton";
 import { MobileNav } from "@/components/ui/MobileNav";
 
-let scrolledSnapshot = false;
-
 function getScrolledSnapshot() {
   if (typeof window === "undefined") return false;
-  const y = window.scrollY;
-  scrolledSnapshot = scrolledSnapshot ? y > 8 : y > 24;
-  return scrolledSnapshot;
+  return window.scrollY > 48;
 }
 
 function useScrolled() {
@@ -62,7 +58,7 @@ export function Header({ variant = "default" }: HeaderProps) {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         solid
-          ? "border-b border-border bg-card/95 shadow-sm backdrop-blur-md"
+          ? "border-b border-accent/14 bg-white/95 shadow-[0_1px_12px_rgba(0,0,0,0.03)] backdrop-blur-[14px]"
           : "border-b border-transparent bg-transparent"
       }`}
     >

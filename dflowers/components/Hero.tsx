@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { site } from "@/config/site";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -21,8 +20,8 @@ const fadeUp = {
 export function Hero() {
   const { hero, brand } = site;
 
-  const scrollToGallery = () => {
-    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -93,11 +92,17 @@ export function Hero() {
               animate="visible"
               custom={4}
             >
-              <WhatsAppButton label={hero.primaryCta} variant="primary" size="lg" />
               <button
                 type="button"
-                onClick={scrollToGallery}
-                className="inline-flex min-h-14 items-center justify-center rounded-sm border border-white/40 px-10 text-base font-medium text-white transition-all hover:bg-white/10"
+                onClick={() => scrollToSection("planner")}
+                className="inline-flex min-h-14 items-center justify-center rounded-full bg-accent-deep px-10 text-lg font-serif font-medium text-white shadow-[0_4px_20px_rgba(168,137,79,0.35)] transition-all hover:-translate-y-0.5 hover:bg-text hover:shadow-[0_6px_28px_rgba(168,137,79,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                {hero.primaryCta}
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection("gallery")}
+                className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/40 px-10 text-base font-medium text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               >
                 {hero.secondaryCta}
               </button>

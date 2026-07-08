@@ -26,8 +26,13 @@ npm run start
 
 ## Deploy on Vercel
 
-1. Import the monorepo: `Landing_Page_Generator-`
+**Full guide:** [VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md)
+
+Quick version:
+
+1. Import repo `Landing_Page_Generator-` on Vercel
 2. Set **Root Directory** to `dflowers`
-3. Deploy — `vercel.json` installs the shared legal package automatically
+3. Add env var `NEXT_PUBLIC_SITE_URL=https://dflowers.co.il`
+4. Deploy
 
 Suggested production domain: `dflowers.co.il`

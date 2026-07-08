@@ -11,7 +11,7 @@ type WhatsAppButtonProps = {
 
 const variantClasses = {
   primary:
-    "bg-accent text-white hover:bg-accent-deep shadow-[0_4px_20px_rgba(199,166,107,0.35)] hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(199,166,107,0.45)]",
+    "bg-accent-deep text-white hover:bg-text shadow-[0_4px_20px_rgba(168,137,79,0.35)] hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(168,137,79,0.45)]",
   outline:
     "border border-accent/70 text-accent-deep hover:bg-accent/8 hover:border-accent hover:-translate-y-0.5 rounded-full",
   dark: "bg-text text-white hover:bg-text/90 hover:-translate-y-0.5 rounded-full",

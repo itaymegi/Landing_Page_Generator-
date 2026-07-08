@@ -4,22 +4,19 @@ import { services } from "@/config/services";
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { ServiceCard } from "@/components/services/ServiceCard";
+import { PremiumSection } from "@/components/ui/PremiumSection";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export function Services() {
   const { services: servicesCopy } = site;
 
   return (
-    <section id="services" className="section-py bg-card">
+    <PremiumSection id="services" tone="beige" editorialWord="DESIGN" floral="corners">
       <div className="container-dflowers">
-        <Reveal>
-          <h2 className="font-serif text-3xl font-light tracking-wide text-text sm:text-4xl lg:text-5xl">
-            {servicesCopy.title}
-          </h2>
-          <span className="rule-gold mt-5" aria-hidden="true" />
-          <p className="mt-4 max-w-xl text-base text-text-muted sm:text-lg">
-            {servicesCopy.subtitle}
-          </p>
-        </Reveal>
+        <SectionHeader
+          title={servicesCopy.title}
+          subtitle={servicesCopy.subtitle}
+        />
 
         <div className="mt-12 grid gap-6 sm:mt-16 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
           {services.map((service, index) => (
@@ -33,6 +30,7 @@ export function Services() {
           ))}
         </div>
       </div>
-    </section>
+    </PremiumSection>
   );
 }
+

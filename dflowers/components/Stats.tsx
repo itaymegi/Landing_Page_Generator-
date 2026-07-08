@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { site } from "@/config/site";
+import { PremiumSection } from "@/components/ui/PremiumSection";
 
 function Counter({
   target,
@@ -12,7 +13,7 @@ function Counter({
   suffix?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, amount: 0.2 });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -43,16 +44,16 @@ export function Stats() {
   const { stats } = site;
 
   return (
-    <section className="border-y border-border bg-background py-16 sm:py-20">
+    <PremiumSection tone="warm" noPadding className="border-y border-border py-16 sm:py-20">
       <div className="container-dflowers">
         <ul className="grid grid-cols-2 gap-10 lg:grid-cols-4 lg:gap-8">
           {stats.items.map((item, index) => (
             <motion.li
               key={item.label}
               className="text-center"
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <p className="font-serif text-4xl font-light text-accent-deep sm:text-5xl">
@@ -65,6 +66,6 @@ export function Stats() {
           ))}
         </ul>
       </div>
-    </section>
+    </PremiumSection>
   );
 }

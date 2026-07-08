@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { site } from "@/config/site";
+import { useScrollLock } from "@/components/ui/useScrollLock";
 
 type MobileNavProps = {
   inverse?: boolean;
@@ -89,17 +90,15 @@ export function MobileNav({ inverse = false }: MobileNavProps) {
 
   const close = useCallback(() => setOpen(false), []);
 
+  useScrollLock(open);
+
   useEffect(() => {
     if (!open) return;
-    document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
+    return () => window.removeEventListener("keydown", onKey);
   }, [open, close]);
 
   const iconClass = inverse
@@ -115,6 +114,7 @@ export function MobileNav({ inverse = false }: MobileNavProps) {
         aria-label="פתיחת תפריט"
         aria-expanded={open}
       >
+        <span className="block h-px w-5 bg-current" />
         <span className="block h-px w-5 bg-current" />
         <span className="block h-px w-5 bg-current" />
       </button>

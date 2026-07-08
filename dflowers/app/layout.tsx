@@ -56,6 +56,10 @@ export const metadata: Metadata = {
     description: site.meta.description,
     images: [ogImageUrl],
   },
+  icons: {
+    icon: "/images/icon.png",
+    apple: "/images/icon.png",
+  },
 };
 
 export const viewport: Viewport = {
@@ -79,7 +83,13 @@ export default function RootLayout({
       <head>
         <JsonLd />
       </head>
-      <body className="min-h-full overflow-x-hidden bg-background text-text">
+      <body className="page-atmosphere paper-texture min-h-full overflow-x-hidden bg-background text-text">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[200] focus:rounded-sm focus:bg-card focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-text focus:shadow-lg"
+        >
+          דילוג לתוכן
+        </a>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

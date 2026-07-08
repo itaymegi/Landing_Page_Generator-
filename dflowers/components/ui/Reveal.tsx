@@ -14,38 +14,33 @@ type RevealProps = {
   delay?: number;
 };
 
+function shouldAnimateReveal(): boolean {
+  if (typeof window === "undefined") return false;
+  return (
+    window.matchMedia("(hover: hover)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
 function isInViewport(node: HTMLElement): boolean {
   const rect = node.getBoundingClientRect();
   const viewHeight = window.innerHeight || document.documentElement.clientHeight;
   return rect.top < viewHeight * 0.92 && rect.bottom > 0;
 }
 
-function prefersStaticReveal(): boolean {
-  return (
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-    window.matchMedia("(pointer: coarse)").matches
-  );
-}
-
 export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (!shouldAnimateReveal()) return;
+
     const node = ref.current;
     if (!node) return;
 
+    setVisible(isInViewport(node));
+
     const show = () => setVisible(true);
-
-    if (prefersStaticReveal()) {
-      show();
-      return;
-    }
-
-    if (isInViewport(node)) {
-      show();
-      return;
-    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -54,7 +49,7 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.01, rootMargin: "0px 0px 8% 0px" },
+      { threshold: 0.01, rootMargin: "0px 0px 10% 0px" },
     );
 
     observer.observe(node);
@@ -68,7 +63,7 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
 
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    const fallback = window.setTimeout(show, 400);
+    const fallback = window.setTimeout(show, 600);
 
     return () => {
       observer.disconnect();

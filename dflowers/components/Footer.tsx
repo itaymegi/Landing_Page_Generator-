@@ -1,13 +1,20 @@
+import Link from "next/link";
 import { site } from "@/config/site";
 import { FooterLegalLinks } from "@landing-legal/core";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 
+function phoneToTel(phone: string) {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.startsWith("0")) return `tel:+972${digits.slice(1)}`;
+  return `tel:+${digits}`;
+}
+
 export function Footer() {
   const { brand, contact, nav } = site;
 
   return (
-    <footer className="border-t border-border bg-background pb-12 pt-12">
+    <footer className="section-tone-ivory border-t border-border pb-12 pt-12">
       <div className="container-dflowers">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
@@ -22,12 +29,12 @@ export function Footer() {
             <ul className="mt-4 space-y-2">
               {nav.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-text-muted transition-colors hover:text-accent-deep"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -36,8 +43,13 @@ export function Footer() {
           <div>
             <p className="text-sm font-medium text-text">יצירת קשר</p>
             {contact.phones.map((phone) => (
-              <p key={phone} className="mt-4 text-sm text-text-muted">
-                {phone}
+              <p key={phone} className="mt-4 text-sm">
+                <a
+                  href={phoneToTel(phone)}
+                  className="text-text-muted transition-colors hover:text-accent-deep"
+                >
+                  {phone}
+                </a>
               </p>
             ))}
             <SocialLinks className="mt-5" />

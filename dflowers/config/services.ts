@@ -146,6 +146,64 @@ export const services: ServiceCategory[] = [
   },
 ];
 
+export const galleryAllImages: GalleryImage[] = [
+  {
+    src: "/images/gallery-all/01.png",
+    alt: "סידור פרחים יוקרתי לאולם אירועים — D Flowers",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/02.png",
+    alt: "Daniel Sade עם זר פרחים — צילום אדיטוריאלי",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/03.png",
+    alt: "מרכז שולחן פרחים לאירוע יוקרתי",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/04.png",
+    alt: "עיצוב מסיבת רווקות — פרחים, הדרים ודיסקו",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/05.png",
+    alt: "סידור שולחן עם הדרים, פרחים וכדורי דיסקו",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/06.png",
+    alt: "Daniel Sade בסטודיו עם זר פרחים",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/07.png",
+    alt: "עיצוב טקס עם דרייפינג לבן ופרחים",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/08.png",
+    alt: "סידור פרחים לבן לאירוע בחוץ",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/09.png",
+    alt: "Daniel's Bachelorette Party — עיצוב מלא",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/10.png",
+    alt: "זר כלה ביקב — Daniel Sade",
+    serviceSlug: "all",
+  },
+  {
+    src: "/images/gallery-all/11.png",
+    alt: "מסיבת רווקות ביקב עם זרי פרחים",
+    serviceSlug: "all",
+  },
+];
+
 export function getServiceBySlug(slug: string): ServiceCategory | undefined {
   return services.find((s) => s.slug === slug);
 }
@@ -187,7 +245,7 @@ export function filterGalleryByService(
   images: GalleryImage[],
   slug: string,
 ): GalleryImage[] {
-  if (slug === "all") return images;
+  if (slug === "all") return [...images, ...galleryAllImages];
   return images.filter((img) => img.serviceSlug === slug);
 }
 

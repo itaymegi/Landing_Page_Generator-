@@ -11,25 +11,29 @@ import { EventPlanner } from "@/components/EventPlanner";
 import { FAQ } from "@/components/FAQ";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <TrustStrip />
         <About />
+        <SectionDivider />
         <Services />
+        <SectionDivider />
         <Process />
         <Gallery />
         <Stats />
+        <SectionDivider />
         <Testimonials />
         <EventPlanner />
         <FAQ />
         <ContactCTA />
+        <Footer />
       </main>
-      <Footer />
     </>
   );
 }

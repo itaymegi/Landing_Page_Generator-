@@ -9,6 +9,9 @@ import {
 import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { FormConsent } from "@landing-legal/core";
+import { PremiumSection } from "@/components/ui/PremiumSection";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { LuxuryCard } from "@/components/ui/LuxuryCard";
 
 type FormData = {
   eventType: string;
@@ -38,20 +41,15 @@ export function EventPlanner() {
   const whatsappMessage = buildEventPlannerMessage(form);
 
   return (
-    <section id="planner" className="section-py bg-background">
+    <PremiumSection id="planner" tone="ivory">
       <div className="container-dflowers mx-auto max-w-2xl">
-        <Reveal>
-          <h2 className="font-serif text-3xl font-light tracking-wide text-text sm:text-4xl">
-            {eventPlanner.title}
-          </h2>
-          <span className="rule-gold mt-5" aria-hidden="true" />
-          <p className="mt-4 text-base text-text-muted sm:text-lg">
-            {eventPlanner.subtitle}
-          </p>
-        </Reveal>
+        <SectionHeader
+          title={eventPlanner.title}
+          subtitle={eventPlanner.subtitle}
+        />
 
         <Reveal delay={100}>
-          <div className="mt-10 rounded-sm border border-border bg-card p-6 sm:mt-12 sm:p-8 card-shadow">
+          <LuxuryCard className="mt-10 p-6 sm:mt-12 sm:p-8">
             <AnimatePresence mode="wait">
               {!submitted ? (
                 <motion.form
@@ -70,7 +68,7 @@ export function EventPlanner() {
                       {eventPlanner.eventTypes.map((type) => (
                         <label
                           key={type.value}
-                          className={`cursor-pointer rounded-sm border px-4 py-2.5 text-sm transition-all ${
+                          className={`cursor-pointer rounded-full border px-4 py-2.5 text-sm transition-all ${
                             form.eventType === type.value
                               ? "border-accent bg-accent/10 text-accent-deep"
                               : "border-border bg-background text-text-muted hover:border-accent/40"
@@ -104,7 +102,7 @@ export function EventPlanner() {
                         onChange={(e) =>
                           setForm({ ...form, guestCount: e.target.value })
                         }
-                        className="w-full rounded-sm border border-border bg-background px-4 py-3 text-base text-text outline-none transition-colors focus:border-accent"
+                        className="w-full rounded-[12px] border border-border bg-background px-4 py-3 text-base text-text outline-none transition-colors focus:border-accent"
                         placeholder="לדוגמה: 80"
                       />
                     </label>
@@ -119,7 +117,7 @@ export function EventPlanner() {
                         onChange={(e) =>
                           setForm({ ...form, date: e.target.value })
                         }
-                        className="w-full rounded-sm border border-border bg-background px-4 py-3 text-base text-text outline-none transition-colors focus:border-accent"
+                        className="w-full rounded-[12px] border border-border bg-background px-4 py-3 text-base text-text outline-none transition-colors focus:border-accent"
                       />
                     </label>
                   </div>
@@ -134,7 +132,7 @@ export function EventPlanner() {
                       onChange={(e) =>
                         setForm({ ...form, notes: e.target.value })
                       }
-                      className="w-full resize-none rounded-sm border border-border bg-background px-4 py-3 text-base text-text outline-none transition-colors focus:border-accent"
+                      className="w-full resize-none rounded-[12px] border border-border bg-background px-4 py-3 text-base text-text outline-none transition-colors focus:border-accent"
                       placeholder="ספרו לנו על החזון, המיקום והסגנון..."
                     />
                   </label>
@@ -142,7 +140,7 @@ export function EventPlanner() {
                   <button
                     type="submit"
                     disabled={!form.eventType}
-                    className="w-full min-h-12 rounded-sm bg-text px-6 py-3 text-base font-medium text-white transition-all hover:bg-text/90 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="w-full min-h-12 rounded-full bg-text px-6 py-3 text-base font-medium text-white transition-all hover:bg-text/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {eventPlanner.submitLabel}
                   </button>
@@ -181,9 +179,9 @@ export function EventPlanner() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </LuxuryCard>
         </Reveal>
       </div>
-    </section>
+    </PremiumSection>
   );
 }

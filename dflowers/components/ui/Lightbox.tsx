@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { GalleryImage } from "@/config/site";
+import { useScrollLock } from "@/components/ui/useScrollLock";
 
 type LightboxProps = {
   images: GalleryImage[];
@@ -45,15 +46,13 @@ export function Lightbox({
     [onClose, goNext, goPrev],
   );
 
+  useScrollLock(open);
+
   useEffect(() => {
     if (!open) return;
 
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [open, handleKeyDown]);
 
   const handleTouchStart = (e: React.TouchEvent) => {

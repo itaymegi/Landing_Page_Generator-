@@ -57,12 +57,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
   return (
     <>
       <Header variant="solid" />
-      <main>
+      <main id="main-content">
         <ServicePageHero service={service} />
         <ServicePortfolioGallery images={images} />
         <ServicePageCta service={service} />
+        <Footer />
       </main>
-      <Footer />
     </>
   );
 }
