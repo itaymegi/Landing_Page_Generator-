@@ -211,6 +211,25 @@ const galleryImages: GalleryImage[] = [
   { src: "/images/gallery-19.jpg", alt: "סלסלת פיקניק עם גבינות, יין ומקרונים בשדה", objectPosition: galleryFocus.picnic },
 ];
 
+function formatPlannerBoxLabel(title: string, price?: number): string {
+  return price != null ? `${title} — ${price.toLocaleString("he-IL")}₪` : title;
+}
+
+function buildPlannerBoxTypeOptions(items: ProductItem[]): BoxTypeOption[] {
+  const productOptions = items
+    .filter((p) => p.id !== "custom")
+    .map((p) => ({
+      value: p.title,
+      label: formatPlannerBoxLabel(p.title, p.price),
+    }));
+
+  return [
+    ...productOptions,
+    { value: "מארז מותאם אישית", label: "מארז מותאם אישית" },
+    { value: "אחר", label: "אחר / עוד לא בטוח/ה" },
+  ];
+}
+
 export const site: SiteConfig = {
   brand: {
     name: "Rubina",
@@ -355,6 +374,7 @@ export const site: SiteConfig = {
       {
         id: "sunset",
         title: "מארז Sunset",
+        price: 310,
         description:
           "מארז sunset — מכיל פלטה המורכבת מ6 סוגי גבינות, יין, לאבנה, לחם וחמאה, 5 כדורי שוקולד, 4 מקרונים ושדרוגים נוספים שייגרמו לחווייה להרגיש מושלמת.",
         image: "/images/product-sunset1.jpg",
@@ -368,6 +388,7 @@ export const site: SiteConfig = {
       {
         id: "sunrise",
         title: "מארז Sunrise",
+        price: 260,
         description:
           "מארז sunrise — מכיל פלטה המורכבת מ4 סוגי גבינות, יין, לאבנה, לחם וחמאה, 3 כדורי שוקולד, זוג מקרונים ושדרוגים נוספים שייגרמו לחוויה להרגיש מושלמת.",
         image: "/images/product-sunrise1.jpg",
@@ -436,16 +457,7 @@ export const site: SiteConfig = {
     subtitle: "כמה פרטים קצרים ונחזור אליכם בוואטסאפ עם כל הפרטים.",
     nameLabel: "שם",
     boxTypeLabel: "סוג מארז",
-    boxTypeOptions: [
-      { value: "מארז גולד", label: "מארז גולד" },
-      { value: "מארז רובינה", label: "מארז רובינה" },
-      { value: "מארז קלאסי", label: "מארז קלאסי" },
-      { value: "מארז ארי", label: "מארז ארי" },
-      { value: "מארז Sunset", label: "מארז Sunset" },
-      { value: "מארז Sunrise", label: "מארז Sunrise" },
-      { value: "מארז מותאם אישית", label: "מארז מותאם אישית" },
-      { value: "אחר", label: "אחר / עוד לא בטוח/ה" },
-    ],
+    boxTypeOptions: [],
     dateLabel: "תאריך רצוי",
     notesLabel: "הערות",
     successMessage:
@@ -498,6 +510,8 @@ export const site: SiteConfig = {
     usesInstagram: true,
   },
 };
+
+site.planner.boxTypeOptions = buildPlannerBoxTypeOptions(site.products.items);
 
 /** Convenience: WhatsApp link using site defaults. */
 export function siteWhatsAppHref(message?: string): string {

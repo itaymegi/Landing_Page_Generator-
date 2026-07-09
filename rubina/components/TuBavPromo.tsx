@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { galleryFocus, site, whatsappHref } from "@/config/site";
+import { galleryFocus, getProductPrice, site, whatsappHref } from "@/config/site";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppButton";
 import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
 import { IMAGE_QUALITY } from "@/lib/image";
@@ -38,7 +38,6 @@ const TU_BAV = {
         "יין, לאבנה, לחם וחמאה",
         "שוקולד, מקרונים ושדרוגים מיוחדים",
       ],
-      priceNote: "מחיר השקה יפורסם בקרוב",
       whatsappMessage:
         "היי, אשמח לקבל פרטים על מארז Sunset לט״ו באב של Rubina",
     },
@@ -53,7 +52,6 @@ const TU_BAV = {
         "יין, לאבנה, לחם וחמאה",
         "שוקולד, מקרונים ושדרוגים מיוחדים",
       ],
-      priceNote: "מחיר השקה יפורסם בקרוב",
       whatsappMessage:
         "היי, אשמח לקבל פרטים על מארז Sunrise לט״ו באב של Rubina",
     },
@@ -61,6 +59,11 @@ const TU_BAV = {
 } as const;
 
 type BoxId = (typeof TU_BAV.boxes)[number]["id"];
+
+function formatPromoPrice(name: string): string {
+  const price = getProductPrice(`מארז ${name}`);
+  return price != null ? `${price.toLocaleString("he-IL")}₪` : "";
+}
 
 export function TuBavPromo() {
   const [mounted, setMounted] = useState(false);
@@ -191,7 +194,7 @@ export function TuBavPromo() {
               fill
               className="object-cover transition-opacity duration-500"
               style={{ objectPosition: active.objectPosition ?? galleryFocus.picnic }}
-              sizes="(max-width: 448px) 100vw, 640px"
+              sizes="(max-width: 640px) 100vw, 960px"
               quality={IMAGE_QUALITY}
               priority
             />
@@ -249,7 +252,7 @@ export function TuBavPromo() {
           </ul>
 
           <p className="mt-4 text-center text-sm text-gold-deep">
-            {active.priceNote}
+            {formatPromoPrice(active.name)}
           </p>
           <p className="mt-1 text-center text-xs text-brown/45">
             {TU_BAV.detailsNote}

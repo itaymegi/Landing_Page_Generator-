@@ -36,7 +36,7 @@ function ChevronIcon({ dir }: { dir: "left" | "right" }) {
 
 export function ProductCardImage({
   product,
-  sizes = "(max-width: 1024px) 90vw, 50vw",
+  sizes = "(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 960px",
   priority = false,
   hover = true,
   fit = "cover",

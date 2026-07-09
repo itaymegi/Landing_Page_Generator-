@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@landing-legal/core"],
   outputFileTracingRoot: path.resolve(__dirname, ".."),
   images: {
-    qualities: [75, 90],
+    qualities: [75, 90, 95],
   },
 };
 
