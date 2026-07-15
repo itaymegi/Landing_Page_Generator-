@@ -152,8 +152,21 @@ export type SiteConfig = {
   meta: {
     title: string;
     description: string;
-    siteUrl: string;
+    keywords: string[];
     ogImage: string;
+    themeColor: string;
+  };
+  business: {
+    name: string;
+    legalName: string;
+    description: string;
+    logo: string;
+    email: string;
+    phone: string;
+    pickupLocality: string;
+    areaServed: string[];
+    sameAs: string[];
+    category: string;
   };
   legal: {
     businessName: string;
@@ -161,7 +174,6 @@ export type SiteConfig = {
     email?: string;
     phone?: string;
     address?: string;
-    websiteUrl: string;
     lastUpdated: string;
     privacyContactEmail?: string;
     accessibilityContactName?: string;
@@ -174,6 +186,8 @@ export type SiteConfig = {
   };
 };
 
+export { getSiteUrl } from "@/lib/site-url";
+
 /** Builds a WhatsApp deep link with optional prefilled message. */
 export function whatsappHref(
   number: string,
@@ -183,13 +197,6 @@ export function whatsappHref(
   const base = `https://wa.me/${digits}`;
   if (!message) return base;
   return `${base}?text=${encodeURIComponent(message)}`;
-}
-
-export function getSiteUrl(): string {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-    site.meta.siteUrl.replace(/\/$/, "")
-  );
 }
 
 const galleryImages: GalleryImage[] = [
@@ -261,6 +268,7 @@ export const site: SiteConfig = {
     { label: "הסיפור", href: "#story" },
     { label: "המארזים", href: "#products" },
     { label: "גלריה", href: "#gallery" },
+    { label: "שאלות", href: "#faq" },
     { label: "הזמנה", href: "#planner" },
     { label: "צור קשר", href: "#contact" },
   ],
@@ -268,7 +276,7 @@ export const site: SiteConfig = {
     headline: "מארזי גבינות ויין",
     tagline: "Luxury Cheese & Wine Gift Boxes, Curated to Impress.",
     subtitle:
-      "מארזים בעבודת יד, עם גבינות נבחרות, יין ופינוקים שנארזים בקפידה ומגיעים עד אליכם.",
+      "Rubina — מארזי גבינות, יין ופינוקים בעבודת יד. מתנה מושקעת לאירוח, פיקניק, זוגות ואירועים — עם משלוחים למרכז.",
     ctaLabel: "הזמנה בWhatsApp",
     secondaryCta: "צפייה במארזים",
     image: "/images/hero.png",
@@ -303,7 +311,7 @@ export const site: SiteConfig = {
     title: "איך Rubina נולדה",
     headline: "ברוכים הבאים",
     intro:
-      "אנחנו עידן ורומי זוג מילואימניקים ממושב עזריה , הקמנו עסק של מארזי בוטיק מיוחדים של יין וגבינות.",
+      "אנחנו עידן ורומי, זוג מילואימניקים ממושב עזריה. הקמנו את Rubina — מארזי בוטיק של גבינות, יין ופינוקים לכל רגע מיוחד.",
     paragraphs: [
       "מתוך רצון ליצור משהו משלנו עם מלא אהבה ומשמעות.",
       "כל מארז נבנה בקפידה , בעבודת יד , בדגש על איכות טריות וייחודיות.",
@@ -420,6 +428,21 @@ export const site: SiteConfig = {
     title: "שאלות נפוצות",
     items: [
       {
+        question: "מה כוללים מארזי הגבינות והיין של Rubina?",
+        answer:
+          "כל מארז נבנה בעבודת יד וכולל גבינות נבחרות, יין, ותוספות לפי סוג המארז — כמו קרקרים, פיצוחים, זיתים, שוקולד או מקרונים. פרטים מלאים לכל מארז מופיעים בעמוד המארזים.",
+      },
+      {
+        question: "אפשר להזמין מארז גבינות כמתנה?",
+        answer:
+          "בהחלט. המארזים של Rubina מתאימים במיוחד כמתנה לאירוח, לזוגות, לחגים ולימי הולדת — עם אריזה מוקפדת שמרגישה יוקרתית ואישית.",
+      },
+      {
+        question: "יש מארזי פיקניק, Sunset או Sunrise?",
+        answer:
+          "כן. לצד המארזים הקלאסיים יש גם מארזי Sunset ו-Sunrise — מארזים רומנטיים לפיקניק, שקיעה ורגעים זוגיים בשדה. לפרטים ומחיר — שלחו הודעה בוואטסאפ.",
+      },
+      {
         question: "איך מזמינים?",
         answer:
           "שלחו לנו הודעה בוואטסאפ עם סוג המארז שמעניין אתכם, תאריך וכמות — ונחזור אליכם עם כל הפרטים.",
@@ -427,7 +450,17 @@ export const site: SiteConfig = {
       {
         question: "לאיזה אזורים אתם משלחים?",
         answer:
-          "משלוחים למרכז הארץ. לאזורים נוספים — פנו אלינו בוואטסאפ ונבדוק יחד אפשרות משלוח.",
+          "משלוחים למרכז הארץ וגוש דן. לאזורים נוספים — פנו אלינו בוואטסאפ ונבדוק יחד אפשרות משלוח. אפשר גם איסוף עצמי ממושב עזריה.",
+      },
+      {
+        question: "איך עובד המשלוח?",
+        answer:
+          "לאחר אישור ההזמנה בוואטסאפ נתאם מועד משלוח עד הבית או איסוף עצמי. משלוחים בימים א׳–ו׳.",
+      },
+      {
+        question: "כמה זמן מראש מומלץ להזמין?",
+        answer:
+          "אנו ממליצים לבצע את ההזמנה לפחות 3 ימים מראש, ובמיוחד לאירועים — כדי להבטיח זמינות של חומרי הגלם הטריים ביותר.",
       },
       {
         question: "אפשר מארז מותאם אישית?",
@@ -435,14 +468,9 @@ export const site: SiteConfig = {
           "בהחלט. נבנה יחד מארז לפי טעם, אירוע ותקציב — פשוט כתבו לנו בוואטסאפ מה אתם מחפשים.",
       },
       {
-        question: "כמה זמן מראש מומלץ להזמין?",
-        answer:
-          "אנו ממליצים לבצע את ההזמנה לפחות 3 ימים מראש כדי להבטיח את זמינות של חומרי הגלם הטריים ביותר.",
-      },
-      {
         question: "כשרות?",
         answer:
-          "כלל המוצרים שלנו כשרים. לגבי כשרות מדויקת ניתן לפנות אלינו לWhatsApp.",
+          "כלל המוצרים שלנו כשרים. לגבי כשרות מדויקת ניתן לפנות אלינו בוואטסאפ.",
       },
       {
         question: "רגישויות?",
@@ -474,7 +502,7 @@ export const site: SiteConfig = {
   contactSection: {
     heading: "רוצים להפתיע מישהו ברגע מפנק טעים ומדויק?",
     subtitle:
-      "שלחו לנו הודעה ונעזור לכם לבחור את המארז שמתאים בדיוק לאירוע, לטעם ולתקציב.",
+      "שלחו לנו הודעה ונעזור לכם לבחור מארז גבינות ויין שמתאים לאירוע, לטעם ולתקציב — עם משלוח או איסוף.",
     whatsappLabel: "הזמנה בWhatsApp",
     instagramLabel: "Instagram",
     phoneLabel: "טלפון",
@@ -492,17 +520,48 @@ export const site: SiteConfig = {
     copyright: "© 2026 Rubina. כל הזכויות שמורות.",
   },
   meta: {
-    title: "Rubina — מארזי גבינות, יין ופינוקים",
+    title: "Rubina | מארזי גבינות ויין מעוצבים",
     description:
-      "מארזי גבינות, יין ופינוקים בעיצוב יוקרתי. מתנה מושקעת לאירוח, זוגות, חגים ורגעים מיוחדים. הזמנה בוואטסאפ.",
-    siteUrl: "https://rubina.example.com",
-    ogImage: "/images/product-rubina.png",
+      "Rubina — מארזי גבינות, יין ופינוקים בעבודת יד. מתנות מושקעות לאירוח, פיקניק, זוגות ואירועים, עם משלוחים למרכז ואיסוף ממושב עזריה. הזמנה בוואטסאפ.",
+    keywords: [
+      "Rubina",
+      "רובינה",
+      "מארזי גבינות",
+      "מארזי יין",
+      "מארז גבינות ויין",
+      "מתנות",
+      "מתנה לאירוח",
+      "פיקניק",
+      "משלוחים",
+      "מארזים",
+      "גבינות",
+      "יין",
+      "cheese gift box",
+      "wine gift box",
+    ],
+    ogImage: "/opengraph-image",
+    themeColor: "#F5F0E8",
+  },
+  business: {
+    name: "Rubina",
+    legalName: "Rubina",
+    description:
+      "מארזי גבינות, יין ופינוקים בעבודת יד — מתנות מושקעות לאירוח, פיקניק ואירועים.",
+    logo: "/images/logo.png",
+    email: "idanpitovski16@gmail.com",
+    phone: "+972-52-783-6631",
+    pickupLocality: "מושב עזריה",
+    areaServed: ["מרכז הארץ", "גוש דן", "תל אביב והמרכז"],
+    sameAs: [
+      "https://www.instagram.com/rubina.cheese",
+      "https://www.tiktok.com/@rubina.cheese",
+    ],
+    category: "Food & Drink",
   },
   legal: {
     businessName: "Rubina",
     email: "idanpitovski16@gmail.com",
     phone: "052-783-6631",
-    websiteUrl: "https://rubina.example.com",
     lastUpdated: "2026-07-01",
     deliveryAreas: "גוש דן, תל אביב ומרכז",
     usesAnalytics: false,

@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="pb-[calc(5rem+env(safe-area-inset-bottom))] sm:pb-0">
+      <main id="main-content" className="pb-[calc(5rem+env(safe-area-inset-bottom))] sm:pb-0">
         <Hero />
         <TrustStrip />
         <OurStory />

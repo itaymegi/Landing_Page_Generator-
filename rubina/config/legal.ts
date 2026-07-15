@@ -2,7 +2,10 @@ import { resolveLegalContext } from "@landing-legal/core";
 import { site, getSiteUrl } from "./site";
 
 export const legalContext = resolveLegalContext({
-  legal: site.legal,
+  legal: {
+    ...site.legal,
+    websiteUrl: getSiteUrl(),
+  },
   contact: {
     email: site.contact.email,
     phones: site.contact.phones,

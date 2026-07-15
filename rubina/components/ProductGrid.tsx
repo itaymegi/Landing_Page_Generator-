@@ -47,14 +47,16 @@ export function ProductGrid({ items }: ProductGridProps) {
               <div className="px-6 pb-8 pt-8 sm:px-8">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <HydrationSafeButton
-                      type="button"
-                      onClick={() => setActive(product)}
-                      className="text-start font-serif text-2xl font-light tracking-wide text-brown transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:text-3xl"
-                      aria-label={`פרטים על ${product.title}`}
-                    >
-                      <ProductTitle title={product.title} />
-                    </HydrationSafeButton>
+                    <h3 className="text-start font-serif text-2xl font-light tracking-wide text-brown sm:text-3xl">
+                      <HydrationSafeButton
+                        type="button"
+                        onClick={() => setActive(product)}
+                        className="w-full bg-transparent p-0 text-start font-inherit text-inherit transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                        aria-label={`פרטים על ${product.title}`}
+                      >
+                        <ProductTitle title={product.title} />
+                      </HydrationSafeButton>
+                    </h3>
                   </div>
                   <ProductPrice price={product.price} size="md" className="pt-1" />
                 </div>
