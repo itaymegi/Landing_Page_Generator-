@@ -1,28 +1,42 @@
-# Rubina — Production Go-Live Checklist
+# Rubina — Deploy & SEO (developer)
 
-## Before first production deploy
+Production site: **https://myrubina.com**
 
-1. Set **`NEXT_PUBLIC_SITE_URL`** in Vercel (Project → Settings → Environment Variables) to your canonical domain, e.g. `https://rubina.co.il` (no trailing slash).
-2. Redeploy after saving the variable.
+## Vercel environment variables
 
-## After purchasing a custom domain
+| Variable | Required | Notes |
+|----------|----------|-------|
+| `NEXT_PUBLIC_SITE_URL` | **Yes** | `https://myrubina.com` (no trailing slash) |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | No | HTML-tag code from Search Console |
+| `NEXT_PUBLIC_BING_SITE_VERIFICATION` | No | Bing Webmaster HTML tag |
+| `NEXT_PUBLIC_GA_ID` | No | Google Analytics |
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | No | Plausible analytics |
 
-1. Vercel → **Domains** → add your domain and configure DNS at your registrar.
-2. Confirm `NEXT_PUBLIC_SITE_URL` matches the primary domain.
-3. Google Search Console → add property → verify via DNS → submit `https://YOUR-DOMAIN/sitemap.xml`.
-4. Claim Google Business Profile and link the same website URL.
+Redeploy after changing any variable.
+
+## Already automated in code
+
+- Metadata, canonical URLs, OG/Twitter images
+- `robots.ts` — all crawlers including AI bots allowed
+- `sitemap.ts` — home page only (legal pages noindex, excluded)
+- JSON-LD `@graph` (Organization, LocalBusiness, FAQ, Products)
+- Security headers, error boundaries, skip link
+
+## SEO routes (smoke test)
+
+- https://myrubina.com/robots.txt
+- https://myrubina.com/sitemap.xml
+- https://myrubina.com/manifest.webmanifest
+- https://myrubina.com/opengraph-image
+
+## Owner-only steps
+
+See **[GO-LIVE-OWNER.md](./GO-LIVE-OWNER.md)** (Hebrew) — hand to Idan & Romi for Search Console, Business Profile, and Instagram link.
 
 ## Local development
 
-Copy `.env.example` to `.env.local` and set:
-
+```bash
+cp .env.example .env.local
+# NEXT_PUBLIC_SITE_URL=http://localhost:3000
+npm run dev
 ```
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-```
-
-## SEO routes (verify after deploy)
-
-- `/robots.txt`
-- `/sitemap.xml`
-- `/manifest.webmanifest`
-- `/opengraph-image` (social preview image)

@@ -2,11 +2,24 @@ import type { Metadata } from "next";
 import { getSiteUrl } from "@/lib/site-url";
 import { site } from "@/config/site";
 
+function buildSiteVerification(): Metadata["verification"] | undefined {
+  const google = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+  const bing = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION?.trim();
+
+  if (!google && !bing) return undefined;
+
+  return {
+    ...(google ? { google } : {}),
+    ...(bing ? { other: { "msvalidate.01": bing } } : {}),
+  };
+}
+
 export function buildRootMetadata(): Metadata {
   const siteUrl = getSiteUrl();
   const ogPath = site.meta.ogImage.startsWith("/")
     ? site.meta.ogImage
     : `/${site.meta.ogImage}`;
+  const verification = buildSiteVerification();
 
   return {
     metadataBase: new URL(siteUrl),
@@ -60,5 +73,6 @@ export function buildRootMetadata(): Metadata {
       description: site.meta.description,
       images: [ogPath],
     },
+    ...(verification ? { verification } : {}),
   };
 }
