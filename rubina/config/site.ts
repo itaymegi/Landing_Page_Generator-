@@ -324,6 +324,34 @@ export const site: SiteConfig = {
     title: "המארזים שלנו",
     items: [
       {
+        id: "sunset",
+        title: "מארז Sunset",
+        price: 310,
+        description:
+          "מארז sunset — מכיל פלטה המורכבת מ6 סוגי גבינות, יין, לאבנה, לחם וחמאה, 5 כדורי שוקולד, 4 מקרונים ושדרוגים נוספים שייגרמו לחווייה להרגיש מושלמת.",
+        image: "/images/product-sunset1.jpg",
+        imageAlt: "מארז Sunset — סלסלת פיקניק על מפה אדומה-לבנה בשדה",
+        images: [
+          { src: "/images/product-sunset1.jpg", alt: "מארז Sunset — סלסלת פיקניק על מפה אדומה-לבנה בשדה", objectPosition: galleryFocus.picnic },
+          { src: "/images/product-sunset2.jpg", alt: "מארז Sunset — סלסלת פיקניק על שולחן לבן בשעת שקיעה" },
+          { src: "/images/product-sunset3.jpg", alt: "מארז Sunset — תצוגה נוספת של הסלסלה בשדה", objectPosition: galleryFocus.picnic },
+        ],
+      },
+      {
+        id: "sunrise",
+        title: "מארז Sunrise",
+        price: 260,
+        description:
+          "מארז sunrise — מכיל פלטה המורכבת מ4 סוגי גבינות, יין, לאבנה, לחם וחמאה, 3 כדורי שוקולד, זוג מקרונים ושדרוגים נוספים שייגרמו לחוויה להרגיש מושלמת.",
+        image: "/images/product-sunrise1.jpg",
+        imageAlt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה",
+        images: [
+          { src: "/images/product-sunrise1.jpg", alt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה", objectPosition: galleryFocus.picnic },
+          { src: "/images/product-sunrise2.jpg", alt: "מארז Sunrise — סלסלת פיקניק על שולחן לבן בשקיעה" },
+          { src: "/images/product-sunrise3.jpg", alt: "מארז Sunrise — תקריב של הסלסלה עם גבינות ויין", objectPosition: "center 75%" },
+        ],
+      },
+      {
         id: "gold",
         title: "מארז גולד",
         price: 390,
@@ -377,34 +405,6 @@ export const site: SiteConfig = {
           { src: "/images/product-ari-1.jpg", alt: "מארז פתוח — גבינות ויין לבן Sauvignon Blanc" },
           { src: "/images/product-ari-2.jpg", alt: "מארז סגור עם סרט — מוכן למתנה" },
           { src: "/images/product-ari-3.jpg", alt: "מארז פתוח — תצוגה מלאה על רקע קש" },
-        ],
-      },
-      {
-        id: "sunset",
-        title: "מארז Sunset",
-        price: 310,
-        description:
-          "מארז sunset — מכיל פלטה המורכבת מ6 סוגי גבינות, יין, לאבנה, לחם וחמאה, 5 כדורי שוקולד, 4 מקרונים ושדרוגים נוספים שייגרמו לחווייה להרגיש מושלמת.",
-        image: "/images/product-sunset1.jpg",
-        imageAlt: "מארז Sunset — סלסלת פיקניק על מפה אדומה-לבנה בשדה",
-        images: [
-          { src: "/images/product-sunset1.jpg", alt: "מארז Sunset — סלסלת פיקניק על מפה אדומה-לבנה בשדה", objectPosition: galleryFocus.picnic },
-          { src: "/images/product-sunset2.jpg", alt: "מארז Sunset — סלסלת פיקניק על שולחן לבן בשעת שקיעה" },
-          { src: "/images/product-sunset3.jpg", alt: "מארז Sunset — תצוגה נוספת של הסלסלה בשדה", objectPosition: galleryFocus.picnic },
-        ],
-      },
-      {
-        id: "sunrise",
-        title: "מארז Sunrise",
-        price: 260,
-        description:
-          "מארז sunrise — מכיל פלטה המורכבת מ4 סוגי גבינות, יין, לאבנה, לחם וחמאה, 3 כדורי שוקולד, זוג מקרונים ושדרוגים נוספים שייגרמו לחוויה להרגיש מושלמת.",
-        image: "/images/product-sunrise1.jpg",
-        imageAlt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה",
-        images: [
-          { src: "/images/product-sunrise1.jpg", alt: "מארז Sunrise — סלסלת פיקניק על מפה אדומה-לבנה בשדה", objectPosition: galleryFocus.picnic },
-          { src: "/images/product-sunrise2.jpg", alt: "מארז Sunrise — סלסלת פיקניק על שולחן לבן בשקיעה" },
-          { src: "/images/product-sunrise3.jpg", alt: "מארז Sunrise — תקריב של הסלסלה עם גבינות ויין", objectPosition: "center 75%" },
         ],
       },
       {
