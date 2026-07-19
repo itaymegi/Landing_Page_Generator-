@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site-url";
 
+/** Always emit static robots.txt — avoid on-demand regeneration failures. */
+export const dynamic = "force-static";
+
 const CRAWLERS = [
   "*",
   "GPTBot",

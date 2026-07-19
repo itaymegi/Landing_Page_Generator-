@@ -4,9 +4,12 @@ import type { MetadataRoute } from "next";
 export function getMarketingSitemapEntries(
   siteUrl: string,
 ): MetadataRoute.Sitemap {
+  const origin = siteUrl.replace(/\/$/, "");
+
   return [
     {
-      url: siteUrl,
+      // Trailing slash matches homepage canonical (https://myrubina.com/)
+      url: `${origin}/`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,

@@ -44,7 +44,8 @@ export function buildRootMetadata(): Metadata {
       },
     },
     alternates: {
-      canonical: "/",
+      // Absolute homepage canonical with trailing slash (GSC / sitemap consistency)
+      canonical: `${siteUrl}/`,
     },
     icons: {
       icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
@@ -54,7 +55,7 @@ export function buildRootMetadata(): Metadata {
     openGraph: {
       title: site.meta.title,
       description: site.meta.description,
-      url: siteUrl,
+      url: `${siteUrl}/`,
       siteName: site.brand.name,
       locale: "he_IL",
       type: "website",
