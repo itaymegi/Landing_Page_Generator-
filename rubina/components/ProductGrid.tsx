@@ -32,7 +32,11 @@ export function ProductGrid({ items }: ProductGridProps) {
                * access for users who tab onto the image area.
                */}
               <div className="relative block w-full aspect-[4/5] overflow-hidden">
-                <ProductCardImage product={product} priority={index < 2} />
+                <ProductCardImage
+                  product={product}
+                  priority={index < 2}
+                  fit={product.imageFit ?? "cover"}
+                />
                 {/* Invisible overlay that opens modal on click (not on nav buttons) */}
                 <HydrationSafeButton
                   type="button"

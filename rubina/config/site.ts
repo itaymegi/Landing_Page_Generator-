@@ -6,6 +6,8 @@ export type ProductItem = {
   imageAlt: string;
   images?: { src: string; alt: string; objectPosition?: string }[];
   price?: number;
+  /** Use contain to show the full photo without cropping (default: cover). */
+  imageFit?: "cover" | "contain";
 };
 
 export type GalleryImage = {
@@ -406,6 +408,15 @@ export const site: SiteConfig = {
           { src: "/images/product-ari-2.jpg", alt: "מארז סגור עם סרט — מוכן למתנה" },
           { src: "/images/product-ari-3.jpg", alt: "מארז פתוח — תצוגה מלאה על רקע קש" },
         ],
+      },
+      {
+        id: "custom-platter",
+        title: "פלטה מותאמת אישית",
+        description:
+          "רוצים פלטה שתתאים בדיוק לכם? נבנה יחד את הפלטה לפי טעם, אירוע, תקציב וכמות אנשים - עם הלב והידיים שלנו",
+        image: "/images/product-custom-platter.jpg",
+        imageAlt: "פלטה מותאמת אישית — גבינות, פירות, קרקרים ואגוזים",
+        imageFit: "contain",
       },
       {
         id: "custom",
