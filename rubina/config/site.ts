@@ -414,9 +414,19 @@ export const site: SiteConfig = {
         title: "פלטה מותאמת אישית",
         description:
           "רוצים פלטה שתתאים בדיוק לכם? נבנה יחד את הפלטה לפי טעם, אירוע, תקציב וכמות אנשים - עם הלב והידיים שלנו",
-        image: "/images/product-custom-platter.jpg",
-        imageAlt: "פלטה מותאמת אישית — גבינות, פירות, קרקרים ואגוזים",
+        image: "/images/product-custom-platter-1.png",
+        imageAlt: "פלטה מותאמת אישית — גבינות, פירות, יין ופינוקים ליד הבריכה",
         imageFit: "contain",
+        images: [
+          {
+            src: "/images/product-custom-platter-1.png",
+            alt: "פלטה מותאמת אישית — גבינות, פירות, יין ופינוקים ליד הבריכה",
+          },
+          {
+            src: "/images/product-custom-platter.jpg",
+            alt: "פלטה מותאמת אישית — גבינות, פירות, קרקרים ואגוזים",
+          },
+        ],
       },
       {
         id: "custom",
