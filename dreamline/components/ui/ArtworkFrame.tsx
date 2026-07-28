@@ -45,7 +45,8 @@ export function ArtworkFrame({
           sizes={sizes}
           quality={IMAGE_QUALITY}
           priority={priority}
-          loading={priority ? undefined : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
+          loading={priority ? "eager" : "lazy"}
         />
       )}
     </div>

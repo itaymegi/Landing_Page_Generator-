@@ -31,8 +31,8 @@ export function FAQ() {
           {faq.items.map((item, index) => (
             <Reveal key={item.question} delay={index * 50}>
               <details className="group border-b border-ink/10 py-5">
-                <summary className="cursor-pointer list-none text-base font-medium text-ink transition-colors marker:content-none hover:text-terracotta-deep sm:text-lg [&::-webkit-details-marker]:hidden">
-                  <span className="flex items-center justify-between gap-4">
+                <summary className="cursor-pointer list-none py-1 text-base font-medium text-ink transition-colors marker:content-none hover:text-terracotta-deep sm:text-lg [&::-webkit-details-marker]:hidden">
+                  <span className="flex min-h-11 items-center justify-between gap-4">
                     {item.question}
                     <FaqToggleIcon />
                   </span>

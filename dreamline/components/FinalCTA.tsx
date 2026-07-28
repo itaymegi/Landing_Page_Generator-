@@ -41,6 +41,7 @@ export function FinalCTA() {
               href={siteWhatsAppHref()}
               label={finalCta.primaryCtaLabel}
               external
+              showArrow={false}
               size="md"
               className="w-full min-h-12"
             />

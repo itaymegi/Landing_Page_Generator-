@@ -46,7 +46,13 @@ function ProgressTrack({ current, total, label }: { current: number; total: numb
   return (
     <div className="mb-8" aria-label={label}>
       <p className="mb-3 text-sm font-medium text-ink-soft">{label}</p>
-      <div className="flex gap-1.5" dir="rtl" role="progressbar" aria-valuenow={filled} aria-valuemin={1} aria-valuemax={total}>
+      <div
+        className="flex gap-1.5"
+        role="progressbar"
+        aria-valuenow={filled}
+        aria-valuemin={1}
+        aria-valuemax={total}
+      >
         {Array.from({ length: total }, (_, i) => (
           <span
             key={i}

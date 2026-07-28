@@ -4,21 +4,32 @@ import { useEffect, useState } from "react";
 import { site } from "@/config/site";
 import { CTAButton } from "@/components/ui/CTAButton";
 
+const HIDE_SECTION_IDS = ["planner", "final-cta"] as const;
+
 export function MobileCTABar() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const planner = document.getElementById("planner");
-    if (!planner) return;
+    const sections = HIDE_SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => !!el,
+    );
+    if (sections.length === 0) return;
+
+    const visible = new Set<string>();
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setHidden(entry.isIntersecting && entry.intersectionRatio > 0.15);
+      (entries) => {
+        for (const entry of entries) {
+          const id = (entry.target as HTMLElement).id;
+          if (entry.isIntersecting && entry.intersectionRatio > 0.08) visible.add(id);
+          else visible.delete(id);
+        }
+        setHidden(visible.size > 0);
       },
-      { threshold: [0, 0.15, 0.35], rootMargin: "0px 0px -10% 0px" },
+      { threshold: [0, 0.08, 0.2], rootMargin: "0px 0px -8% 0px" },
     );
 
-    observer.observe(planner);
+    for (const section of sections) observer.observe(section);
     return () => observer.disconnect();
   }, []);
 

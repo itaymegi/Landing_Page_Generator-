@@ -614,7 +614,7 @@ export const site: SiteConfig = {
   },
   contact: {
     whatsappNumber: "972533030938",
-    whatsappDefaultMessage: "היי דרים ליין! אשמח לשמוע פרטים על יצירת מתנה אישית",
+    whatsappDefaultMessage: "היי Dreamline! אשמח לשמוע פרטים על יצירת מתנה אישית",
     instagram: "https://www.instagram.com/dream.linee",
     email: "dreamline@gmail.com",
     phones: ["053-303-0938"],
@@ -639,12 +639,12 @@ export const site: SiteConfig = {
     white: "#FFFFFF",
   },
   nav: [
+    { label: "עלינו", href: "#about" },
     { label: "יצירות", href: "#creations" },
     { label: "גלריה", href: "#gallery" },
     { label: "איך זה עובד", href: "#how-it-works" },
-    { label: "עלינו", href: "#about" },
-    { label: "שאלות", href: "#faq" },
     { label: "הזמנה", href: "#planner" },
+    { label: "שאלות", href: "#faq" },
   ],
   hero: {
     eyebrow: "DREAM LINE",
@@ -708,7 +708,7 @@ export const site: SiteConfig = {
       {
         id: "giftBox",
         title: "מארזי מתנה",
-        description: "מארז שנבנה בדיוק לצרכים שלכם מהלב שלנו",
+        description: "מארז שנבנה בדיוק לצרכים שלכם — מהלב שלנו.",
         accent: "butter",
         glyph: "giftBox",
         href: "#gallery",

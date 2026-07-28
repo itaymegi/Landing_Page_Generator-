@@ -198,7 +198,7 @@ export function GalleryInteractive({ items }: GalleryInteractiveProps) {
 
               <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 flex items-end justify-between px-4 pb-4 sm:px-6 sm:pb-5">
                 {images.length > 1 ? (
-                  <div className="pointer-events-auto flex items-center gap-1.5">
+                  <div className="pointer-events-auto flex items-center gap-0.5">
                     {images.map((_, idx) => (
                       <HydrationSafeButton
                         key={idx}
@@ -207,12 +207,17 @@ export function GalleryInteractive({ items }: GalleryInteractiveProps) {
                           e.stopPropagation();
                           goTo(idx);
                         }}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          idx === current ? "w-6 bg-white" : "w-1.5 bg-white/40 hover:bg-white/70"
-                        }`}
+                        className="flex h-11 min-w-8 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
                         aria-label={`תמונה ${idx + 1}`}
-                        aria-current={idx === current}
-                      />
+                        aria-current={idx === current ? "true" : undefined}
+                      >
+                        <span
+                          className={`block h-1.5 rounded-full transition-all duration-300 ${
+                            idx === current ? "w-6 bg-white" : "w-1.5 bg-white/40"
+                          }`}
+                          aria-hidden="true"
+                        />
+                      </HydrationSafeButton>
                     ))}
                   </div>
                 ) : (

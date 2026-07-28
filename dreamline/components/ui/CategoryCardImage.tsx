@@ -145,18 +145,23 @@ export function CategoryCardImage({
         <ChevronIcon dir="left" />
       </HydrationSafeButton>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-3 z-30 flex justify-center gap-1.5">
+      <div className="pointer-events-none absolute inset-x-0 bottom-3 z-30 flex justify-center gap-1">
         {items.map((_, idx) => (
           <HydrationSafeButton
             key={idx}
             type="button"
             onClick={(e) => goTo(idx, e)}
-            className={`pointer-events-auto h-1.5 rounded-full transition-all duration-300 ${
-              idx === current ? "w-5 bg-white" : "w-1.5 bg-white/50 hover:bg-white/80"
-            }`}
+            className="pointer-events-auto flex h-11 min-w-11 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
             aria-label={`תמונה ${idx + 1}`}
-            aria-current={idx === current}
-          />
+            aria-current={idx === current ? "true" : undefined}
+          >
+            <span
+              className={`block h-1.5 rounded-full transition-all duration-300 ${
+                idx === current ? "w-5 bg-white" : "w-1.5 bg-white/50"
+              }`}
+              aria-hidden="true"
+            />
+          </HydrationSafeButton>
         ))}
       </div>
 
