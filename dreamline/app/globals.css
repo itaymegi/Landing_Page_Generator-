@@ -1,0 +1,236 @@
+@import "tailwindcss";
+@import "@landing-legal/core/styles/legal.css";
+
+:root {
+  --ivory: #fff9f6;
+  --ink: #302b29;
+  --ink-soft: #6f6762;
+  --blush: #f6d8d8;
+  --blush-deep: #e9b7bd;
+  --peach: #f4c7a8;
+  --peach-deep: #e3a276;
+  --butter: #f5e8b8;
+  --butter-deep: #e9d584;
+  --powder-blue: #cfe6f5;
+  --powder-blue-deep: #a7cee8;
+  --lavender: #ddd5ef;
+  --sage: #dce5d4;
+  --terracotta: #b5603e;
+  --terracotta-deep: #9c4e30;
+  --white: #ffffff;
+  --background: var(--ivory);
+  --foreground: var(--ink);
+  --header-height: 4.5rem;
+  --radius-card: 1.75rem;
+  --radius-lg: 2.5rem;
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-blush: var(--blush);
+  --color-blush-deep: var(--blush-deep);
+  --color-peach: var(--peach);
+  --color-peach-deep: var(--peach-deep);
+  --color-butter: var(--butter);
+  --color-butter-deep: var(--butter-deep);
+  --color-powder-blue: var(--powder-blue);
+  --color-powder-blue-deep: var(--powder-blue-deep);
+  --color-lavender: var(--lavender);
+  --color-sage: var(--sage);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-deep: var(--terracotta-deep);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-heebo);
+  --font-display: var(--font-fraunces);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--drift-rotate, -2deg));
+  }
+  50% {
+    transform: translateY(-0.6rem) rotate(var(--drift-rotate, -2deg));
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0.35rem);
+  }
+}
+
+@keyframes progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-progress-fill {
+  animation: progress-fill linear forwards;
+}
+
+html {
+  color-scheme: light only;
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-heebo), "Segoe UI", sans-serif;
+  overflow-x: clip;
+  line-height: 1.7;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--terracotta) 30%, transparent);
+  color: var(--ink);
+}
+
+.font-display {
+  font-family: var(--font-fraunces), var(--font-heebo), serif;
+}
+
+.container-dreamline {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 84rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-dreamline {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-dreamline {
+    padding-inline: 3rem;
+  }
+}
+
+.section-py {
+  padding-block: 4rem;
+}
+
+@media (min-width: 640px) {
+  .section-py {
+    padding-block: 5.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-py {
+    padding-block: 7.5rem;
+  }
+}
+
+.rule {
+  display: block;
+  width: 2.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--terracotta);
+}
+
+.rule-center {
+  margin-inline: auto;
+}
+
+.drift-slow {
+  animation: drift-slow 7s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.75s ease-out,
+    transform 0.75s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 639px) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .scroll-cue-animate,
+  .drift-slow {
+    animation: none;
+  }
+}
+
+.scroll-cue-animate {
+  animation: scroll-cue 2s ease-in-out infinite;
+}
+
+body[data-modal-open="true"] .mobile-cta-bar {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Elegant placeholder artwork texture — soft grain-free diagonal weave */
+.placeholder-weave {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(48, 43, 41, 0.05) 0px,
+    rgba(48, 43, 41, 0.05) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+}
