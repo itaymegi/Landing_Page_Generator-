@@ -8,7 +8,7 @@ export function WhyDreamLine() {
   const { whyDreamLine } = site;
 
   return (
-    <section className="section-py bg-sage/25">
+    <section className="section-py relative overflow-x-clip bg-gradient-to-b from-peach/10 via-sage/25 to-sage/20">
       <div className="container-dreamline">
         <Reveal>
           <SectionHeading eyebrow={whyDreamLine.eyebrow} title={whyDreamLine.title} align="center" />

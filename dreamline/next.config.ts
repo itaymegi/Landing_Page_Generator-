@@ -13,6 +13,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  // Allow phone/LAN testing against `next dev` (cross-origin /_next assets)
+  allowedDevOrigins: ["192.168.0.0/16", "10.0.0.0/8"],
   transpilePackages: ["@landing-legal/core"],
   outputFileTracingRoot: path.resolve(__dirname, ".."),
   images: {

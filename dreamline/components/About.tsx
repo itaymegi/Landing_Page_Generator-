@@ -1,59 +1,48 @@
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
 
-function PortraitPlaceholder() {
-  return (
-    <div className="placeholder-weave relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-gradient-to-br from-lavender via-blush/55 to-butter/45 shadow-lg shadow-ink/10">
-      <div className="absolute inset-0 flex items-center justify-center">
-        <svg
-          className="h-[38%] w-[38%] text-[#9484CC] opacity-80"
-          viewBox="0 0 100 125"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <circle cx="50" cy="45" r="22" />
-          <path d="M50 72c-24 0-40 14-40 34v19h80v-19c0-20-16-34-40-34z" />
-        </svg>
-      </div>
-      <span
-        className="absolute end-5 top-5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/70 font-display text-sm font-medium text-ink backdrop-blur-sm"
-        aria-hidden="true"
-      >
-        {site.brand.monogram}
-      </span>
-      <span className="absolute bottom-5 start-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-white/75 px-3 py-1.5 text-[11px] font-medium tracking-wide text-ink-soft backdrop-blur-sm">
-        <span className="inline-block h-1.5 w-1.5 rounded-full bg-terracotta" aria-hidden="true" />
-        התמונה בדרך
-      </span>
-    </div>
-  );
-}
-
 export function About() {
-  const { about } = site;
+  const { about, trustStrip } = site;
+  const [lead, ...rest] = about.paragraphs;
 
   return (
-    <section id="about" className="section-py bg-ivory">
-      <div className="container-dreamline grid items-center gap-12 lg:grid-cols-[0.75fr_1fr] lg:gap-20">
+    <section
+      id="about"
+      className="section-bridge section-overlap-next section-py-tight bg-ivory"
+    >
+      <div className="container-dreamline">
         <Reveal>
-          <div className="mx-auto w-full max-w-xs lg:max-w-none">
-            <PortraitPlaceholder />
-          </div>
-        </Reveal>
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-display text-[1.85rem] font-medium leading-snug tracking-wide text-ink sm:text-4xl lg:text-[2.75rem]">
+              {about.title}
+            </h2>
+            {lead ? (
+              <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-ink-soft sm:mt-5 sm:text-lg">
+                {lead}
+              </p>
+            ) : null}
+            {rest.map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 20)}
+                className="mx-auto mt-4 hidden max-w-lg text-base leading-relaxed text-ink-soft sm:mt-5 sm:block sm:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+            <p className="mt-5 font-display text-2xl italic text-ink/80 sm:mt-7">{about.signatureLabel}</p>
 
-        <Reveal delay={120}>
-          <p className="font-display text-sm font-medium uppercase tracking-[0.18em] text-terracotta-deep">
-            {about.eyebrow}
-          </p>
-          <h2 className="mt-4 text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl">
-            {about.title}
-          </h2>
-          {about.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 20)} className="mt-5 max-w-lg text-base leading-relaxed text-ink-soft sm:text-lg">
-              {paragraph}
-            </p>
-          ))}
-          <p className="mt-7 font-display text-2xl italic text-ink/80">{about.signatureLabel}</p>
+            <ul className="mx-auto mt-6 flex max-w-md flex-col items-center gap-2 sm:mt-8 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6 sm:gap-y-2">
+              {trustStrip.items.map((item) => (
+                <li
+                  key={item.label}
+                  className="flex items-center gap-2 text-sm font-medium text-ink-soft"
+                >
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-terracotta/50" aria-hidden="true" />
+                  <span>{item.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Reveal>
       </div>
     </section>

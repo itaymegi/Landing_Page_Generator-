@@ -1,9 +1,16 @@
+"use client";
+
 import type { CategoryDefinition, CreationItem } from "@/config/site";
-import { ArtworkFrame } from "@/components/ui/ArtworkFrame";
+import { CategoryCardImage } from "@/components/ui/CategoryCardImage";
+import { HydrationSafeButton } from "@/components/ui/HydrationSafeButton";
+import { setPlannerService } from "@/lib/plannerHandoff";
 
 type CategoryCardProps = {
   category: CategoryDefinition;
-  item: CreationItem;
+  items: CreationItem[];
+  priority?: boolean;
+  compact?: boolean;
+  showPlannerCta?: boolean;
 };
 
 const accentBorder: Record<CategoryDefinition["accent"], string> = {
@@ -12,7 +19,6 @@ const accentBorder: Record<CategoryDefinition["accent"], string> = {
   butter: "group-hover:border-butter-deep",
   powderBlue: "group-hover:border-powder-blue-deep",
   lavender: "group-hover:border-[#9484CC]",
-  sage: "group-hover:border-[#83996E]",
 };
 
 const accentDot: Record<CategoryDefinition["accent"], string> = {
@@ -21,26 +27,72 @@ const accentDot: Record<CategoryDefinition["accent"], string> = {
   butter: "bg-butter-deep",
   powderBlue: "bg-powder-blue-deep",
   lavender: "bg-[#9484CC]",
-  sage: "bg-[#83996E]",
 };
 
-export function CategoryCard({ category, item }: CategoryCardProps) {
+function openPlanner(category: CategoryDefinition) {
+  setPlannerService(category.serviceKey);
+  window.dispatchEvent(
+    new CustomEvent("dreamline:planner-service", { detail: { service: category.serviceKey } }),
+  );
+  const el = document.getElementById("planner");
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  else window.location.hash = "planner";
+}
+
+export function CategoryCard({
+  category,
+  items,
+  priority = false,
+  compact = false,
+  showPlannerCta = false,
+}: CategoryCardProps) {
   return (
-    <a
-      href={category.href}
-      className={`group flex flex-col overflow-hidden rounded-[1.75rem] border border-black/5 bg-white/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5 ${accentBorder[category.accent]}`}
+    <article
+      className={`group overflow-hidden rounded-[1.75rem] border border-black/5 bg-white shadow-lg shadow-ink/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/8 ${accentBorder[category.accent]}`}
     >
-      <ArtworkFrame item={item} rounded="rounded-t-[1.75rem]" aspectRatioOverride="landscape" />
-      <div className="flex flex-1 flex-col gap-2 p-5 sm:p-6">
+      <div
+        className={`relative w-full overflow-hidden ${
+          compact ? "aspect-[3/4] max-h-[min(50vh,22rem)]" : "aspect-[4/5]"
+        }`}
+      >
+        <CategoryCardImage items={items} priority={priority} />
+      </div>
+
+      <div className={compact ? "px-3.5 pb-3.5 pt-3" : "px-6 pb-7 pt-6 sm:px-7 sm:pb-8"}>
         <div className="flex items-center gap-2">
           <span className={`h-2 w-2 rounded-full ${accentDot[category.accent]}`} aria-hidden="true" />
           {category.isPlaceholder ? (
             <span className="text-[11px] font-medium uppercase tracking-wide text-ink-soft/70">בקרוב</span>
           ) : null}
         </div>
-        <h3 className="text-lg font-medium text-ink sm:text-xl">{category.title}</h3>
-        <p className="text-sm leading-relaxed text-ink-soft">{category.description}</p>
+        <h3 className={`mt-1.5 font-medium text-ink ${compact ? "text-base" : "mt-3 text-xl sm:text-2xl"}`}>
+          <a
+            href={category.href}
+            className="transition-colors hover:text-terracotta-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+          >
+            {category.title}
+          </a>
+        </h3>
+        <p
+          className={`mt-1.5 leading-relaxed text-ink-soft ${
+            compact ? "line-clamp-2 text-xs" : "mt-3 max-w-md text-sm sm:text-base"
+          }`}
+        >
+          {category.description}
+        </p>
+
+        {showPlannerCta ? (
+          <HydrationSafeButton
+            type="button"
+            onClick={() => openPlanner(category)}
+            className={`mt-4 inline-flex w-full items-center justify-center rounded-full bg-terracotta-deep font-medium text-white transition-colors hover:bg-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta ${
+              compact ? "min-h-11 px-4 text-sm" : "min-h-12 px-5 text-base"
+            }`}
+          >
+            {category.ctaLabel}
+          </HydrationSafeButton>
+        ) : null}
       </div>
-    </a>
+    </article>
   );
 }

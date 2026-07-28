@@ -5,6 +5,7 @@ const SCHEMA_CONTEXT = "https://schema.org";
 export function JsonLd() {
   const siteUrl = getSiteUrl();
   const ogImageUrl = `${siteUrl}${site.meta.ogImage}`;
+  const logoUrl = `${siteUrl}${site.brand.logoSrc}`;
 
   const organizationId = `${siteUrl}/#organization`;
   const websiteId = `${siteUrl}/#website`;
@@ -21,9 +22,11 @@ export function JsonLd() {
       name: site.business.name,
       legalName: site.business.legalName,
       url: siteUrl,
+      logo: logoUrl,
       image: ogImageUrl,
       description: site.business.description,
       email: site.business.email,
+      telephone: site.business.phone,
       sameAs,
     },
     {

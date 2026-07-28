@@ -1,7 +1,7 @@
 import type { CreationCategoryId } from "@/config/site";
 
 export type PlaceholderAccent = "blush" | "peach" | "butter" | "powderBlue" | "lavender" | "sage";
-export type PlaceholderGlyph = "heart" | "frame" | "giftBox" | "chocolate" | "wine" | "paw" | "sparkle";
+export type PlaceholderGlyph = "heart" | "frame" | "giftBox" | "chocolate" | "wine" | "sparkle";
 
 type CategoryPlaceholderMeta = {
   accent: PlaceholderAccent;
@@ -16,7 +16,6 @@ export const categoryPlaceholderMeta: Record<CreationCategoryId, CategoryPlaceho
   giftBox: { accent: "peach", glyph: "giftBox", fallbackLabel: "התמונה בדרך" },
   sweets: { accent: "butter", glyph: "chocolate", fallbackLabel: "התמונה בדרך" },
   wine: { accent: "lavender", glyph: "wine", fallbackLabel: "התמונה בדרך" },
-  pet: { accent: "sage", glyph: "paw", fallbackLabel: "התמונה בדרך" },
   occasion: { accent: "powderBlue", glyph: "sparkle", fallbackLabel: "התמונה בדרך" },
 };
 
@@ -87,16 +86,6 @@ function Glyph({ glyph, className }: { glyph: PlaceholderGlyph; className?: stri
           <path d="M8 3.5h8l-1.1 8a2.9 2.9 0 01-5.8 0L8 3.5z" />
           <path d="M12 11.5v7" />
           <path d="M8.5 20.5h7" />
-        </svg>
-      );
-    case "paw":
-      return (
-        <svg {...common} strokeWidth={0.9} fill="currentColor" stroke="none">
-          <ellipse cx="12" cy="15.5" rx="4.4" ry="3.6" />
-          <ellipse cx="6.2" cy="10.4" rx="1.9" ry="2.4" />
-          <ellipse cx="17.8" cy="10.4" rx="1.9" ry="2.4" />
-          <ellipse cx="9.3" cy="6.4" rx="1.6" ry="2.1" />
-          <ellipse cx="14.7" cy="6.4" rx="1.6" ry="2.1" />
         </svg>
       );
     case "sparkle":

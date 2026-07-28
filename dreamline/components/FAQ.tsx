@@ -20,7 +20,7 @@ export function FAQ() {
   const { faq } = site;
 
   return (
-    <section id="faq" className="section-py bg-ivory">
+    <section id="faq" className="section-py-tight bg-ivory">
       <div className="container-dreamline mx-auto max-w-2xl">
         <Reveal>
           <h2 className="text-center text-3xl font-medium tracking-tight text-ink sm:text-4xl">{faq.title}</h2>

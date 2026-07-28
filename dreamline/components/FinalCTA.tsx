@@ -1,44 +1,72 @@
-import { site, creationItem, siteWhatsAppHref } from "@/config/site";
+import { site, siteWhatsAppHref } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { CTAButton } from "@/components/ui/CTAButton";
-import { ArtworkFrame } from "@/components/ui/ArtworkFrame";
+import { WhatsAppConsentNote } from "@landing-legal/core";
+
+function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+    </svg>
+  );
+}
 
 export function FinalCTA() {
-  const { finalCta } = site;
-  const image = creationItem(finalCta.imageId);
+  const { finalCta, contact } = site;
 
   return (
-    <section id="final-cta" className="relative overflow-hidden bg-ink py-20 sm:py-24 lg:py-28">
+    <section id="final-cta" className="section-py relative overflow-hidden bg-ink text-white">
       <div
-        className="pointer-events-none absolute -top-20 -end-20 h-72 w-72 rounded-full bg-terracotta/20 blur-3xl"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,color-mix(in_oklab,var(--terracotta)_22%,transparent)_0%,transparent_55%)]"
         aria-hidden="true"
       />
-      <div className="container-dreamline relative grid items-center gap-10 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
-        <Reveal className="text-center lg:text-start">
-          <p className="font-display text-sm font-medium uppercase tracking-[0.2em] text-white/60">
+
+      <div className="container-dreamline relative mx-auto max-w-2xl text-center">
+        <Reveal>
+          <p className="font-display text-sm font-medium uppercase tracking-[0.2em] text-white/55">
             {finalCta.eyebrow}
           </p>
-          <h2 className="mx-auto mt-4 max-w-lg text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl lg:mx-0 lg:text-[2.75rem]">
+          <h2 className="font-display mt-4 text-3xl font-medium leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem]">
             {finalCta.title}
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/75 sm:text-lg lg:mx-0">
+          <span className="rule rule-center mx-auto mt-6 opacity-60" aria-hidden="true" />
+          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-white/75 sm:text-lg">
             {finalCta.subtitle}
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-            <CTAButton href={siteWhatsAppHref()} label={finalCta.primaryCtaLabel} external size="lg" />
+        </Reveal>
+
+        <Reveal delay={120}>
+          <div className="mt-10 flex flex-col items-stretch gap-3 sm:mt-12">
+            <CTAButton
+              href={siteWhatsAppHref()}
+              label={finalCta.primaryCtaLabel}
+              external
+              size="md"
+              className="w-full min-h-12"
+            />
+            <div className="text-center text-white/45 [&_a]:text-white/70 [&_p]:text-sm [&_p]:leading-relaxed">
+              <WhatsAppConsentNote />
+            </div>
             <a
-              href={siteWhatsAppHref(site.contact.whatsappDefaultMessage)}
+              href={contact.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base font-medium text-white/70 underline-offset-4 transition-colors hover:text-white hover:underline"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full border border-white/25 bg-white/8 px-6 text-base font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
             >
-              {finalCta.secondaryCtaLabel}
+              <InstagramIcon />
+              <span>{finalCta.instagramLabel}</span>
             </a>
           </div>
         </Reveal>
 
-        <Reveal delay={120} className="mx-auto w-full max-w-xs lg:max-w-none">
-          <ArtworkFrame item={image} rounded="rounded-[1.75rem]" className="shadow-2xl shadow-black/30 ring-1 ring-white/10" />
+        <Reveal delay={200}>
+          <p className="mt-10 text-sm leading-relaxed text-white/45">
+            {finalCta.pickupInfo} · {finalCta.deliveryNote}
+          </p>
+        </Reveal>
+
+        <Reveal delay={240}>
+          <p className="mt-4 text-sm leading-relaxed text-white/45">{finalCta.closingMessage}</p>
         </Reveal>
       </div>
     </section>
