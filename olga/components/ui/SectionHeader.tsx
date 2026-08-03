@@ -64,7 +64,7 @@ export function SectionHeader({
 
         {subtitle ? (
           <p
-            className={`mt-4 max-w-xl text-base leading-[1.75] text-text-muted sm:text-lg ${
+            className={`mt-4 max-w-3xl text-base leading-[1.75] text-text-muted sm:text-lg ${
               align === "center" ? "mx-auto" : ""
             }`}
           >

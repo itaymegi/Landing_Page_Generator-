@@ -44,11 +44,13 @@ export function About() {
               variant="label-first"
               delay={120}
             />
-            <p className="mt-5 max-w-xl text-sm leading-[1.85] text-text-muted sm:text-base">
-              {about.body}
-            </p>
+            <div className="mt-5 max-w-xl space-y-4 text-sm leading-[1.85] text-text-muted sm:text-base">
+              {about.paragraphs.map((paragraph) => (
+                <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+              ))}
+            </div>
             <p className="mt-4 text-sm font-medium text-sage-deep sm:text-base">
-              עיצוב מותאם אישית · הערכה ראשונית בלבד
+              {about.accent}
             </p>
           </Reveal>
         </div>

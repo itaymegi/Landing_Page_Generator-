@@ -79,7 +79,7 @@ export const extraOptions: {
   { id: "aisle-rich", label: "שביל חופה עשיר", min: 2000, max: 4000 },
   { id: "entrance-sign", label: "שלט כניסה", min: 600, max: 1200 },
   { id: "bar", label: "סידור לבר", min: 500, max: 1800 },
-  { id: "welcome", label: "עמדת קבלת פנים", min: 1200, max: 2800 },
+  { id: "welcome", label: "עמדת קבלת פנים / שזירה", min: 1200, max: 2800 },
   { id: "night-dismantle", label: "פירוק לילי", min: 800, max: 2000 },
   { id: "logistics", label: "לוגיסטיקה ונסיעות", min: 500, max: 2500 },
   { id: "special", label: "אלמנטים מיוחדים", min: 1500, max: 5000 },
