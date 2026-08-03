@@ -14,7 +14,7 @@ import { IMAGE_QUALITY } from "@/lib/image";
  * To remove after the holiday: delete this file + its usage in page.tsx.
  * ------------------------------------------------------------------ */
 const TU_BAV = {
-  enabled: true,
+  enabled: false,
   delayMs: 6000,
   /** Open when user has scrolled this fraction of the page (or after delayMs). */
   scrollThreshold: 0.28,

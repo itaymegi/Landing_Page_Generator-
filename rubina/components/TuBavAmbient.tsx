@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
  * its single usage in app/page.tsx (+ optional keyframes in globals.css).
  * ------------------------------------------------------------------ */
 const TU_BAV_AMBIENT = {
-  enabled: true,
+  enabled: false,
   desktopHearts: 5,
   mobileHearts: 2,
   parallax: true,
