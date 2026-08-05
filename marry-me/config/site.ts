@@ -100,6 +100,26 @@ export type SiteConfig = {
     title: string;
     items: { question: string; answer: string }[];
   };
+  leadForm: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    phoneLabel: string;
+    phonePlaceholder: string;
+    collectionLabel: string;
+    collectionPlaceholder: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    optionalHint: string;
+    submitLabel: string;
+    note: string;
+    errorName: string;
+    errorPhone: string;
+    successNote: string;
+    assurances: string[];
+  };
   finalCta: {
     eyebrow: string;
     title: string;
@@ -328,6 +348,27 @@ export const site: SiteConfig = {
       },
     ],
   },
+  leadForm: {
+    eyebrow: "Consultation Request",
+    title: "השאירו פרטים",
+    subtitle:
+      "מלאו את הפרטים ונחזור אליכם בוואטסאפ לתיאום שיחת ייעוץ. אין התחייבות ואין עלות.",
+    nameLabel: "שם מלא",
+    namePlaceholder: "השם שלך",
+    phoneLabel: "טלפון",
+    phonePlaceholder: "050-288-5277",
+    collectionLabel: "קולקציה",
+    collectionPlaceholder: "עוד לא החלטתי",
+    messageLabel: "הודעה",
+    messagePlaceholder: "אם יש משהו שחשוב לכם שנדע מראש",
+    optionalHint: "לא חובה",
+    submitLabel: "שליחה בוואטסאפ",
+    note: "הפרטים נשלחים ישירות כהודעת וואטסאפ מהמכשיר שלכם. איננו שומרים אותם בשרת.",
+    errorName: "נא למלא שם",
+    errorPhone: "נא למלא מספר טלפון תקין",
+    successNote: "וואטסאפ נפתח עם ההודעה שלכם. אם לא נפתח, אפשר ללחוץ שוב.",
+    assurances: ["מענה באותו יום", "ייעוץ ללא עלות", "בלי לחץ להחליט"],
+  },
   finalCta: {
     eyebrow: "Begin",
     title: "מוכנים לתכנן את הרגע?",
@@ -388,4 +429,24 @@ export function siteWhatsAppHref(message?: string): string {
     site.contact.whatsappNumber,
     message ?? site.contact.whatsappDefaultMessage,
   );
+}
+
+export type LeadFormValues = {
+  name: string;
+  phone: string;
+  collection: string;
+  message: string;
+};
+
+export function leadWhatsAppHref(values: LeadFormValues): string {
+  const lines = [
+    "היי, הגעתי דרך האתר ואשמח לתאם שיחה על הצעת נישואין.",
+    `שם: ${values.name}`,
+    `טלפון: ${values.phone}`,
+  ];
+
+  if (values.collection) lines.push(`קולקציה: ${values.collection}`);
+  if (values.message) lines.push(`הודעה: ${values.message}`);
+
+  return whatsappHref(site.contact.whatsappNumber, lines.join("\n"));
 }

@@ -24,35 +24,38 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
     >
       <button
         type="button"
-        className="absolute inset-0 bg-charcoal/35 backdrop-blur-md"
+        className="absolute inset-0 bg-charcoal/30 backdrop-blur-[2px]"
         aria-label="סגירת התפריט"
         onClick={onClose}
       />
 
-      <div className="pointer-events-none absolute inset-y-0 end-0 flex w-[min(100%,22rem)] max-w-full flex-col p-3 pt-[calc(0.75rem+env(safe-area-inset-top))] pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:p-4">
-        <div className="pointer-events-auto flex h-full flex-col rounded-[1.5rem] border border-warm-white/50 bg-warm-white/80 shadow-[0_24px_64px_rgba(42,38,34,0.18)] backdrop-blur-xl">
-          <div className="flex items-center justify-between px-5 pt-4">
-            <p className="font-serif-en text-sm tracking-[0.28em] text-charcoal uppercase">
+      <div className="pointer-events-none absolute inset-x-0 top-[calc(0.75rem+env(safe-area-inset-top))] flex justify-center px-4 sm:justify-end sm:px-5">
+        <div className="pointer-events-auto flex max-h-[min(78dvh,34rem)] w-full max-w-[18.5rem] flex-col overflow-hidden rounded-[1.35rem] border border-gold/20 bg-warm-white/95 shadow-[0_20px_48px_rgba(42,38,34,0.16)] backdrop-blur-xl">
+          <div className="flex items-center justify-between px-4 pt-3.5">
+            <p className="font-serif-en text-xs tracking-[0.26em] text-charcoal uppercase">
               {site.brand.logoText}
             </p>
             <button
               type="button"
               onClick={onClose}
               aria-label="סגירת התפריט"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 text-charcoal"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 text-charcoal"
             >
-              <CloseIcon />
+              <CloseIcon className="h-4 w-4" />
             </button>
           </div>
 
-          <nav aria-label="ניווט מובייל" className="mt-6 flex-1 overflow-y-auto px-5">
-            <ul className="space-y-0.5">
+          <nav
+            aria-label="ניווט מובייל"
+            className="mt-3 flex-1 overflow-y-auto px-4"
+          >
+            <ul className="divide-y divide-line/70 border-y border-line/70">
               {site.nav.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     onClick={onClose}
-                    className="block py-3 font-serif text-2xl font-light text-charcoal transition-colors hover:text-gold-deep"
+                    className="flex min-h-12 items-center font-serif text-[1.05rem] font-light text-charcoal transition-colors hover:text-gold-deep"
                   >
                     {link.label}
                   </Link>
@@ -61,15 +64,16 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
             </ul>
           </nav>
 
-          <div className="flex items-center justify-between gap-3 border-t border-line/70 px-5 py-4">
+          <div className="flex items-center justify-center gap-3 px-4 py-4">
             <a
               href={site.contact.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-ink-muted"
+              aria-label="Instagram"
+              onClick={onClose}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 text-charcoal transition-colors duration-300 hover:border-gold hover:text-gold-deep"
             >
-              <InstagramIcon />
-              Instagram
+              <InstagramIcon className="h-5 w-5" />
             </a>
             <a
               href={siteWhatsAppHref()}
@@ -77,7 +81,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
               rel="noopener noreferrer"
               aria-label="שיחה בוואטסאפ"
               onClick={onClose}
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-charcoal text-warm-white transition-colors duration-300 hover:bg-charcoal-soft"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-warm-white transition-colors duration-300 hover:bg-charcoal-soft"
             >
               <WhatsAppIcon className="h-5 w-5" />
             </a>

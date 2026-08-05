@@ -74,13 +74,13 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
             <a
               href={site.contact.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className={`hidden h-11 w-11 items-center justify-center rounded-full border transition-all duration-400 sm:inline-flex ${
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-400 ${
                 scrolled
                   ? "border-gold/25 text-ink-muted hover:border-gold hover:text-gold-deep"
                   : "border-warm-white/30 text-warm-white/85 hover:border-warm-white/70"
@@ -94,7 +94,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="שיחה בוואטסאפ"
-              className="hidden h-11 w-11 items-center justify-center rounded-full bg-charcoal text-warm-white transition-colors duration-300 hover:bg-charcoal-soft sm:inline-flex"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-warm-white transition-colors duration-300 hover:bg-charcoal-soft"
             >
               <WhatsAppIcon className="h-5 w-5" />
             </a>
