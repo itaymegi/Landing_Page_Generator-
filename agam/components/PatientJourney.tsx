@@ -7,16 +7,9 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { site } from "@/config/site";
 
 /**
- * Compact Olga-style walkthrough: progressive active steps with SVG stems that
- * draw between them. Restyled to Agam gold/charcoal — no Olga blush palette.
+ * Progressive walkthrough in Agam gold/charcoal: a vertical rail on mobile and
+ * a horizontal row with drawn SVG stems from lg up.
  */
-
-const MOBILE_POINTS = [
-  { x: 76, y: 8 },
-  { x: 24, y: 35 },
-  { x: 76, y: 62 },
-  { x: 24, y: 89 },
-] as const;
 
 const SEGMENT_DURATION = 0.85;
 const STEP_DELAY = 0.55;
@@ -26,19 +19,6 @@ type StepData = {
   title: string;
   description: string;
 };
-
-function buildStemSegment(
-  from: { x: number; y: number },
-  to: { x: number; y: number },
-) {
-  const cpy1 = from.y + (to.y - from.y) * 0.58;
-  const cpy2 = to.y - (to.y - from.y) * 0.42;
-  return `M ${from.x} ${from.y} C ${from.x} ${cpy1}, ${to.x} ${cpy2}, ${to.x} ${to.y}`;
-}
-
-const MOBILE_STEM_SEGMENTS = MOBILE_POINTS.slice(0, -1).map((from, i) =>
-  buildStemSegment(from, MOBILE_POINTS[i + 1]),
-);
 
 function buildDesktopStemPath(flip: boolean) {
   if (flip) {
@@ -110,100 +90,67 @@ function JourneyMobile({
   activeIndex: number;
   animate: boolean;
 }) {
-  const gradId = "agam-mobile-stem";
   const revealSteps = !animate || activeIndex < 0;
 
   return (
-    <div className="relative mx-auto mt-8 h-[min(56dvh,24rem)] w-full max-w-sm lg:hidden">
-      <svg
-        className="absolute inset-0 h-full w-full overflow-visible"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <StemDefs id={gradId} />
-        {MOBILE_STEM_SEGMENTS.map((d, i) => (
-          <g key={i}>
-            <motion.path
-              d={d}
-              fill="none"
-              stroke={`url(#${gradId}-grad)`}
-              strokeWidth={3.5}
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-              filter={`url(#${gradId}-glow)`}
-              style={{ opacity: 0.22 }}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: animate && activeIndex >= i + 1 ? 1 : 0 }}
-              transition={{
-                duration: animate ? SEGMENT_DURATION : 0,
-                delay: animate ? i * STEP_DELAY : 0,
-                ease: [0.42, 0, 0.18, 1],
-              }}
-            />
-            <motion.path
-              d={d}
-              fill="none"
-              stroke={`url(#${gradId}-grad)`}
-              strokeWidth={2}
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: animate && activeIndex >= i + 1 ? 1 : 0 }}
-              transition={{
-                duration: animate ? SEGMENT_DURATION : 0,
-                delay: animate ? i * STEP_DELAY : 0,
-                ease: [0.42, 0, 0.18, 1],
-              }}
-            />
-          </g>
-        ))}
-      </svg>
-
+    <ol className="mx-auto mt-8 w-full max-w-sm lg:hidden">
       {steps.map((step, index) => {
-        const point = MOBILE_POINTS[index];
-        if (!point) return null;
+        const isLast = index === steps.length - 1;
 
         return (
-          <div
+          <motion.li
             key={step.number}
-            className="absolute -translate-x-1/2"
-            style={{ left: `${point.x}%`, top: `${point.y}%` }}
+            className="flex gap-4"
+            initial={false}
+            animate={{
+              opacity: revealSteps || activeIndex >= index ? 1 : 0.4,
+            }}
+            transition={{
+              duration: 0.6,
+              delay: animate ? index * STEP_DELAY : 0,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
-            <motion.div
-              className="flex flex-col items-center"
-              initial={false}
-              animate={{
-                opacity: revealSteps || activeIndex >= index ? 1 : 0.4,
-                scale: revealSteps || activeIndex >= index ? 1 : 0.94,
-              }}
-              transition={{
-                duration: 0.6,
-                delay: animate ? index * STEP_DELAY : 0,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <div className="-translate-y-1/2">
-                <JourneyCircle
-                  number={step.number}
-                  active={activeIndex === index}
-                  completed={activeIndex > index}
-                  compact
-                />
-              </div>
-              <div className="-mt-0.5 flex max-w-[7rem] flex-col items-center text-center">
-                <h3 className="font-serif text-[0.8125rem] font-light leading-tight text-charcoal">
-                  {step.title}
-                </h3>
-                <p className="mt-1 text-[0.625rem] leading-snug text-ink-muted">
-                  {step.description}
-                </p>
-              </div>
-            </motion.div>
-          </div>
+            <div className="flex flex-col items-center">
+              <JourneyCircle
+                number={step.number}
+                active={activeIndex === index}
+                completed={activeIndex > index}
+                compact
+              />
+              {!isLast ? (
+                <span
+                  className="my-1.5 w-px flex-1 bg-gold/15"
+                  aria-hidden="true"
+                >
+                  <motion.span
+                    className="block h-full w-px origin-top bg-gold/70"
+                    initial={{ scaleY: 0 }}
+                    animate={{
+                      scaleY: !animate || activeIndex >= index + 1 ? 1 : 0,
+                    }}
+                    transition={{
+                      duration: animate ? SEGMENT_DURATION : 0,
+                      delay: animate ? index * STEP_DELAY : 0,
+                      ease: [0.42, 0, 0.18, 1],
+                    }}
+                  />
+                </span>
+              ) : null}
+            </div>
+
+            <div className={`pt-1.5 text-start ${isLast ? "" : "pb-7"}`}>
+              <h3 className="font-serif text-[0.9375rem] font-light leading-snug text-charcoal">
+                {step.title}
+              </h3>
+              <p className="mt-1.5 text-[0.8125rem] leading-[1.7] text-ink-muted">
+                {step.description}
+              </p>
+            </div>
+          </motion.li>
         );
       })}
-    </div>
+    </ol>
   );
 }
 
@@ -346,7 +293,7 @@ export function PatientJourney() {
           animate={animate}
         />
 
-        <p className="mx-auto mt-8 max-w-md text-center text-[0.8125rem] leading-[1.8] text-ink-faint sm:mt-10 lg:mt-14">
+        <p className="mx-auto mt-10 max-w-md text-center text-[0.8125rem] leading-[1.8] text-ink-faint lg:mt-14">
           {journey.note}
         </p>
       </div>
