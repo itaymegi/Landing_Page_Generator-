@@ -25,10 +25,18 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
   const [treatmentsOpen, setTreatmentsOpen] = useState(false);
   useScrollLock(open);
 
+  function handleClose() {
+    setTreatmentsOpen(false);
+    onClose();
+  }
+
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        setTreatmentsOpen(false);
+        onClose();
+      }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -45,7 +53,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            onClick={onClose}
+            onClick={handleClose}
             className="fixed inset-0 z-[90] bg-charcoal/40 backdrop-blur-sm lg:hidden"
             aria-hidden="true"
           />
@@ -58,15 +66,15 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-y-0 end-0 z-[100] flex w-[86%] max-w-sm flex-col bg-ivory px-6 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-6 shadow-2xl lg:hidden"
+            className="fixed inset-y-0 end-0 z-[100] flex w-[min(86%,22rem)] max-w-sm flex-col bg-ivory px-6 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-6 shadow-2xl lg:hidden"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <BrandLogo size="sm" mark />
               <button
                 type="button"
-                onClick={onClose}
+                onClick={handleClose}
                 aria-label="סגירת התפריט"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 text-charcoal"
+                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/30 text-charcoal"
               >
                 <CloseIcon />
               </button>
@@ -74,7 +82,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
 
             <nav className="mt-10 flex-1 overflow-y-auto" data-lenis-prevent>
               <ul className="flex flex-col">
-                {site.nav.map((link, index) => {
+                {site.mobileNav.map((link, index) => {
                   const isTreatments = link.href === TREATMENTS_HREF;
                   const number = String(index + 1).padStart(2, "0");
 
@@ -83,7 +91,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          onClick={onClose}
+                          onClick={handleClose}
                           className="flex min-h-14 items-center border-b border-line/70 font-serif text-lg font-light text-charcoal"
                         >
                           <span className="font-serif-en me-4 text-[0.625rem] tracking-[0.2em] text-gold-deep">
@@ -128,7 +136,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                             <li>
                               <Link
                                 href={TREATMENTS_HREF}
-                                onClick={onClose}
+                                onClick={handleClose}
                                 className="flex min-h-11 items-center text-[0.9375rem] tracking-[0.06em] text-gold-deep transition-colors duration-400 hover:text-charcoal"
                               >
                                 לכל התחומים
@@ -138,7 +146,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                               <li key={category.id}>
                                 <Link
                                   href={treatmentHref(category.slug)}
-                                  onClick={onClose}
+                                  onClick={handleClose}
                                   className="flex min-h-11 items-center text-[0.9375rem] text-ink-muted transition-colors duration-400 hover:text-charcoal"
                                 >
                                   {category.title}
@@ -162,7 +170,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                 fullWidthOnMobile
                 className="w-full"
                 ariaLabel={site.hero.primaryCta}
-                onClick={onClose}
+                onClick={handleClose}
               >
                 {site.hero.primaryCta}
               </CTAButton>

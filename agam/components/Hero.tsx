@@ -48,7 +48,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative overflow-hidden bg-ivory pb-24 pt-[calc(var(--header-height)+2.5rem)] sm:pb-28 sm:pt-[calc(var(--header-height)+4rem)] lg:pb-36"
+      className="relative overflow-hidden bg-ivory pb-6 pt-[calc(var(--header-height)+1.5rem)] sm:pb-28 sm:pt-[calc(var(--header-height)+4rem)] lg:pb-36"
     >
       {/* Soft light behind the copy column, kept off the photo itself. */}
       <span
@@ -56,12 +56,12 @@ export function Hero() {
         aria-hidden="true"
       />
       <span
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-sand to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-sand to-transparent sm:h-40"
         aria-hidden="true"
       />
 
       <div className="container-agam relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
+        <div className="grid items-center gap-8 sm:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
           <div>
             <motion.p
               custom={0}
@@ -78,7 +78,7 @@ export function Hero() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="mt-5 font-serif text-[clamp(2.125rem,6.2vw,4rem)] font-light leading-[1.16] text-charcoal"
+              className="mt-3 font-serif text-[clamp(2.375rem,7vw,4rem)] font-light leading-[1.14] text-charcoal sm:mt-5"
             >
               {hero.headline}
               <span className="mt-1 block text-gold-deep">
@@ -91,7 +91,7 @@ export function Hero() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="mt-7 max-w-xl text-base leading-[1.95] text-ink-muted sm:text-lg"
+              className="mt-5 max-w-xl text-[0.9375rem] leading-[1.75] text-ink-muted sm:mt-7 sm:text-lg sm:leading-[1.95]"
             >
               {hero.subtitle}
             </motion.p>
@@ -101,7 +101,7 @@ export function Hero() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+              className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center"
             >
               <CTAButton href={consultationHref()} variant="primary" external>
                 {hero.primaryCta}
@@ -155,7 +155,7 @@ export function Hero() {
                 />
               </div>
 
-              <figcaption className="mt-4 flex items-center gap-3 text-[0.75rem] tracking-[0.1em] text-ink-faint">
+              <figcaption className="mt-3 flex items-center gap-3 text-[0.6875rem] tracking-[0.1em] text-ink-faint sm:mt-4 sm:text-[0.75rem]">
                 <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
                 {hero.imageCaption}
               </figcaption>

@@ -17,7 +17,7 @@
   --line: #e7e1d7;
   --background: var(--ivory);
   --foreground: var(--ink);
-  --header-height: 4.75rem;
+  --header-height: 5rem;
 }
 
 @theme inline {
@@ -199,12 +199,12 @@ section[id] {
 }
 
 .section-py {
-  padding-block: 5rem;
+  padding-block: 3.75rem;
 }
 
 @media (min-width: 640px) {
   .section-py {
-    padding-block: 7.5rem;
+    padding-block: 6.5rem;
   }
 }
 

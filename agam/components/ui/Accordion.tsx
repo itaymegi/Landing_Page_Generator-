@@ -40,22 +40,22 @@ export function Accordion({
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex min-h-16 w-full items-center justify-between gap-5 py-5 text-start"
+                  className="flex w-full items-center justify-between gap-4 py-4 text-start sm:gap-5 sm:py-5"
                 >
                   <span
-                    className={`font-serif text-[1.0625rem] font-light leading-[1.6] transition-colors duration-400 sm:text-lg ${
+                    className={`font-serif text-[1.0625rem] font-light leading-[1.45] transition-colors duration-400 sm:text-lg sm:leading-[1.6] ${
                       isOpen ? "text-charcoal" : "text-ink"
                     }`}
                   >
                     {item.question}
                   </span>
                   <span
-                    className="relative inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/25 text-gold-deep"
+                    className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/25 text-gold-deep"
                     aria-hidden="true"
                   >
-                    <span className="absolute block h-px w-3 bg-current" />
+                    <span className="absolute block h-px w-2.5 bg-current" />
                     <span
-                      className={`absolute block h-3 w-px bg-current transition-transform duration-400 ${
+                      className={`absolute block h-2.5 w-px bg-current transition-transform duration-400 ${
                         isOpen ? "scale-y-0" : "scale-y-100"
                       }`}
                     />
@@ -69,7 +69,7 @@ export function Accordion({
                     id={panelId}
                     role="region"
                     aria-labelledby={buttonId}
-                    className="pb-6 pe-12 text-[0.9375rem] leading-[1.95] text-ink-muted"
+                    className="mb-4 rounded-xl bg-cream/60 px-4 py-3 text-[0.9375rem] leading-[1.6] text-ink-muted sm:mb-5 sm:pe-10"
                   >
                     {item.answer}
                   </p>

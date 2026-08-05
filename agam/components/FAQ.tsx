@@ -17,7 +17,7 @@ export function FAQ() {
 
         <Accordion
           items={faq.items}
-          className="mx-auto mt-14 max-w-3xl lg:mt-20"
+          className="mx-auto mt-8 max-w-3xl sm:mt-14 lg:mt-20"
         />
       </div>
     </ClinicSection>

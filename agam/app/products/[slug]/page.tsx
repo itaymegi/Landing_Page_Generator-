@@ -78,7 +78,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <Header />
       <main
         id="main-content"
-        className="overflow-x-clip pb-[calc(4.5rem+env(safe-area-inset-bottom))] sm:pb-0"
+        className="overflow-x-clip pb-[calc(110px+env(safe-area-inset-bottom))] sm:pb-0"
       >
         <section
           id="hero"

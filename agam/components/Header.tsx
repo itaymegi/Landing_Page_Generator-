@@ -50,27 +50,25 @@ export function Header() {
   }, [treatmentsOpen]);
 
   const iconClass =
-    "inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/25 text-ink-muted transition-all duration-400 hover:border-gold hover:text-gold-deep";
+    "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/25 text-ink-muted transition-all duration-400 hover:border-gold hover:text-gold-deep";
   const navLinkClass =
     "relative inline-flex min-h-11 items-center whitespace-nowrap text-[0.8125rem] tracking-[0.08em] text-ink-muted transition-colors duration-400 after:absolute after:inset-x-0 after:bottom-2 after:mx-auto after:h-px after:w-0 after:bg-gold after:transition-all after:duration-400 hover:text-charcoal hover:after:w-full";
 
   return (
     <>
       <header
-        className={`inset-x-0 top-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled
-            ? "border-b border-line/70 bg-ivory/92 backdrop-blur-md"
-            : "border-b border-transparent bg-transparent"
+        className={`inset-x-0 top-0 overflow-visible border-b bg-ivory/92 shadow-[0_8px_28px_rgba(31,30,28,0.06)] backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          scrolled ? "border-gold/25" : "border-gold/15"
         }`}
         style={{ height: "var(--header-height)" }}
       >
-        <div className="container-agam flex h-full items-center justify-between gap-4">
+        <div className="container-agam flex h-full w-full max-w-full items-center justify-between gap-2 sm:gap-3">
           <Link
             href="/"
             aria-label={`${site.brand.name} — לראש העמוד`}
-            className="inline-flex min-h-11 shrink-0 items-center"
+            className="inline-flex min-h-11 min-w-0 items-center"
           >
-            <BrandLogo mark />
+            <BrandLogo mark markOnlyBelow="xs" />
           </Link>
 
           <nav aria-label="ניווט ראשי" className="hidden lg:block">
@@ -162,13 +160,24 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2.5">
+          {/* Mobile: WA + hamburger only. Desktop: full social set + CTA. */}
+          <div className="flex shrink-0 items-center gap-2">
+            <a
+              href={siteWhatsAppHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="שיחה בוואטסאפ"
+              className={iconClass}
+            >
+              <WhatsAppIcon />
+            </a>
+
             <a
               href={site.contact.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`אינסטגרם ${site.contact.instagramHandle}`}
-              className={`${iconClass} hidden sm:inline-flex`}
+              className={`${iconClass} !hidden lg:!inline-flex`}
             >
               <InstagramIcon />
             </a>
@@ -177,7 +186,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`פייסבוק ${site.brand.name}`}
-              className={`${iconClass} hidden sm:inline-flex lg:hidden xl:inline-flex`}
+              className={`${iconClass} !hidden xl:!inline-flex`}
             >
               <FacebookIcon />
             </a>
@@ -186,18 +195,9 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`טיקטוק ${site.contact.tiktokHandle}`}
-              className={`${iconClass} hidden sm:inline-flex lg:hidden xl:inline-flex`}
+              className={`${iconClass} !hidden xl:!inline-flex`}
             >
               <TikTokIcon />
-            </a>
-            <a
-              href={siteWhatsAppHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="שיחה בוואטסאפ"
-              className={`${iconClass} hidden sm:inline-flex`}
-            >
-              <WhatsAppIcon />
             </a>
 
             <CTAButton
@@ -215,7 +215,7 @@ export function Header() {
               onClick={() => setMenuOpen(true)}
               aria-label="פתיחת התפריט"
               aria-expanded={menuOpen}
-              className="inline-flex h-11 w-11 flex-col items-center justify-center gap-[5px] rounded-full border border-gold/25 lg:hidden"
+              className="inline-flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[5px] rounded-full border border-gold/25 lg:hidden"
             >
               <span className="block h-px w-4 bg-charcoal" />
               <span className="block h-px w-4 bg-charcoal" />

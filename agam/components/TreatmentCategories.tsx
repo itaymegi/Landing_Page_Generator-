@@ -32,7 +32,7 @@ export function TreatmentCategories() {
           {categoriesSection.dragHint}
         </p>
 
-        <ul className="mt-10 grid grid-cols-2 gap-3.5 sm:gap-5 lg:mt-14 lg:grid-cols-4">
+        <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-5 lg:mt-14 lg:grid-cols-4">
           {treatmentCategories.map((category, index) => {
             const pair = getHeroPair(category.id);
 

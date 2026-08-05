@@ -346,7 +346,7 @@ export function PatientJourney() {
           animate={animate}
         />
 
-        <p className="mx-auto mt-10 max-w-md text-center text-[0.8125rem] leading-[1.8] text-ink-faint lg:mt-14">
+        <p className="mx-auto mt-8 max-w-md text-center text-[0.8125rem] leading-[1.8] text-ink-faint sm:mt-10 lg:mt-14">
           {journey.note}
         </p>
       </div>
