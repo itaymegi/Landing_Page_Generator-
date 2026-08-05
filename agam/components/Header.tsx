@@ -160,8 +160,8 @@ export function Header() {
             </ul>
           </nav>
 
-          {/* Mobile: WA + hamburger only. Desktop: full social set + CTA. */}
-          <div className="flex shrink-0 items-center gap-2">
+          {/* Mobile: WA + Instagram + hamburger. Desktop adds FB/TikTok + CTA. */}
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <a
               href={siteWhatsAppHref()}
               target="_blank"
@@ -177,7 +177,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`אינסטגרם ${site.contact.instagramHandle}`}
-              className={`${iconClass} !hidden lg:!inline-flex`}
+              className={iconClass}
             >
               <InstagramIcon />
             </a>
