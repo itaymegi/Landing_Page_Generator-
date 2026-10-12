@@ -100,6 +100,7 @@ export function OrderPlanner() {
           <p className="mt-6 text-base leading-relaxed text-brown/60 sm:text-lg">
             {planner.subtitle}
           </p>
+          <p className="mt-3 text-xs text-brown/45">{planner.vatNote}</p>
         </Reveal>
 
         <Reveal delay={120}>
